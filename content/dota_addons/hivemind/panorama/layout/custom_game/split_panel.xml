@@ -1,0 +1,11 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/split_panel.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/split_panel.js" />
+	</scripts>
+	<Panel class="SplitPanel" hittest="false">
+	</Panel>
+</root>

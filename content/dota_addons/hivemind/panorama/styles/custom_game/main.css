@@ -1,0 +1,89 @@
+.main {
+	width: 100%;
+	height: 100%;
+}
+#alert {
+	width: 500px;
+	height: 100px;
+	horizontal-align: center;
+	margin-top: 100px;
+}
+#alert Label {
+	text-align: center;
+	font-size: 60px;
+	width: 100%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.5s;
+	transition-timing-function: ease-in-out;
+}
+.visible,
+#alert Label.visible {
+	opacity: 1;
+}
+
+#gameover {
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 100px;
+	width: 500px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+	border: 1px solid #999999;
+	/* background-image: url("s2r://panorama/images/backgrounds/dashboard_vignette_png.vtex"); */
+	background-size: cover;
+	border-radius: 20px;
+	flow-children: down;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	visibility: collapse;
+}
+#gameover Label {
+	color: white;
+	text-align: center;
+	font-size: 40px;
+	width: 100%;
+	margin: 10px;
+}
+#rematch-buttons {
+	flow-children: right;
+	horizontal-align: center;
+	vertical-align: bottom;
+	padding-bottom: 10px;
+}
+#gameover Button {
+	width: 150px;
+	height: 50px;
+	border-radius: 5px;
+	box-shadow: fill 3px 3px 5px 0px #000000;
+	margin: 10px 30px;
+}
+#gameover Button Label {
+	font-size: 30px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin: 5px;
+}
+.btn-yes {
+	background-color: #006d01;
+	border: 1px solid #013601;
+}
+.btn-yes:hover {
+	background-color: #005401;
+}
+.btn-yes:active {
+	background-color: #013601;
+}
+.btn-no {
+	background-color: #9C0000;
+	border: 1px solid #4A0000;
+}
+.btn-no:hover {
+	background-color: #730000;
+}
+.btn-no:active {
+	background-color: #4A0000;
+}
+Button#disconnect {
+	width: 250px;
+	horizontal-align: center;
+}

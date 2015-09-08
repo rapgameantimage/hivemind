@@ -1,0 +1,75 @@
+.SplitPanel {
+	horizontal-align: right;
+	vertical-align: top;
+	padding-top: 55px;
+	flow-children: down;
+}
+.unit {
+	margin: 10px 20px;
+	background-color: black;
+	height: 70px;
+	width: 120px;
+	box-shadow: fill #000000 0px 0px 10px 0px;
+	background-position: left center;
+}
+.unit:active {
+	padding-top: 12px;
+}
+.unit.show,
+#split_buttons.show {
+	visibility: visible;
+}
+.dead {
+	saturation: 0;
+}
+
+.unit-number {
+	color: white;
+	vertical-align: bottom;
+	horizontal-align: right;
+	font-size: 30px;
+	padding-bottom: 3px;
+	padding-left: 5px;
+}
+
+.health_bar {
+	height: 8px;
+	width: 100%;
+	background-color: #aaaaaa;
+	vertical-align: bottom;
+	box-shadow: fill #000000 0px 0px 5px 0px;
+}
+.health_bar_fill {
+	background-color: #1a9e00;
+	height: 8px;
+	width: 100%;
+}
+
+.abilities {
+	flow-children: right;
+	vertical-align: bottom;
+	horizontal-align: left;
+	margin-bottom: 8px;
+}
+.ability {
+	height: 25px;
+	width: 25px;
+	border: 2px solid black;
+}
+.cooldown {
+	saturation: 0.4;
+}
+
+/* Images for units */
+.npc_dota_lycan_split_wolf {
+	background-image: url("file://{images}/custom_game/units/wolf.png");
+}
+.npc_dota_bane_split_ghost {
+	background-image: url("file://{images}/custom_game/units/banshee.png");
+}
+.npc_dota_phoenix_split_spirit {
+	background-image: url("file://{images}/custom_game/units/magma_spirit.png");
+}
+.npc_dota_enigma_split_eidolon {
+	background-image: url("file://{images}/custom_game/units/eidolon.png");
+}

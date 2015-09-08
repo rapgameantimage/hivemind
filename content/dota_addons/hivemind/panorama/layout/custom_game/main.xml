@@ -1,0 +1,27 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/main.css" />
+		<include src="s2r://panorama/styles/popups/popups_shared.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/main.js" />
+	</scripts>
+	<Panel class="main" hittest="false">
+		<Panel id="alert" hittest="false">
+			<Label id="alert-text" hittest="false" />
+		</Panel>
+		<Panel id="gameover">
+			<Label id="winner" />
+			<Label id="rematch" text="#rematch_question" />
+			<Panel id="rematch-buttons">
+				<Button class="btn-yes" id="rematch-yes" onactivate="RematchYes()">
+					<Label text="#yes" />
+				</Button>
+				<Button class="btn-no" id="rematch-no" onactivate="RematchNo()">
+					<Label text="#no" />
+				</Button>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,52 @@
+"addon"
+{
+	"Unassigned"      								"Unassigned Team"
+	"Spectator"       								"Spectator Team"
+	"Neutrals"        								"Neutral Team"
+	"NoTeam"          								"No Team"
+
+	"DOTA_GoodGuys"   								"Teal Tiger"
+	"DOTA_BadGuys"    								"Yellow Monkey"
+	"DOTA_Custom1"    								"Pink Dragon"
+	"DOTA_Custom2"    								"Orange Dog"
+	"DOTA_Custom3"    								"Blue Rooster"
+	"DOTA_Custom4"    								"Green Ram"
+	"DOTA_Custom5"    								"Brown Rat"
+	"DOTA_Custom6"    								"Cyan Boar"
+	"DOTA_Custom7"    								"Olive Snake"
+	"DOTA_Custom8"    								"Purple Horse"
+	
+	"addonname"										"Hivemind"
+
+	"yes"											"Yes"
+	"no"											"No"
+
+	"wins"											"wins!"
+	"rematch_question"								"Rematch?"
+	"round"											"Round"
+	"in"											"in"
+	"ellipses"										"..."
+	"rematch_waiting"								"Waiting for opponent to accept rematch..."
+
+	"gameinfo_nav_howto"							"How to Play"
+	"gameinfo_nav_about"							"About"
+
+	"gameinfo_main_intro"							"In Hivemind, every hero's first ability can be used to enter \"split form,\" transforming into a group of 4-5 units with unique abilities. You can return to hero form by using the first ability on any split unit."
+	"gameinfo_main_death"							"Beware, if all of your split units die, so will your hero!"
+	"gameinfo_main_win"								"Be the first to reach 5 kills to win!"
+	"gameinfo_main_tips"							"Tips:"
+	"gameinfo_main_tip1"							"1. You are invulnerable for a moment while transforming. Use that to dodge enemy spells and attacks!"
+	"gameinfo_main_tip2"							"2. Cooldowns, buffs, and debuffs tick down on your hero even while in split form, and vice versa."
+	"gameinfo_main_good_luck"						"Good luck!"
+
+	"gameinfo_about_author"							"This mod was created by rap_game_anti_mage. It should be considered a beta. Suggestions? Feedback? Found a bug? Shoot me an email: loremipsum@gmail.com."
+	"gameinfo_about_specialthanks"					"Special thanks to:"
+	"gameinfo_about_thanks1"						"Noya, for his Data-Driven guides and general helpfulness"
+	"gameinfo_about_thanks2"						"BMD, for his Barebones package"
+	"gameinfo_about_thanks3"						"Pizzalol and all other contributors to SpellLibrary"
+
+	"gameinfo_attributions"							"Attributions:"
+	"gameinfo_attributions1"						"Nightmare Orb ambient sound: (c) 2012 Erdie, freesound.org, some changes made."
+
+	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
+}

@@ -1,0 +1,14 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/split_panel.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/split_unit_ability.js" />
+	</scripts>
+	<Panel class="ability" hittest="false">
+		<Button class="ability_icon" onactivate="OnSplitAbilityClicked()">
+			<DOTAAbilityImage />
+		</Button>
+	</Panel>
+</root>

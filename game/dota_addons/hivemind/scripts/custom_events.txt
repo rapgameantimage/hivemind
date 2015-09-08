@@ -1,0 +1,11 @@
+"CustomEvents"
+{
+	"rematch_yes"
+	{
+		"player"	"short"
+	}
+	"rematch_no"
+	{
+		"player"	"short"
+	}
+}

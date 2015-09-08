@@ -1,0 +1,126 @@
+﻿"lang"
+{
+	"Language"		"English"
+	"Tokens"
+	{		
+		"game_mode_15"				"HIVEMIND"
+		"addon_game_name"			"HIVEMIND"
+		
+		"dota_hud_error_units_too_far_to_unify"		"Units Too Far To Unify"
+		"dota_hud_error_min_range"					"Target Is Within Minimum Range"
+		"dota_hud_error_dimensional_bind_split"					"Can't Unify While Any Unit Affected By Dimensional Bind"
+		"dota_hud_error_dimensional_bind_hero"					"Can't Split While Affected By Dimensional Bind"
+
+		// ******************** HEROES ********************
+		"npc_dota_hero_lycan"                                                             "Npc Dota Hero Hivemind Lycan"
+		"npc_dota_hero_bane"                                                              "Npc Dota Hero Hivemind Bane"
+
+		// ******************** UNITS ********************
+		"npc_dota_lycan_split_wolf"                                                       "Wolf"
+		"npc_dota_bane_split_ghost"                                                       "Banshee"
+		"npc_dota_nightmare_orb"                                                          "Nightmare Orb"
+		"npc_dummy_unit"                                                                  "Dummy Unit"
+		"npc_dota_hero_hivemind_lycan"                                                    "Dota Hero Hivemind Lycan"
+		"npc_dota_hero_hivemind_bane"                                                     "Dota Hero Hivemind Bane"
+
+		// ******************** ABILITIES ********************
+		"DOTA_Tooltip_ability_split_lycan"                                                "Split Form"
+		"DOTA_Tooltip_ability_split_lycan_Description"                                    ""
+
+		"DOTA_Tooltip_ability_unify_lycan"                                                "Unify"
+		"DOTA_Tooltip_ability_unify_lycan_Description"                                    ""
+
+		"DOTA_Tooltip_ability_lycan_hamstring"                                            "Hamstring"
+		"DOTA_Tooltip_ability_lycan_hamstring_Description"                                "Strikes quickly at the target's hamstring, slowing their movement tremendously. If the target has 3 or more stacks of Lacerate, immobilizes instead of slowing."
+		"DOTA_Tooltip_ability_lycan_hamstring_duration"                                   "DURATION:"
+		"DOTA_Tooltip_ability_lycan_hamstring_slow"                                       "%SLOW:"
+		"DOTA_Tooltip_modifier_hamstring"												  "Hamstrung"
+		"DOTA_Tooltip_modifier_hamstring_description"									  "Crippled by a sliced hamstring."
+
+		"DOTA_Tooltip_ability_lycan_skull_crush"                                          "Skull Crush"
+		"DOTA_Tooltip_ability_lycan_skull_crush_Description"                              "A slow, powerful strike at a nearby target's head, crushing their skull for massive damage and stun time."
+		"DOTA_Tooltip_ability_lycan_skull_crush_stun_duration"                            "STUN DURATION:"
+
+		"DOTA_Tooltip_ability_lycan_pounce"                                               "Pounce"
+		"DOTA_Tooltip_ability_lycan_pounce_Description"                                   "Leaps forward, briefly stunning enemy units at the destination."
+		"DOTA_Tooltip_ability_lycan_pounce_distance"                                      "DISTANCE:"
+		"DOTA_Tooltip_ability_lycan_pounce_stun"                                          "STUN:"
+		"DOTA_Tooltip_ability_lycan_pounce_radius"                                        "STUN RADIUS:"
+
+		"DOTA_Tooltip_ability_lycan_lacerate"                                             "Lacerate"
+		"DOTA_Tooltip_ability_lycan_lacerate_Description"                                 "Each of the wolves' strikes shreds its target flesh more and more deeply. One stack of Lacerate is applied for every 3 attacks landed. Whenever the victim takes damage, they bleed for an additional 10% of the original damage per stack of Lacerate."
+		"DOTA_Tooltip_ability_lycan_lacerate_stack_decay_time"                            "STACK DECAY TIME:"
+		"DOTA_Tooltip_ability_lycan_lacerate_bleed_time"                                  "BLEED TIME:"
+		"DOTA_Tooltip_ability_lycan_lacerate_bleed_percent_per_stack"                     "BLEED PERCENT PER STACK:"
+		"DOTA_Tooltip_ability_lycan_lacerate_max_stacks"                                  "MAX STACKS:"
+		"DOTA_Tooltip_modifier_lacerate"												  "Lacerated"
+		"DOTA_Tooltip_modifier_lacerate_description"									  "Taking additional damage from all sources for each stack of Lacerate."
+		"DOTA_Tooltip_modifier_lacerate_bleeding"										  "Bleeding!"
+
+		"DOTA_Tooltip_ability_lycan_berserk"                                              "Berserk"
+		"DOTA_Tooltip_ability_lycan_berserk_Description"                                  "Lycan goes berserk, gaining massive damage and attack speed bonuses for a brief time but becoming unable to cast spells."
+		"DOTA_Tooltip_ability_lycan_berserk_duration"                                     "DURATION:"
+		"DOTA_Tooltip_ability_lycan_berserk_damage_bonus"                                 "DAMAGE BONUS:"
+		"DOTA_Tooltip_ability_lycan_berserk_attack_speed_bonus"                           "ATTACK SPEED BONUS:"
+		"DOTA_Tooltip_modifier_berserk"													  "Berserk"
+
+		"DOTA_Tooltip_ability_lycan_echoing_howl"                                         "Echoing Howl"
+		"DOTA_Tooltip_ability_lycan_echoing_howl_Description"                             "Emits a powerful howl that briefly slows nearby units. The howl then echoes 3 times over the next 6 seconds, reapplying its slow each time."
+		"DOTA_Tooltip_ability_lycan_echoing_howl_slow_percentage"                         "%SLOW:"
+		"DOTA_Tooltip_ability_lycan_echoing_howl_slow_duration"                           "SLOW DURATION:"
+		"DOTA_Tooltip_modifier_howling"													  "Howling"
+		"DOTA_Tooltip_modifier_howling_slow"											  "Slowed"
+
+		"DOTA_Tooltip_ability_split_bane"                                                 "Split Form"
+		"DOTA_Tooltip_ability_split_bane_Description"                                     ""
+
+		"DOTA_Tooltip_ability_unify_bane"                                                 "Unify"
+		"DOTA_Tooltip_ability_unify_bane_Description"                                     ""
+
+		"DOTA_Tooltip_ability_bane_flicker"                                               "Flicker"
+		"DOTA_Tooltip_ability_bane_flicker_Description"                                   "Flickers in and out of invisibility for the duration. While invisible, Bane gains a movement speed bonus."
+		"DOTA_Tooltip_ability_bane_flicker_duration"                                      "DURATION:"
+		"DOTA_Tooltip_ability_bane_flicker_movespeed_bonus"                               "%MOVESPEED BONUS:"
+		"DOTA_Tooltip_modifier_flicker"													  "Flickering"
+		"DOTA_Tooltip_modifier_flicker_description"										  "Flickering in and out of visibility."
+
+		"DOTA_Tooltip_ability_bane_nightmare_orb"                                         "Nightmare Orb"
+		"DOTA_Tooltip_ability_bane_nightmare_orb_Description"                             "While this ability is channeled, a nightmarish orb appears at the target location. Units that face the orb are forced to attack it. The orb dissolves the flesh of units that come too close, dealing massive damage over time."
+		"DOTA_Tooltip_ability_bane_nightmare_orb_pull_radius"                             "FORCED ATTACK RADIUS:"
+		"DOTA_Tooltip_ability_bane_nightmare_orb_damage_radius"                           "DAMAGE RADIUS:"
+		"DOTA_Tooltip_ability_bane_nightmare_orb_dps"                                     "DAMAGE PER SECOND:"
+		"DOTA_Tooltip_modifier_nightmare_orb_pull"										  "Nightmare Orb"
+		"DOTA_Tooltip_modifier_nightmare_orb_pull_description"							  "Under the spell of a Nightmare Orb."
+
+		"DOTA_Tooltip_ability_nightmare_orb_passive"                                      "Nightmare Orb"
+		"DOTA_Tooltip_ability_nightmare_orb_passive_Description"                          "#JustNightmareOrbThings"
+
+		"DOTA_Tooltip_ability_bane_spirit_poison"                                         "Spirit Poison"
+		"DOTA_Tooltip_ability_bane_spirit_poison_Description"                             "Summons a projectile that damages and silences enemies it hits."
+		"DOTA_Tooltip_ability_bane_spirit_poison_silence_duration"                        "SILENCE DURATION:"
+
+		"DOTA_Tooltip_ability_bane_chilling_scream"                                       "Chilling Scream"
+		"DOTA_Tooltip_ability_bane_chilling_scream_Description"                           "A wave of sound damages enemies in a small area and slows them briefly."
+		"DOTA_Tooltip_ability_bane_chilling_scream_slow_duration"                         "SLOW DURATION:"
+		"DOTA_Tooltip_ability_bane_chilling_scream_slow_percentage"                       "SLOW PERCENTAGE:"
+		"DOTA_Tooltip_modifier_chilling_scream"											  "Chilled"
+		"DOTA_Tooltip_modifier_chilling_scream_description"								  "Slowed by a chilling scream"
+
+		"DOTA_Tooltip_ability_bane_spirit_barbs"                                          "Spirit Barbs"
+		"DOTA_Tooltip_ability_bane_spirit_barbs_Description"                              "Links the health and mana of units it hits. Whenever aftected targets take damage, they lose mana equal to 1.5x the damage."
+		"DOTA_Tooltip_ability_bane_spirit_barbs_duration"                                 "DURATION:"
+		"DOTA_Tooltip_modifier_spirit_barbs"											  "Spirit Barbs"
+		"DOTA_Tooltip_modifier_spirit_barbs_description"								  "Losing mana upon taking damage"
+
+		"DOTA_Tooltip_ability_bane_soul_freeze"                                           "Soul Freeze"
+		"DOTA_Tooltip_ability_bane_soul_freeze_Description"                               "Every time a banshee successfully lands an attack, the target gains a stack of Soul Freeze, reducing their movement speed. This debuff lasts until death."
+		"DOTA_Tooltip_ability_bane_soul_freeze_slow_per_stack_hero"                       "HERO SLOW PER STACK:"
+		"DOTA_Tooltip_ability_bane_soul_freeze_slow_per_stack_non_hero"                   "NON-HERO SLOW PER STACK:"
+		"DOTA_Tooltip_ability_bane_soul_freeze_max_stacks"                                "MAX STACKS:"
+		"DOTA_Tooltip_modifier_soul_freeze"												  "Soul Freeze"
+		"DOTA_Tooltip_modifier_soul_freeze_description"									  "Slowed slightly for each stack of this modifier."
+
+		"DOTA_Tooltip_ability_set_spawn_point"                                            "Set Spawn Point"
+		"DOTA_Tooltip_ability_set_spawn_point_Description"                                "Set the location at which one of your split units will spawn."
+	}
+}

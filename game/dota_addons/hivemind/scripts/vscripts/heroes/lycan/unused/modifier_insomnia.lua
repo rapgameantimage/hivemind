@@ -1,0 +1,3 @@
+modifier_insomnia = class({})
+
+-- nothing to see here...

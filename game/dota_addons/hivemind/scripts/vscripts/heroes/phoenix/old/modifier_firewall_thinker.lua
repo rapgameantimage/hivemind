@@ -1,0 +1,1 @@
+modifier_firewall_thinker = class({})
