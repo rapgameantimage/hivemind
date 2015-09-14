@@ -1,3 +1,5 @@
+-- This file defines what units are created by GameMode:CreateSplitUnits in split_logic.lua
+
 SPLIT_UNIT_NAMES = {
   npc_dota_hero_lycan = "npc_dota_lycan_split_wolf",
   npc_dota_hero_bane = "npc_dota_bane_split_ghost",
@@ -12,6 +14,7 @@ NUMBER_OF_SPLIT_UNITS = {
   npc_dota_hero_enigma = 5,
 }
 
+-- Currently not implemented:
 SPLIT_UNIT_PARTICLE_FUNCTIONS = {
 	npc_dota_hero_phoenix = function(unit)
 		p = ParticleManager:CreateParticle("particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, unit)

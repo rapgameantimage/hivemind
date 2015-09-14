@@ -1,0 +1,9 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/main.css" />
+	</styles>
+	<Panel class="pick-header">
+		<Label text="#pick_header_text" />
+	</Panel>
+</root>

@@ -6,38 +6,42 @@
 	width: 500px;
 	height: 100px;
 	horizontal-align: center;
-	margin-top: 100px;
+	margin-top: 150px;
 }
 #alert Label {
 	text-align: center;
 	font-size: 60px;
 	width: 100%;
 	opacity: 0;
-	transition-property: opacity;
+	color: white;
+	transition-property: opacity, text-shadow;
 	transition-duration: 0.5s;
 	transition-timing-function: ease-in-out;
+	text-shadow: 2px 2px 3px 2.0 #000000;
 }
 .visible,
 #alert Label.visible {
 	opacity: 1;
 }
 
-#gameover {
+.dialog {
 	horizontal-align: center;
 	vertical-align: center;
 	margin-bottom: 100px;
-	width: 500px;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
 	border: 1px solid #999999;
-	/* background-image: url("s2r://panorama/images/backgrounds/dashboard_vignette_png.vtex"); */
 	background-size: cover;
 	border-radius: 20px;
 	flow-children: down;
 	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 10px;	
+}
+#gameover {
+	width: 500px;
 	visibility: collapse;
 }
-#gameover Label {
+.dialog Label,
+.dialog Panel Label {
 	color: white;
 	text-align: center;
 	font-size: 40px;
@@ -83,7 +87,39 @@
 .btn-no:active {
 	background-color: #4A0000;
 }
-Button#disconnect {
-	width: 250px;
-	horizontal-align: center;
+
+#pick {
+	flow-children: down;
+	padding: 20px;
+	visibility: collapse;
+}
+#pick-header {
+	width: 100%;
+}
+#pick-header Label {
+	font-size: 30px;
+	height: 80px;
+}
+.pick-row {
+	flow-children: right;
+}
+.pick-hero {
+	margin: 5px;
+	box-shadow: inset 0px 0px 3px 1px #000000;
+	opacity: 0.5;
+}
+.pick-hero DOTAHeroImage {
+	width: 128px;
+	height: 72px;
+}
+.pick-hero:hover,
+.picked {
+	opacity: 1;
+}
+.pick-hero:active,
+.picked {
+	box-shadow: inset 3px 3px 5px 6px #000000;
+}
+.pick-hero.unpicked {
+	saturation: 0.5;
 }

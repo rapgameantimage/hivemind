@@ -5,6 +5,7 @@
 	[
 		{
 			m_ChildRef = resource:"particles/heroes/bane/nightmare_orb_blob.vpcf"
+			m_flDelay = 1.000000
 		},
 		{
 			m_ChildRef = resource:"particles/heroes/bane/nightmare_orb_fog.vpcf"
@@ -20,6 +21,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/heroes/bane/nightmare_orb_glow.vpcf"
+			m_flDelay = 1.000000
 		},
 	]
 	m_flConstantLifespan = 0.100000

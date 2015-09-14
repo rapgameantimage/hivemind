@@ -74,7 +74,7 @@
     "Ability15"       ""
     "Ability16"       "set_spawn_point"
 
-    "StatusHealth"      "1000"
+    "StatusHealth"      "700"
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"

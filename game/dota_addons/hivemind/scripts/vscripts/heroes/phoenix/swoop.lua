@@ -46,6 +46,15 @@ function swoop:OnSpellStart()
 			currentlocation.z = groundheight
 			self.caster:SetAbsOrigin(currentlocation)
 		end
+		if self.egg ~= nil then
+			local egglocation = self.egg:GetAbsOrigin()
+			local egg_groundheight = GetGroundHeight(egglocation, self.egg)
+			if egglocation.z > egg_groundheight then
+				egglocation.z = egg_groundheight
+				self.egg:SetAbsOrigin(egglocation)
+			end
+		end
+
 
 		-- See if there are any enemies nearby that we haven't already hit
 		local enemies = FindUnitsInRadius(self.team, currentlocation, nil, self.radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)

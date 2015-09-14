@@ -8,4 +8,32 @@
 	{
 		"player"	"short"
 	}
+	"rematch_accepted"
+	{
+		"nothing"	"short"
+	}
+	"camera"
+	{
+		"target"	"short"
+	}
+	"new_hero_picked"
+	{
+		"hero"		"string"
+	}
+	"round_completed"
+	{
+		"round"		"short"
+	}
+	"round_started"
+	{
+		"round"		"short"
+	}
+	"match_started"
+	{
+		"nothing"	"short"
+	}
+	"match_completed"
+	{
+		"winning_team"	"short"
+	}
 }

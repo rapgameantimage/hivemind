@@ -17,7 +17,7 @@ function singularity:OnChannelFinish(interrupted)
 	if not interrupted then
 		ParticleManager:CreateParticle("particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.target)
 		StartSoundEvent("Hero_Enigma.Black_Hole.Stop", self:GetCaster())
-		StartSoundEvent("Hero_Enigma.Black_Hole.Stop", self.target)
+		StartSoundEvent("Hero_Antimage.ManaVoid", self.target)
 		self.target:Kill(self, self:GetCaster())
 	end
 end

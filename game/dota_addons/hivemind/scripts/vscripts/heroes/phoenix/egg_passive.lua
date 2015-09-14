@@ -25,20 +25,25 @@ function egg_passive:OnDestroy()
 	local ability = self:GetAbility()
 	local caster = ability:GetCaster()
 	local egg = self:GetParent()
-	SimpleAOE({
-		caster = caster,
-		radius = ability:GetSpecialValueFor("explosion_radius"),
-		ability = ability,
-		center = egg:GetAbsOrigin(),
-		damage = ability:GetSpecialValueFor("damage"),
-		modifiers = {
-			modifier_stunned = {duration = ability:GetSpecialValueFor("stun_time")}
-		},
-	})
-	GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), ability:GetSpecialValueFor("explosion_radius"), false)
+
+	-- Don't explode if we're being cleared because a round is ending
+	if egg:Attribute_GetIntValue("die_quietly", 0) ~= 1 then
+		SimpleAOE({
+			caster = caster,
+			radius = ability:GetSpecialValueFor("explosion_radius"),
+			ability = ability,
+			center = egg:GetAbsOrigin(),
+			damage = ability:GetSpecialValueFor("damage"),
+			modifiers = {
+				modifier_stunned = {duration = ability:GetSpecialValueFor("stun_time")}
+			},
+		})
+		GridNav:DestroyTreesAroundPoint(egg:GetAbsOrigin(), ability:GetSpecialValueFor("explosion_radius"), false)
+		ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf", PATTACH_ABSORIGIN_FOLLOW, egg)
+		StartSoundEvent("Hero_Phoenix.SuperNova.Explode", egg)
+	end
+
 	ParticleManager:DestroyParticle(self.effects, false)
-	local pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf", PATTACH_ABSORIGIN_FOLLOW, egg)
-	StartSoundEvent("Hero_Phoenix.SuperNova.Explode", egg)
 	egg:ForceKill(false)
 	egg:AddNoDraw()
 end

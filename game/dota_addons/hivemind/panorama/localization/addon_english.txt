@@ -31,7 +31,7 @@
 	"gameinfo_nav_howto"							"How to Play"
 	"gameinfo_nav_about"							"About"
 
-	"gameinfo_main_intro"							"In Hivemind, every hero's first ability can be used to enter \"split form,\" transforming into a group of 4-5 units with unique abilities. You can return to hero form by using the first ability on any split unit."
+	"gameinfo_main_intro"							"In Hivemind, every hero's first ability can be used to enter \"split form,\" transforming into a group of 4-5 units with their own set of abilities. You can return to hero form by using the first ability on any split unit."
 	"gameinfo_main_death"							"Beware, if all of your split units die, so will your hero!"
 	"gameinfo_main_win"								"Be the first to reach 5 kills to win!"
 	"gameinfo_main_tips"							"Tips:"
@@ -39,7 +39,7 @@
 	"gameinfo_main_tip2"							"2. Cooldowns, buffs, and debuffs tick down on your hero even while in split form, and vice versa."
 	"gameinfo_main_good_luck"						"Good luck!"
 
-	"gameinfo_about_author"							"This mod was created by rap_game_anti_mage. It should be considered a beta. Suggestions? Feedback? Found a bug? Shoot me an email: loremipsum@gmail.com."
+	"gameinfo_about_author"							"This mod was created by rap_game_anti_mage. It should be considered a beta. Suggestions? Feedback? Found a bug? Leave a comment in the workshop, or shoot me an email: rapgameantimage@gmail.com."
 	"gameinfo_about_specialthanks"					"Special thanks to:"
 	"gameinfo_about_thanks1"						"Noya, for his Data-Driven guides and general helpfulness"
 	"gameinfo_about_thanks2"						"BMD, for his Barebones package"
@@ -47,6 +47,8 @@
 
 	"gameinfo_attributions"							"Attributions:"
 	"gameinfo_attributions1"						"Nightmare Orb ambient sound: (c) 2012 Erdie, freesound.org, some changes made."
+
+	"pick_header_text"								"It's a rematch! Choose your hero:"
 
 	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
 }

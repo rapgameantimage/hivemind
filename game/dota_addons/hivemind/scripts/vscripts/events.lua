@@ -8,6 +8,13 @@ function GameMode:OnEntityKilled( keys )
 
   -- This internal handling is used to set up main barebones functions
   GameMode:_OnEntityKilled( keys )
+
+  -- Don't do anything if we're in the midst of setting up a rematch
+  local status = CustomNetTables:GetTableValue("gamestate", "status")
+  if status ~= nil and status["1"] ~= nil and status["1"] == "rematch" then
+    return
+  end
+  -- otherwise:
   
   local killedUnit = EntIndexToHScript( keys.entindex_killed )
   local killerEntity = nil
@@ -17,14 +24,34 @@ function GameMode:OnEntityKilled( keys )
   end
 
   local player = killedUnit:GetPlayerOwner()
+  if player == nil then
+    -- nothing to do here, really.
+    return
+  end
+
   local hero = player:GetAssignedHero()
 
   -- Treat this death differently depending on what kind of unit it is
   if killedUnit:IsHero() then
+  	-- Increment enemy score
+  	local enemy_team
+  	if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+  		enemy_team = DOTA_TEAM_BADGUYS
+  	else
+  		enemy_team = DOTA_TEAM_GOODGUYS
+  	end
+  	local score_table = CustomNetTables:GetTableValue("gamestate", "score")
+  	local enemy_score = tonumber(score_table[tostring(enemy_team)])
+ 	enemy_score = enemy_score + 1
+ 	score_table[tostring(enemy_team)] = tostring(enemy_score)
+  	CustomNetTables:SetTableValue("gamestate", "score", score_table)
+
     -- Kill the corresponding split units
     GameMode:KillCorrespondingSplitUnits(killedUnit)
     -- Complete this round
     GameMode:CompleteRound()
+
+  -- ignore_split_unit_death is checking to see if this event got triggered by KillCorrespondingSplitUnits, basically.
   elseif killedUnit:GetUnitLabel() == "split_unit" and not CustomNetTables:GetTableValue("gamestate", "ignore_split_unit_death")[tostring(hero:GetEntityIndex())] then
     local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
     -- Check if all split units are dead
@@ -82,28 +109,22 @@ function GameMode:OnNPCSpawned(keys)
   end
 end
 
+-- currently only handles 2 players
+-- event happens when a player clicks yes on the rematch popup (see main.js)
 function GameMode:OnRematchYes(keys)
-  print("Hello")
   PrintTable(keys)
   local tbl = CustomNetTables:GetTableValue("gamestate", "rematch")
   if tbl == nil then
     tbl = {}
   end
-  tbl[keys.player] = true
+  tbl[tostring(keys.player)] = true
+  PrintTable(tbl)
 
-  local ready_to_rematch = true
-  for i = DOTA_TEAM_GOODGUYS,DOTA_TEAM_BADGUYS do
-    local players = PlayerResource:GetPlayerCountForTeam(i)
-    for j = 1,players do
-      ready_to_rematch = tbl[PlayerResource:GetNthPlayerIDOnTeam(i, j)]
-      if not ready_to_rematch then
-        break
-      end
-    end
-  end
-
-  if ready_to_rematch then
-    GameMode:Rematch()
+  if tbl[tostring(PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_GOODGUYS, 1))] and tbl[tostring(PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_BADGUYS, 1))] then
+    -- A rematch was accepted by both players
+    CustomNetTables:SetTableValue("gamestate", "status", {"rematch"})
+    CustomNetTables:SetTableValue("gamestate", "rematch", {})
+    CustomGameEventManager:Send_ServerToAllClients("rematch_accepted", {})
   else
     CustomNetTables:SetTableValue("gamestate", "rematch", tbl)
   end

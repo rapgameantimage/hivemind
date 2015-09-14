@@ -11,7 +11,7 @@
 		<Panel id="alert" hittest="false">
 			<Label id="alert-text" hittest="false" />
 		</Panel>
-		<Panel id="gameover">
+		<Panel id="gameover" class="dialog"> 
 			<Label id="winner" />
 			<Label id="rematch" text="#rematch_question" />
 			<Panel id="rematch-buttons">
@@ -23,5 +23,6 @@
 				</Button>
 			</Panel>
 		</Panel>
+		<Panel id="pick" class="dialog" />
 	</Panel>
 </root>

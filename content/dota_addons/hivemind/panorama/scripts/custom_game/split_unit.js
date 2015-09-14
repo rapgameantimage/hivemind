@@ -5,6 +5,13 @@ function SplitUnitClicked() {
 	}
 }
 
+function SplitUnitDoubleClicked() {
+	var ent = $.GetContextPanel().GetAttributeInt("entindex", -1)
+	if (Entities.IsSelectable(ent)) {
+		GameEvents.SendCustomGameEventToServer("move_camera", {target: ent})
+	}
+}
+
 function UpdateHealthBar() {
 	var panel = $.GetContextPanel()
 	var pct = Entities.GetHealthPercent(panel.GetAttributeInt("entindex", -1))

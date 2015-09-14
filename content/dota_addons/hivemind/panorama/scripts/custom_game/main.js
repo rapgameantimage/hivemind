@@ -16,21 +16,23 @@ function CheckGamestate(table, key, value) {
 			NewRound(CustomNetTables.GetTableValue("gamestate", "round")["1"])
 		} else if (value == "finished") {
 			$.Schedule(END_GAME_DELAY, EndGame)
-		} else if (value == "rematch") {
-			Rematch()
 		}
 	} else if (key == "round") {
 		round = value
 	}
 }
 
-function NewRound(num) { 
+function OnRoundStarted(event) { 
+	var num = CustomNetTables.GetTableValue("gamestate", "round")["1"]
+	$("#pick").style.visibility = "collapse"		// just in case
 	SetAlert(5, $.Localize("#round") + " " + num)
 }
 
-function RoundCountdown() {
+function OnRoundCompleted(event) {
+	$.Msg("OnRoundCompleted")
+	$("#pick").style.visibility = "collapse"		// just in case
 	round = CustomNetTables.GetTableValue("gamestate", "round")["1"]
-	nextround = round + 1
+	nextround = parseInt(round + 1)
 	next_countdown = POST_ROUND_DELAY
 	IncrementCountdown()
 }
@@ -43,9 +45,8 @@ function IncrementCountdown() {
 	}
 }
 
-function EndGame() {
-	var value = CustomNetTables.GetTableValue("gamestate", "winning_team")
-	var team = parseInt(value["1"])
+function OnMatchCompleted(event) {
+	var team = event.winning_team
 	var details = Game.GetTeamDetails(team)
 	var winner = ""
 	if ( details.team_num_players == 1) {
@@ -53,16 +54,22 @@ function EndGame() {
 	} else {
 		winner = details.team_name
 	}
-	$("#winner").text = winner + " " + $.Localize("#wins")
-	$("#winner").style.visibility = "visible"
-	$("#rematch").text = $.Localize("#rematch_question")
-	$("#rematch").style.visibility = "visible"
-	$("#rematch-buttons").style.visibility = "visible"
-	$("#gameover").style.visibility = "visible"
+	$.Schedule(END_GAME_DELAY, function() {
+		$("#winner").text = winner + " " + $.Localize("#wins")
+		$("#winner").style.visibility = "visible"
+		$("#rematch").text = $.Localize("#rematch_question")
+		$("#rematch").style.visibility = "visible"
+		$("#rematch-buttons").style.visibility = "visible"
+		$("#gameover").style.visibility = "visible"
+	})
 }
 
-function Rematch() {
-	$("gameover").style.visibility = "collapse"
+function OnRematchAccepted() {
+	$.Msg("It's a rematch!")
+	$("#gameover").style.visibility = "collapse"
+	
+	CreatePickBoard()
+	$("#pick").style.visibility = "visible"
 }
 
 function SetAlert(time, message) {
@@ -95,12 +102,67 @@ function RematchNo() {
 }
 
 function OnRematchNo() {
-	$("rematch").text = $.Localize("#rematch_declined")
+	$("#rematch").text = $.Localize("#rematch_declined")
 	$("#rematch-buttons").style.visibility = "collapse"
+	$.Schedule(3, function() {
+		$("#gameover").style.visibility = "collapse"
+	})
+}
+
+function CreatePickBoard() {
+	var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma"]
+	var heroes_per_row = 2
+	var parent = $("#pick")
+
+	var number_of_rows = Math.ceil(pickable_heroes.length / heroes_per_row)
+
+	parent.RemoveAndDeleteChildren()
+	var header = $.CreatePanel("Panel", parent, "pick-header")
+	header.BLoadLayout("file://{resources}/layout/custom_game/pick_header.xml", false, false)
+
+	for (var i = 0; i < number_of_rows; i++) {
+		var row = $.CreatePanel("Panel", parent, "")
+		row.SetHasClass("pick-row", true)
+		for (var j = i * heroes_per_row; j < (i + 1) * heroes_per_row; j++) {
+			if (j < pickable_heroes.length) {
+				var hero = $.CreatePanel("Panel", row, "")
+				hero.BLoadLayout("file://{resources}/layout/custom_game/pick_hero.xml", false, false)
+				hero.GetChild(0).heroname = pickable_heroes[j]
+			}
+		}
+	}
+} 
+
+function OnNewHeroPicked(event) {
+	// This is just cosmetic. The event is sent to the server in pick_hero.js
+	var parent = $("#pick")
+	$.Each(parent.FindChildrenWithClassTraverse("pick-row"), function(index, value) {
+		$.Each(index.Children(), function(index, value) {
+			if (index.GetChild(0).heroname == event.hero) {
+				index.SetHasClass("picked", true)
+				index.SetHasClass("unpicked", false)
+			} else {
+				index.SetHasClass("picked", false)
+				index.SetHasClass("unpicked", true)
+			}
+		})
+	})
+} 
+
+function OnMatchStarted() {
+	$("#pick").style.visibility = "collapse"
 }
 
 (function()
 {
-	CustomNetTables.SubscribeNetTableListener("gamestate", CheckGamestate)
+	CreatePickBoard()		// This is actually called every time there is a rematch so isn't technically necessary to be here
+
+	//CustomNetTables.SubscribeNetTableListener("gamestate", CheckGamestate)
 	GameEvents.Subscribe("rematch_no", OnRematchNo)
+	GameEvents.Subscribe("rematch_accepted", OnRematchAccepted)
+	GameEvents.Subscribe("new_hero_picked", OnNewHeroPicked)
+	GameEvents.Subscribe("round_started", OnRoundStarted)
+	GameEvents.Subscribe("round_completed", OnRoundCompleted)
+	GameEvents.Subscribe("match_started", OnMatchStarted)
+	GameEvents.Subscribe("match_completed", OnMatchCompleted)
 })();

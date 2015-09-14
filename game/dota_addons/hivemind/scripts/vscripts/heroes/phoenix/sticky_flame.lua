@@ -22,6 +22,10 @@ function sticky_flame:OnSpellStart()
 	self.projectile = CreateUnitByName("npc_dota_sticky_flame_dummy", origin, false, caster, caster, caster:GetTeam())
 	self.projectile:AddNewModifier(caster, self, "modifier_sticky_flame_projectile", {})
 	Physics:Unit(self.projectile)
+	self.projectile:FollowNavMesh(false)
+	self.projectile:SetNavCollisionType(PHYSICS_NAV_NOTHING)
+	self.projectile:SetAutoUnstuck(false)
+	self.projectile:SetPhysicsFriction(0)
 
 	StartSoundEvent("Hero_Phoenix.FireSpirits.Launch", caster)
 

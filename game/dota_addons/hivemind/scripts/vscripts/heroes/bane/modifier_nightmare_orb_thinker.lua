@@ -13,12 +13,21 @@ function modifier_nightmare_orb_thinker:OnCreated()
 	self.units_pulling = {}
 
 	self.particles = ParticleManager:CreateParticle("particles/heroes/bane/nightmare_orb.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.orb)
+	self.active = false
 
-	self:StartIntervalThink(0.03)
+	-- Start inactive, then become active after a short delay
+	self:StartIntervalThink(self.ability:GetSpecialValueFor("delay"))
 end
 
 function modifier_nightmare_orb_thinker:OnIntervalThink()
 	if not IsServer() then return end
+
+	-- If the orb is not yet active, we need to activate it, then switch it to thinking every tick
+	if not self.active then
+		self.active = true
+		self:StartIntervalThink(-1)
+		self:StartIntervalThink(0.03)
+	end
 
 	-- find units to pull
 	local units = FindUnitsInRadius(self.team, self.orb:GetAbsOrigin(), nil, self.pull_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, 0, 0, false)

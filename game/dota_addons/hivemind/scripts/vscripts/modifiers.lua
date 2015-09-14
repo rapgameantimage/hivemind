@@ -15,7 +15,7 @@ function modifier_hidden:CheckState()
 	return state
 end
 
-function modifier_hidden:IsHidden() -- lel
+function modifier_hidden:IsHidden() -- lol
 	return true
 end
 
@@ -27,6 +27,21 @@ end
 function modifier_hidden:OnDestroy()
 	if not IsServer() then return end
 	self:GetParent():RemoveNoDraw()
+end
+
+function modifier_hidden:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_BONUS_DAY_VISION,
+		MODIFIER_PROPERTY_BONUS_NIGHT_VISION,
+	}
+end
+
+function modifier_hidden:GetBonusDayVision()
+	return -9999
+end
+
+function modifier_hidden:GetBonusNightVision()
+	return -9999
 end
 
 -----

@@ -7,7 +7,7 @@
 		<include src="file://{resources}/scripts/custom_game/split_unit.js" />
 	</scripts>
 	<Panel class="SplitUnit" hittest="false">
-		<Button class="unit" onactivate="SplitUnitClicked()">
+		<Button class="unit" onactivate="SplitUnitClicked()" ondblclick="SplitUnitDoubleClicked()">
 			<Label class="unit-number" />
 			<Panel class="abilities">
 			</Panel>

@@ -44,7 +44,7 @@
 			<Panel id="attributions">
 				<Label text="#gameinfo_attributions" />
 				<Panel class="list">
-					<Label text="#gameinfo_ps_attributions1" />
+					<Label text="#gameinfo_attributions1" />
 				</Panel>
 			</Panel>
 		</Panel>

@@ -1,5 +1,6 @@
 "AddonInfo"
 {
+	"IsPlayable"	"1"
 	"maps"			"arena"
 	"arena"
 	{

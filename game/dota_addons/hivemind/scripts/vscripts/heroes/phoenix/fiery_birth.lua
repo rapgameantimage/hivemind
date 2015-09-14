@@ -7,7 +7,7 @@ function fiery_birth:OnSpellStart()
 	self.egg:AddNewModifier(self.caster, self, "egg_passive", {duration = self:GetSpecialValueFor("delay")})
 	self.egg:StartGesture(ACT_DOTA_CAPTURE)
 	StartSoundEvent("Hero_Phoenix.SuperNova.Begin", self.caster)
-	GridNav:DestroyTreesAroundPoint(self.egg:GetAbsOrigin(), self:GetSpecialValueFor("radius"), false)
+	GridNav:DestroyTreesAroundPoint(self.egg:GetAbsOrigin(), self:GetSpecialValueFor("explosion_radius"), false)
 end
 
 function fiery_birth:GetCastAnimation()
