@@ -87,7 +87,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test()
-  CustomNetTables:SetTableValue("gamestate", "new_hero_picks", {["1"] = "phoenix"})
+  PrintTable(split("A B C", " "))
 end
 
 function GameMode:GetCurrentRound()

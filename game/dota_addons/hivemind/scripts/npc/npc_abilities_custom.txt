@@ -1300,10 +1300,66 @@
   "singularity"
   {
     "BaseClass" "ability_lua"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "ScriptFile"  "heroes/enigma/singularity"
+    "MaxLevel"  "1"
+    "AbilityTextureName" "enigma_black_hole"
+    "AbilityManaCost" "250"
+    "AbilityCastRange"  "99999"
+    "AbilityCastPoint"  "0.3"
+    "AbilityCooldown" "4"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/enigma/singularity_tracer.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_sven.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "charge_time" "2.5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "singularity_duration"  "3"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "pull_radius" "500"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "max_stun"  "2.5"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "max_damage"  "250"
+      }
+    }
+  }
+
+  "collapse_singularity"
+  {
+    "BaseClass" "ability_lua"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"  "1"
+    "ScriptFile"  "heroes/enigma/singularity"
+  }
+
+  "singularity_old"
+  {
+    "BaseClass" "ability_lua"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
     "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "ScriptFile"  "heroes/enigma/singularity"
+    "ScriptFile"  "heroes/enigma/old/singularity"
     "MaxLevel"  "1"
     "AbilityTextureName"  "enigma_black_hole"
     "AbilityManaCost" "250"

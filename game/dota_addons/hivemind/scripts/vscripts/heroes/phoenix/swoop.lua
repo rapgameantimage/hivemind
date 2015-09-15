@@ -89,7 +89,7 @@ function swoop:OnSpellStart()
 					self.egg:SetAbsOrigin(currentlocation + (self.direction * Vector(-50, -50, 0)))
 					if not IsPhysicsUnit(self.egg) then Physics:Unit(self.egg) end
 					self.egg:SetPhysicsVelocity(self.velocity)
-					self.egg:SetPhysicsFriction(0)
+					self.egg:SetPhysicsFriction(0.05)
 					self.egg:FollowNavMesh(false)
 					self.egg:SetAutoUnstuck(false)
 					break

@@ -74,7 +74,7 @@
     "Ability15"       ""
     "Ability16"       "set_spawn_point"
 
-    "StatusHealth"      "700"
+    "StatusHealth"      "800"
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
@@ -98,7 +98,7 @@
     "Ability12"       ""
     "Ability13"       ""
     "Ability14"       ""
-    "Ability15"       ""
+    "Ability15"       "collapse_singularity"
     "Ability16"       "set_spawn_point"
 
     "StatusHealth"      "1000"
