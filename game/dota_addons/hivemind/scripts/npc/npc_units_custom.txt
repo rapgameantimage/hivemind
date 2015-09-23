@@ -32,6 +32,9 @@
     "StatusMana"        "0"
     "StatusManaRegen"   "0"
 
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
     "Ability1"      "unify_lycan"
     "Ability2"      "lycan_pounce"
     "Ability3"      "lycan_lacerate"
@@ -42,7 +45,7 @@
     "BaseClass"        "npc_dota_creature"
     "Model"             "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.vmdl"
     "ModelScale"        "0.9"
-    "SoundSet"          ""
+    "SoundSet"          "n_creep_ghost"
     "Level"             "1"
     "UnitLabel"         "split_unit"
 
@@ -68,6 +71,9 @@
     "StatusMana"        "0"
     "StatusManaRegen"   "0"
 
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
     "Ability1"      "unify_bane"
     "Ability2"      "bane_chilling_scream"
     "Ability3"      "bane_soul_freeze"
@@ -84,12 +90,23 @@
     "Ability1"      "nightmare_orb_passive"
   }
 
+  "npc_dota_phantom"
+  {
+    "BaseClass"     "npc_dota_creature"
+    "Model"         "models/items/death_prophet/hecate_ghosts/hecate_ghosts.vmdl"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_FLY"
+    "MovementSpeed" "400"
+    "UnitLabel" "destroy_on_new_round"
+    "StatusHealth"  "5000"
+  }
+
   "npc_dota_phoenix_split_spirit"
   {
     "BaseClass"        "npc_dota_creature"
     "Model"             "models/items/invoker/forge_spirit/arsenal_magus_forged_spirit/arsenal_magus_forged_spirit.vmdl"
     "ModelScale"        "1"
-    "SoundSet"          ""
+    "SoundSet"          "Hero_Invoker"
     "Level"             "1"
     "UnitLabel"         "split_unit"
 
@@ -115,6 +132,9 @@
     "StatusMana"        "0"
     "StatusManaRegen"   "0"
 
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
     "Ability1"      "unify_phoenix"
     "Ability2"      "firewall"
     "Ability3"      "dissolution"
@@ -134,7 +154,7 @@
     "BaseClass"        "npc_dota_creature"
     "Model"             "models/heroes/enigma/eidelon.vmdl"
     "ModelScale"        "1"
-    "SoundSet"          ""
+    "SoundSet"          "Hero_Enigma"
     "Level"             "1"
     "UnitLabel"         "split_unit"
 
@@ -159,6 +179,9 @@
     "StatusHealthRegen" "0"
     "StatusMana"        "0"
     "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
 
     "Ability1"      "unify_enigma"
     "Ability2"      "puck_phase_shift_datadriven"

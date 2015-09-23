@@ -6,29 +6,35 @@
 		"game_mode_15"				"HIVEMIND"
 		"addon_game_name"			"HIVEMIND"
 		
-		"dota_hud_error_units_too_far_to_unify"		"Units Too Far To Unify"
-		"dota_hud_error_min_range"					"Target Is Within Minimum Range"
-		"dota_hud_error_dimensional_bind_split"					"Can't Unify While Any Unit Affected By Dimensional Bind"
+		"dota_hud_error_units_too_far_to_unify"					"Units Too Far To Unify"
+		"dota_hud_error_min_range"								"Target Is Within Minimum Range"
+		"dota_hud_error_dimensional_bind_split"					"Can't Unify With Any Unit Affected By Dimensional Bind"
 		"dota_hud_error_dimensional_bind_hero"					"Can't Split While Affected By Dimensional Bind"
 
 		// ******************** HEROES ********************
-		"npc_dota_hero_lycan"                                                             "Npc Dota Hero Hivemind Lycan"
-		"npc_dota_hero_bane"                                                              "Npc Dota Hero Hivemind Bane"
+		"npc_dota_hero_lycan"                                                             "Nikoval"
+		"npc_dota_hero_bane"                                                              "Mara"
+		"npc_dota_hero_phoenix"                                                           "Shamarah"
+		"npc_dota_hero_enigma"                                                            "Ov"
 
 		// ******************** UNITS ********************
 		"npc_dota_lycan_split_wolf"                                                       "Wolf"
 		"npc_dota_bane_split_ghost"                                                       "Banshee"
+		"npc_dota_phoenix_split_spirit"                                                   "Magma Spirit"
+		"npc_dota_enigma_split_eidolon"                                                   "Eidolon"
 		"npc_dota_nightmare_orb"                                                          "Nightmare Orb"
 		"npc_dummy_unit"                                                                  "Dummy Unit"
-		"npc_dota_hero_hivemind_lycan"                                                    "Dota Hero Hivemind Lycan"
-		"npc_dota_hero_hivemind_bane"                                                     "Dota Hero Hivemind Bane"
+		"npc_dota_hero_hivemind_lycan"                                                    "Nikoval"
+		"npc_dota_hero_hivemind_bane"                                                     "Mara"
+		"npc_dota_hero_hivemind_phoenix"                                                  "Shamarah"
+		"npc_dota_hero_hivemind_enigma"                                                   "Ov"
 
 		// ******************** ABILITIES ********************
 		"DOTA_Tooltip_ability_split_lycan"                                                "Split Form"
-		"DOTA_Tooltip_ability_split_lycan_Description"                                    ""
+		"DOTA_Tooltip_ability_split_lycan_Description"                                    "Transforms into Nikoval's split form, a pack of 5 wolves."
 
 		"DOTA_Tooltip_ability_unify_lycan"                                                "Unify"
-		"DOTA_Tooltip_ability_unify_lycan_Description"                                    ""
+		"DOTA_Tooltip_ability_unify_lycan_Description"                                    "Returns to hero form."
 
 		"DOTA_Tooltip_ability_lycan_hamstring"                                            "Hamstring"
 		"DOTA_Tooltip_ability_lycan_hamstring_Description"                                "Strikes quickly at the target's hamstring, slowing their movement tremendously. If the target has 3 or more stacks of Lacerate, immobilizes instead of slowing."
@@ -51,14 +57,13 @@
 		"DOTA_Tooltip_ability_lycan_lacerate_Description"                                 "Each of the wolves' strikes shreds its target flesh more and more deeply. One stack of Lacerate is applied for every 3 attacks landed. Whenever the victim takes damage, they bleed for an additional 10% of the original damage per stack of Lacerate."
 		"DOTA_Tooltip_ability_lycan_lacerate_stack_decay_time"                            "STACK DECAY TIME:"
 		"DOTA_Tooltip_ability_lycan_lacerate_bleed_time"                                  "BLEED TIME:"
-		"DOTA_Tooltip_ability_lycan_lacerate_bleed_percent_per_stack"                     "BLEED PERCENT PER STACK:"
 		"DOTA_Tooltip_ability_lycan_lacerate_max_stacks"                                  "MAX STACKS:"
 		"DOTA_Tooltip_modifier_lacerate"												  "Lacerated"
 		"DOTA_Tooltip_modifier_lacerate_description"									  "Taking additional damage from all sources for each stack of Lacerate."
 		"DOTA_Tooltip_modifier_lacerate_bleeding"										  "Bleeding!"
 
 		"DOTA_Tooltip_ability_lycan_berserk"                                              "Berserk"
-		"DOTA_Tooltip_ability_lycan_berserk_Description"                                  "Lycan goes berserk, gaining massive damage and attack speed bonuses for a brief time but becoming unable to cast spells."
+		"DOTA_Tooltip_ability_lycan_berserk_Description"                                  "Nikoval goes berserk, briefly gaining massive damage and attack speed bonuses but becoming silenced."
 		"DOTA_Tooltip_ability_lycan_berserk_duration"                                     "DURATION:"
 		"DOTA_Tooltip_ability_lycan_berserk_damage_bonus"                                 "DAMAGE BONUS:"
 		"DOTA_Tooltip_ability_lycan_berserk_attack_speed_bonus"                           "ATTACK SPEED BONUS:"
@@ -72,23 +77,25 @@
 		"DOTA_Tooltip_modifier_howling_slow"											  "Slowed"
 
 		"DOTA_Tooltip_ability_split_bane"                                                 "Split Form"
-		"DOTA_Tooltip_ability_split_bane_Description"                                     ""
+		"DOTA_Tooltip_ability_split_bane_Description"                                     "Transforms into Mara's split form, a swarm of 5 banshees."
 
 		"DOTA_Tooltip_ability_unify_bane"                                                 "Unify"
-		"DOTA_Tooltip_ability_unify_bane_Description"                                     ""
+		"DOTA_Tooltip_ability_unify_bane_Description"                                     "Returns to hero form."
 
 		"DOTA_Tooltip_ability_bane_flicker"                                               "Flicker"
-		"DOTA_Tooltip_ability_bane_flicker_Description"                                   "Flickers in and out of invisibility for the duration. While invisible, Bane gains a movement speed bonus."
+		"DOTA_Tooltip_ability_bane_flicker_Description"                                   "Flickers in and out of invisibility for the duration. While invisible, Mara gains a movement speed bonus."
 		"DOTA_Tooltip_ability_bane_flicker_duration"                                      "DURATION:"
 		"DOTA_Tooltip_ability_bane_flicker_movespeed_bonus"                               "%MOVESPEED BONUS:"
 		"DOTA_Tooltip_modifier_flicker"													  "Flickering"
 		"DOTA_Tooltip_modifier_flicker_description"										  "Flickering in and out of visibility."
 
 		"DOTA_Tooltip_ability_bane_nightmare_orb"                                         "Nightmare Orb"
-		"DOTA_Tooltip_ability_bane_nightmare_orb_Description"                             "While this ability is channeled, a nightmarish orb appears at the target location. Units that face the orb are forced to attack it. The orb dissolves the flesh of units that come too close, dealing massive damage over time."
+		"DOTA_Tooltip_ability_bane_nightmare_orb_Description"                             "Channels to summon a nightmarish orb, which becomes active after a short delay. Units facing the orb are forced to attack it. The orb dissolves the flesh of units that come too close, dealing massive damage over time."
 		"DOTA_Tooltip_ability_bane_nightmare_orb_pull_radius"                             "FORCED ATTACK RADIUS:"
 		"DOTA_Tooltip_ability_bane_nightmare_orb_damage_radius"                           "DAMAGE RADIUS:"
 		"DOTA_Tooltip_ability_bane_nightmare_orb_dps"                                     "DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_bane_nightmare_orb_min_range"								  "MINIMUM RANGE:"
+		"DOTA_Tooltip_ability_bane_nightmare_orb_delay"									  "DELAY TO BECOME ACTIVE:"
 		"DOTA_Tooltip_modifier_nightmare_orb_pull"										  "Nightmare Orb"
 		"DOTA_Tooltip_modifier_nightmare_orb_pull_description"							  "Under the spell of a Nightmare Orb."
 
@@ -107,7 +114,7 @@
 		"DOTA_Tooltip_modifier_chilling_scream_description"								  "Slowed by a chilling scream"
 
 		"DOTA_Tooltip_ability_bane_spirit_barbs"                                          "Spirit Barbs"
-		"DOTA_Tooltip_ability_bane_spirit_barbs_Description"                              "Links the health and mana of units it hits. Whenever aftected targets take damage, they lose mana equal to 1.5x the damage."
+		"DOTA_Tooltip_ability_bane_spirit_barbs_Description"                              "Links the health and mana of units it hits. Whenever aftected targets take damage, they lose mana equal to 75% of the damage."
 		"DOTA_Tooltip_ability_bane_spirit_barbs_duration"                                 "DURATION:"
 		"DOTA_Tooltip_modifier_spirit_barbs"											  "Spirit Barbs"
 		"DOTA_Tooltip_modifier_spirit_barbs_description"								  "Losing mana upon taking damage"
@@ -122,5 +129,100 @@
 
 		"DOTA_Tooltip_ability_set_spawn_point"                                            "Set Spawn Point"
 		"DOTA_Tooltip_ability_set_spawn_point_Description"                                "Set the location at which one of your split units will spawn."
+
+		"DOTA_Tooltip_ability_split_phoenix"                                              "Split"
+		"DOTA_Tooltip_ability_split_phoenix_Description"                                  "Transforms into Shamarah's split form, a group of 4 magma spirits."
+
+		"DOTA_Tooltip_ability_unify_phoenix"                                              "Unify"
+		"DOTA_Tooltip_ability_unify_phoenix_Description"                                  "Returns to hero form."
+
+		"DOTA_Tooltip_ability_sticky_flame"                                               "Sticky Flame"
+		"DOTA_Tooltip_ability_sticky_flame_Description"                                   "Launches a ball of sticky flame towards the target point. When it lands, nearby enemies are slowed and damaged over time based on their distance from the projectile's center, with closer units being more seriously affected."
+		"DOTA_Tooltip_ability_sticky_flame_max_dps"                                       "MAX DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_sticky_flame_max_slow"                                      "%MAX SLOW:"
+		"DOTA_Tooltip_ability_sticky_flame_radius"                                        "RADIUS:"
+		"DOTA_Tooltip_ability_sticky_flame_duration"                                      "DURATION:"
+		"DOTA_Tooltip_modifier_sticky_flame"											  "Sticky Flame"
+		"DOTA_Tooltip_modifier_sticky_flame_description"								  "Slowed and taking damage over time."
+
+		"DOTA_Tooltip_ability_molten_body"                                                "Molten Body"
+		"DOTA_Tooltip_ability_molten_body_Description"                                    "Every time Shamarah is attacked, there is a chance for some of the magma composing its body to spill out, creating a pool that damages enemies touching it."
+		"DOTA_Tooltip_ability_molten_body_proc_chance"                                    "%CHANCE:"
+		"DOTA_Tooltip_ability_molten_body_radius"                                         "POOL RADIUS:"
+		"DOTA_Tooltip_ability_molten_body_duration"                                       "POOL DURATION:"
+		"DOTA_Tooltip_ability_molten_body_dps"                                            "DAMAGE PER SECOND:"
+
+		"DOTA_Tooltip_ability_fiery_birth"                                                "Fiery Birth"
+		"DOTA_Tooltip_ability_fiery_birth_Description"                                    "Summons an egg at the caster's location. After a delay, the egg explodes, stunning and heavily damaging nearby enemies."
+		"DOTA_Tooltip_ability_fiery_birth_explosion_radius"                               "EXPLOSION RADIUS:"
+		"DOTA_Tooltip_ability_fiery_birth_damage"                                         "DAMAGE:"
+		"DOTA_Tooltip_ability_fiery_birth_delay"                                          "DELAY:"
+		"DOTA_Tooltip_ability_fiery_birth_stun_time"                                      "STUN TIME:"
+		"npc_dota_fiery_birth_egg"														  "Egg"
+
+		"DOTA_Tooltip_ability_swoop"                                                      "Swoop"
+		"DOTA_Tooltip_ability_swoop_Description"                                          "Swoops in a straight line in the target direction, igniting nearby enemies and destroying nearby trees. If the swoop touches an egg, it will be dragged along."
+		"DOTA_Tooltip_ability_swoop_distance"                                             "DISTANCE:"
+		"DOTA_Tooltip_ability_swoop_dps"                                                  "DPS:"
+		"DOTA_Tooltip_ability_swoop_burn_duration"                                        "BURN DURATION:"
+		"DOTA_Tooltip_ability_swoop_radius"                                               "RADIUS:"
+
+		"DOTA_Tooltip_ability_firewall"                                                   "Firewall"
+		"DOTA_Tooltip_ability_firewall_Description"                                       "Creates a wall of fire. Enemies touching the fire take heavy damage and are ignited. A unit can only be damaged by one firewall at a time."
+		"DOTA_Tooltip_ability_firewall_wall_width"                                        "WALL WIDTH:"
+		"DOTA_Tooltip_ability_firewall_wall_duration"                                     "WALL DURATION:"
+		"DOTA_Tooltip_ability_firewall_wall_dps"                                          "WALL DPS:"
+		"DOTA_Tooltip_ability_firewall_burn_dps"                                          "BURN DPS:"
+		"DOTA_Tooltip_ability_firewall_burn_duration"                                     "BURN DURATION:"
+
+		"DOTA_Tooltip_ability_dissolution"                                                "Dissolution"
+		"DOTA_Tooltip_ability_dissolution_Description"                                    "When this unit dies, it will create a pool of magma that damages enemies within it."
+		"DOTA_Tooltip_ability_dissolution_radius"                                         "POOL RADIUS:"
+		"DOTA_Tooltip_ability_dissolution_duration"                                       "POOL DURATION:"
+		"DOTA_Tooltip_ability_dissolution_dps"                                            "DAMAGE PER SECOND:"
+
+		"DOTA_Tooltip_ability_split_enigma"                                               "Split"
+		"DOTA_Tooltip_ability_split_enigma_Description"                                   "Transforms into Ov's split form, a cabal of 5 eidolons."
+
+		"DOTA_Tooltip_ability_unify_enigma"                                               "Unify"
+		"DOTA_Tooltip_ability_unify_enigma_Description"                                   "Returns to hero form."
+
+		"DOTA_Tooltip_ability_puck_phase_shift_datadriven"                                "Phase Shift"
+		"DOTA_Tooltip_ability_puck_phase_shift_datadriven_Description"                    "Briefly shifts into another dimension, becoming invulnerable."
+		"DOTA_Tooltip_ability_puck_phase_shift_datadriven_duration"                       "DURATION:"
+		"DOTA_Tooltip_modifier_puck_phase_shift_datadriven"								  "Phase Shift"
+
+		"DOTA_Tooltip_ability_dimensional_bind"                                           "Dimensional Bind"
+		"DOTA_Tooltip_ability_dimensional_bind_Description"                               "Launches an orb that binds units to this dimension, preventing them from changing form. Shapeshifting will be prevented if even a single split-form unit is dimensionally bound."
+		"DOTA_Tooltip_ability_dimensional_bind_projectile_range"                          "PROJECTILE RANGE:"
+		"DOTA_Tooltip_ability_dimensional_bind_duration"                                  "DURATION:"
+		"DOTA_Tooltip_modifier_dimensional_bind"										  "Dimensionally Bound"
+		"DOTA_Tooltip_modifier_dimensional_bind_description"							  "Unable to shapeshift."
+
+		"DOTA_Tooltip_ability_wormhole"                                                   "Wormhole"
+		"DOTA_Tooltip_ability_wormhole_Description"                                       "Summons a wormhole at the target location. Enemies that touch the wormhole will be randomly teleported a long distance away."
+		"DOTA_Tooltip_ability_wormhole_duration"                                          "DURATION:"
+		"DOTA_Tooltip_ability_wormhole_min_distance"                                      "MIN DISTANCE:"
+		"DOTA_Tooltip_ability_wormhole_max_distance"                                      "MAX DISTANCE:"
+		"DOTA_Tooltip_ability_wormhole_radius"                                            "RADIUS:"
+
+		"DOTA_Tooltip_ability_crippling_gravity"                                          "Crippling Gravity"
+		"DOTA_Tooltip_ability_crippling_gravity_Description"                              "Crushes the target with a massive gravitational pull, disarming them and applying a tapering movement speed slow."
+		"DOTA_Tooltip_ability_crippling_gravity_duration"                                 "DURATION:"
+		"DOTA_Tooltip_modifier_crippling_gravity"										  "Crippled"
+		"DOTA_Tooltip_modifier_crippling_gravity_description"							  "Disarmed and affected by a tapering movement speed slow."
+
+		"DOTA_Tooltip_ability_singularity"                                                "Singularity"
+		"DOTA_Tooltip_ability_singularity_Description"                                    "Creates an inactive singularity at the target location that is invisible to enemies. It gathers strength over 2.5 seconds or until Ov activates it early by using this ability again. When active, nearby enemies are pulled towards the center of the singularity and damaged and stunned if they reach the center. Pull strength, damage, and stun time are proportional to the amount of time spent charging."
+		"DOTA_Tooltip_ability_singularity_singularity_duration"							  "SINGULARITY DURATION:"
+		"DOTA_Tooltip_ability_singularity_max_stun"										  "MAX STUN:"
+		"DOTA_Tooltip_ability_singularity_max_damage"									  "MAX DAMAGE:"
+
+		"DOTA_Tooltip_ability_distant_malice"                                             "Distant Malice"
+		"DOTA_Tooltip_ability_distant_malice_Description"                                 "When this unit lands an attack, after a delay, the target will be affected by a dimensional echo of the attack that stuns and damages them."
+		"DOTA_Tooltip_ability_distant_malice_stun_time"                                   "STUN TIME:"
+		"DOTA_Tooltip_ability_distant_malice_delay"                                       "DELAY:"
+		"DOTA_Tooltip_modifier_distant_malice"											  "Distant Malice"
+		"DOTA_Tooltip_modifier_distant_malice_description"								  "Will be stunned and damaged after a delay."
 	}
 }

@@ -81,13 +81,14 @@ function GameMode:UpdateAbilities()
   SendToConsole("script_reload")
   SendToConsole("cl_script_reload")
   for k,hero in pairs(HeroList:GetAllHeroes()) do
+    GameMode:KillCorrespondingSplitUnits(hero)
     PlayerResource:ReplaceHeroWith(hero:GetPlayerID(), hero:GetClassname(), PlayerResource:GetGold(hero:GetPlayerID()), hero:GetCurrentXP())
     hero:Destroy()
   end
 end
 
 function GameMode:test()
-  PrintTable(split("A B C", " "))
+  PrintTable(Entities:FindAllByClassname("info_target"))
 end
 
 function GameMode:GetCurrentRound()
@@ -233,7 +234,9 @@ function GameMode:OnPickNewHero(event)
       local newhero = "npc_dota_hero_" .. picks[tostring(player)]
       -- Precache in case we haven't
       PrecacheUnitByNameAsync(newhero, function()
-        PlayerResource:GetPlayer(player):GetAssignedHero():RemoveSelf()
+        local oldhero = PlayerResource:GetPlayer(player):GetAssignedHero()
+        GameMode:KillCorrespondingSplitUnits(oldhero)
+        oldhero:RemoveSelf()
         PlayerResource:ReplaceHeroWith(player, newhero, 0, 0)
       end)
     end

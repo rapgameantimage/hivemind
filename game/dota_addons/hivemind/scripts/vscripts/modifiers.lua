@@ -21,12 +21,17 @@ end
 
 function modifier_hidden:OnCreated()
 	if not IsServer() then return end
+	-- Hide models
 	self:GetParent():AddNoDraw()
+
+	-- Hide the unit underground so that we don't have to worry about hiding their particles. (Idea stolen from SpellLibrary)
+	self:GetParent():SetAbsOrigin(self:GetParent():GetAbsOrigin() + Vector(0, 0, -300))
 end
 
 function modifier_hidden:OnDestroy()
 	if not IsServer() then return end
 	self:GetParent():RemoveNoDraw()
+	-- No need to return them to the surface, they'll get moved back when they transform anyway.
 end
 
 function modifier_hidden:DeclareFunctions()

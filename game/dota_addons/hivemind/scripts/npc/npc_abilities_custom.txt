@@ -408,7 +408,7 @@
       "03"
       {
         "var_type"      "FIELD_FLOAT"
-        "movespeed_bonus" "50"
+        "movespeed_bonus" "15"
       }
     }
   }
@@ -425,10 +425,9 @@
     "AbilityUnitDamageType"      "DAMAGE_TYPE_MAGICAL"
 
     "AbilityManaCost" "600"
-    "AbilityCooldown" "30"
+    "AbilityCooldown" "22"
     "AbilityCastPoint" "0"
     "AbilityCastRange" "700"
-    "AbilityCastMinimumRange" "200"
     "AbilityChannelTime"  "4.5"
 
     "precache"
@@ -457,7 +456,7 @@
       "04"
       {
         "var_type"  "FIELD_INTEGER"
-        "min_range" "200"
+        "min_range" "0"
       }
       "05"
       {
@@ -674,6 +673,81 @@
     }
   }
 
+  "ectoplasm"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/bane/ectoplasm"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "bane_enfeeble"
+    "AbilityManaCost" "125"
+    "AbilityCooldown" "10"
+    "AbilityCastPoint"  "0.4"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/bane/ectoplasm.vpcf"
+      "particle"  "particles/heroes/bane/ectoplasm_debuff.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_venomancer.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "8"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_slow"  "75"
+      }
+    }
+  }
+
+  "phantom"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/bane/phantom"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "spectre_haunt"
+    "AbilityManaCost" "200"
+    "AbilityCooldown" "5"
+    "AbilityCastPoint"  "0.4"
+
+    "precache"
+    {
+      "model" "models/items/death_prophet/hecate_ghosts/hecate_ghosts.vmdl"
+      "particle"  "particles/heroes/bane/phantom_poof.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_phantom_lancer.vsndevts"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_death_prophet.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "15"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage"  "25"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "search_radius" "250"
+      }
+    }
+  }
+
+
+
+
   // PHOENIX
 
   "split_phoenix"
@@ -833,7 +907,7 @@
       "03"
       {
         "var_type"  "FIELD_FLOAT"
-        "dps" "50"
+        "dps" "35"
       }
       "04"
       {
@@ -995,7 +1069,7 @@
       "03"
       {
         "var_type"  "FIELD_FLOAT"
-        "dps" "50"
+        "dps" "35"
       }
     }
   }
