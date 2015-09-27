@@ -25,6 +25,8 @@
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
+
+    "MovementSpeed"		"325"
   }
 
   "npc_dota_hero_hivemind_bane"
@@ -47,7 +49,7 @@
     "Ability14"       ""
     "Ability15"       ""
     "Ability16"       "set_spawn_point"
-    "StatusHealth"      "1000"
+    "StatusHealth"      "850"
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
@@ -89,6 +91,33 @@
     "Ability3"        "wormhole" 
     "Ability4"        "crippling_gravity"
     "Ability5"        "singularity"
+    "Ability6"        ""
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       "collapse_singularity"
+    "Ability16"       "set_spawn_point"
+
+    "StatusHealth"      "1000"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "1000"
+    "StatusManaRegen"   "10"
+  }
+
+  "npc_dota_hero_hivemind_wraith"
+  {
+    "AbilityLayout" "5"
+    "override_hero" "npc_dota_hero_skeleton_king"
+    "Ability1"        "split_wraith"
+    "Ability2"        "wraithpyre" 
+    "Ability3"        "ghostly_fireball" 
+    "Ability4"        ""
+    "Ability5"        ""
     "Ability6"        ""
     "Ability7"        ""
     "Ability8"        ""

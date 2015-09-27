@@ -46,11 +46,11 @@ function GameMode:SplitHero(ability)
     location = caster:GetAbsOrigin()
   })
 
+  -- particles
+  local splitting_fx = ParticleManager:CreateParticle("particles/split_source.vpcf", PATTACH_ABSORIGIN, caster)
+
   -- hide hero
   caster:AddNewModifier(caster, nil, "modifier_hidden", {})
-
-  -- particles
-  local splitting_fx = ParticleManager:CreateParticle("particles/split_source.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 
   -- enable split position setting
   caster:SwapAbilities(ability:GetAbilityName(), "set_spawn_point", false, true)
@@ -137,12 +137,13 @@ function GameMode:UnifyHero(ability)
   for unit,info in pairs(units) do
     unit = EntIndexToHScript(tonumber(unit))
     if unit ~= nil then
-      unit:Stop()
-      unit:AddNewModifier(caster, nil, "modifier_hidden", {})
-
       -- particles; CP1 = the place they will be dragged to (the caster's location)
+      -- Note, we need to place the particles before hiding, since they will be moved underground when hiding
       local pfx = ParticleManager:CreateParticle("particles/unify.vpcf", PATTACH_ABSORIGIN, unit)
       ParticleManager:SetParticleControl(pfx, 1, caster:GetAbsOrigin() + Vector(0, 0, 64))
+
+      unit:Stop()
+      unit:AddNewModifier(caster, nil, "modifier_hidden", {})
     end
   end
 
@@ -150,7 +151,7 @@ function GameMode:UnifyHero(ability)
   AddFOWViewer(caster:GetTeam(), caster:GetAbsOrigin(), GameRules:IsDaytime() and caster:GetBaseDayTimeVisionRange() or caster:GetBaseNightTimeVisionRange(), SPLIT_DELAY, true)
 
   -- move the hero (see explanation in splithero of why we do this now)
-  hero:SetAbsOrigin(caster:GetAbsOrigin())
+  hero:SetAbsOrigin(GetGroundPosition(caster:GetAbsOrigin(), hero))
   hero:SetForwardVector(caster:GetForwardVector())
 
   hero:AddNewModifier(hero, ability, "modifier_ok_to_complete_transformation", {}) -- again, see above.

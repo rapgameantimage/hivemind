@@ -24,7 +24,7 @@ function GameMode:OnEntityKilled( keys )
   end
 
   local player = killedUnit:GetPlayerOwner()
-  if player == nil then
+  if player == nil or killedUnit == nil then
     -- nothing to do here, really.
     return
   end
@@ -32,7 +32,7 @@ function GameMode:OnEntityKilled( keys )
   local hero = player:GetAssignedHero()
 
   -- Treat this death differently depending on what kind of unit it is
-  if killedUnit:IsHero() then
+  if killedUnit:IsHero() and GameMode:IsGameplay() then
   	-- Increment enemy score
   	local enemy_team
   	if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
@@ -42,8 +42,8 @@ function GameMode:OnEntityKilled( keys )
   	end
   	local score_table = CustomNetTables:GetTableValue("gamestate", "score")
   	local enemy_score = tonumber(score_table[tostring(enemy_team)])
- 	enemy_score = enemy_score + 1
- 	score_table[tostring(enemy_team)] = tostring(enemy_score)
+ 	  enemy_score = enemy_score + 1
+ 	  score_table[tostring(enemy_team)] = tostring(enemy_score)
   	CustomNetTables:SetTableValue("gamestate", "score", score_table)
 
     -- Kill the corresponding split units
@@ -66,8 +66,9 @@ function GameMode:OnEntityKilled( keys )
         end
       end
       if not found_living_split_unit then
-        -- Kill the corresponding hero
+        -- Kill the corresponding hero.
         hero:Kill(nil, killerEntity)
+        hero:AddNoDraw()
       end
     end
   end

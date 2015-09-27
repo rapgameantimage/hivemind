@@ -50,5 +50,7 @@
 
 	"pick_header_text"								"It's a rematch! Choose your hero:"
 
+	"arena_shrink"									"The walls are closing in..."
+
 	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
 }

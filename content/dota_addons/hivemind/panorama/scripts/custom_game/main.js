@@ -153,6 +153,28 @@ function OnMatchStarted() {
 	$("#pick").style.visibility = "collapse"
 }
 
+function OnEntityKilled(event) {
+	// Deselects killed units from multi-select groups, so the player's commands don't keep getting delivered to a dead unit
+	// First, see if the dead unit is selected
+	var entity_killed = event.entindex_killed
+	var selection = Players.GetSelectedEntities(0)
+	var index = selection.indexOf(entity_killed)
+	if (index != -1) {
+		// If so, remove it from the array
+		selection.splice(index, 1)
+		// Since there's no way to de-select an individual unit, we need to rebuild the whole selection
+		var first = true
+		for (var i = 0; i < selection.length; i++) {
+			GameUI.SelectUnit(selection[i], !first)
+			first = false
+		}
+	}
+}
+
+function OnArenaShrink(event) {
+	SetAlert(3, $.Localize("#arena_shrink"))
+}
+
 (function()
 {
 	CreatePickBoard()		// This is actually called every time there is a rematch so isn't technically necessary to be here
@@ -165,4 +187,6 @@ function OnMatchStarted() {
 	GameEvents.Subscribe("round_completed", OnRoundCompleted)
 	GameEvents.Subscribe("match_started", OnMatchStarted)
 	GameEvents.Subscribe("match_completed", OnMatchCompleted)
+	GameEvents.Subscribe("entity_killed", OnEntityKilled)
+	GameEvents.Subscribe("arena_shrink", OnArenaShrink)
 })();

@@ -82,6 +82,8 @@ function modifier_singularity_thinker:OnCreated(info)
 
 	StartSoundEvent("Hero_Enigma.Black_Hole", self.parent)
 
+	GridNav:DestroyTreesAroundPoint(self.location, self.pull_radius, false)
+
 	self.tick_rate = 0.1
 	self:StartIntervalThink(self.tick_rate)
 end

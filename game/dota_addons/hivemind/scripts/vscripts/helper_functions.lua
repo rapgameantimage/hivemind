@@ -2,6 +2,10 @@ function DistanceBetweenVectors(v1, v2)
 	return math.sqrt((v1.x - v2.x)^2 + (v1.y - v2.y)^2)
 end
 
+function DirectionFromAToB(a, b)
+	return ((b - a) * Vector(1, 1, 0)):Normalized()
+end
+
 -- String splitter. Source: http://lua-users.org/wiki/SplitJoin
 function split(str, pat)
    local t = {}  -- NOTE: use {n = 0} in Lua-5.0

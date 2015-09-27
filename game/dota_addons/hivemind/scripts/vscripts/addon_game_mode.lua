@@ -18,6 +18,7 @@ function Precache( context )
 
   PrecacheResource("particle", "particles/split_count.vpcf", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_custom.vsndevts", context)
+  PrecacheResource("particle", "particles/arena_wall.vpcf", context)
 end
 
 -- Create the game mode when we activate

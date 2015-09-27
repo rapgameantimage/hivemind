@@ -658,17 +658,12 @@
       "01"
       {
         "var_type"  "FIELD_FLOAT"
-        "slow_per_stack_hero" "2"
+        "slow_per_stack"  "5"
       }
       "02"
       {
-        "var_type"  "FIELD_FLOAT"
-        "slow_per_stack_non_hero"  "5"
-      }
-      "03"
-      {
         "var_type"  "FIELD_INTEGER"
-        "max_stacks"  "50"
+        "max_stacks"  "30"
       }
     }
   }
@@ -1104,7 +1099,7 @@
 
     "precache"
     {
-      "particle"    "particles/enigma.vpcf"
+      "particle"    "particles/unify.vpcf"
     }
   }
 
@@ -1475,22 +1470,58 @@
     }
   }
 
-  // PUGNA
+  // WRAITH
+
+  "split_wraith"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/wraith/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "dark_troll_warlord_raise_dead"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+    }
+  }
+
+  "unify_wraith"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/wraith/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "skeleton_king_vampiric_aura"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
 
   "throw_bone"
   {
     "BaseClass" "ability_lua"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-    "ScriptFile"  "heroes/pugna/throw_bone"
+    "ScriptFile"  "heroes/wraith/throw_bone"
     "MaxLevel"  "1"
     "AbilityTextureName"  "skeleton_king_hellfire_blast"
     "AbilityCooldown" "8"
     "AbilityDamage" "75"
     "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+    "AbilityCastRange"  "1000"
+    "AbilityCastPoint"  ".3"
 
     "precache"
     {
-      "particle"  "particles/heroes/pugna/bone.vpcf"
+      "particle"  "particles/heroes/wraith/bone.vpcf"
+      "particle"  "particles/heroes/wraith/bone_splinters.vpcf"
+      "soundfile" "soundevents/game_sounds.vsndevts"
     }
 
     "AbilitySpecial"
@@ -1504,6 +1535,91 @@
       {
         "var_type"  "FIELD_INTEGER"
         "health_cost" "50"
+      }
+    }
+  }
+
+  "wraithpyre"
+  {
+    "BaseClass" "ability_lua"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_AOE"
+    "ScriptFile"  "heroes/wraith/wraithpyre"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "wraithpyre2"
+    "AbilityCooldown" "1"
+    "AbilityManaCost" "50"
+    "AbilityCastPoint"  "0"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/wraith/wraithpyre.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "mana_per_second" "25"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "minus_armor_per_stack"  "1.5"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "minus_magic_resist_per_stack" "4"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_duration" "5"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"  "200"
+      }
+      "06"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_stacks"  "15"
+      }
+    }
+  }
+
+  "ghostly_fireball"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/wraith/ghostly_fireball"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "20"
+    "AbilityManaCost" "300"
+    "AbilityCastRange"  "1400"
+    "AbilityCastPoint"  "0.5"
+    "AbilityTextureName"  "ghostly_fireball"
+    "AbilityDamage" "175"
+
+    "precache"
+    {
+      "particle"  "particles/frostivus_gameplay/frostivus_throne_wraith_king_explode.vpcf"
+      "particle"  "particles/heroes/wraith/ghostly_fireball.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "slow_duration" "4"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"  "300"
       }
     }
   }

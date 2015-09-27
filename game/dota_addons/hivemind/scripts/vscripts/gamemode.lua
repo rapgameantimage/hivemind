@@ -21,6 +21,7 @@ require('helper_functions')
 -- Hivemind-specific stuff
 require('split_unit_definitions')
 require('split_logic')
+require('arena')
 
 MAX_RADIUS_FOR_UNIFY = 800
 SPLIT_DELAY = 0.5
@@ -65,6 +66,7 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "completeround", Dynamic_Wrap(GameMode, 'CompleteRound'), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "rematch", Dynamic_Wrap(GameMode, 'Rematch'), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "update_abilities", Dynamic_Wrap(GameMode, "UpdateAbilities"), "For testing abilities", FCVAR_CHEAT )
+  Convars:RegisterCommand( "cleanup_particles", Dynamic_Wrap(GameMode, "CleanupParticles"), "Destroy lots of particles", FCVAR_CHEAT )
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 
@@ -88,7 +90,13 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test()
-  PrintTable(Entities:FindAllByClassname("info_target"))
+  Arena:Shrink()
+end
+
+function GameMode:CleanupParticles()
+  for i = 1,1000 do
+    ParticleManager:DestroyParticle(i, true)
+  end
 end
 
 function GameMode:GetCurrentRound()
@@ -145,6 +153,7 @@ function GameMode:NewRound()
   GameMode:ClearArena()
   GridNav:RegrowAllTrees()
   GameRules:SetTimeOfDay(0.25)
+  Arena:Reset(true)
 
   -- Respawn heroes
   for k,hero in pairs(HeroList:GetAllHeroes()) do
@@ -258,4 +267,8 @@ function GameMode:Rematch()
   CustomNetTables:SetTableValue("gamestate", "round", {"0"})
   CustomNetTables:SetTableValue("gamestate", "score", {[tostring(DOTA_TEAM_GOODGUYS)] = "0", [tostring(DOTA_TEAM_BADGUYS)] = "0"})
   GameMode:CompleteRound()		-- Set up the next round as usual. From here, we re-enter the usual round start/end logic.
+end
+
+function GameMode:IsGameplay()
+  return CustomNetTables:GetTableValue("gamestate", "status")["1"] == "gameplay"
 end
