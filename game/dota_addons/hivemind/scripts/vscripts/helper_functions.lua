@@ -94,7 +94,7 @@ function SimpleAOE(info)
 		print("Error: SimpleAOE called with nil radius")
 		return
 	elseif radius == 0 then
-		print("Error: SimpleAOE called with 0 radius (did you make a typo in your AbilitySpecial variable?")
+		print("Error: SimpleAOE called with 0 radius (did you make a typo in your AbilitySpecial variable?)")
 		return
 	elseif center == nil then
 		print("Error: SimpleAOE called with nil center")

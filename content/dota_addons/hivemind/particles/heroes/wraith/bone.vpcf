@@ -20,6 +20,7 @@
 			]
 			m_bAnimated = true
 			m_nLOD = 1
+			m_bSuppressTint = true
 		},
 	]
 	m_Operators =
@@ -37,7 +38,14 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
-			m_flOffset = 64.000000
+			m_flOffset = 70.000000
+			m_flMaxTraceLength = 1024.000000
+			m_flTolerance = 96.000000
+			m_flTraceOffset = 256.000000
+			m_CollisionGroupName = "DEBRIS"
+			m_nRefCP1 = 3
+			m_nLerpCP = 3
+			m_bIncludeWater = true
 		},
 		{
 			_class = "C_OP_RemapVelocityToVector"
@@ -48,6 +56,11 @@
 			_class = "C_OP_SpinYaw"
 			m_nSpinRateDegrees = 180
 			m_nSpinRateMinDegrees = 180
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_nFirstControlPoint = 3
+			m_bSetOrientation = true
 		},
 	]
 	m_Initializers =

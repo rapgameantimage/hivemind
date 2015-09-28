@@ -53,6 +53,9 @@
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
   }
 
   "npc_dota_hero_hivemind_phoenix"
@@ -80,6 +83,9 @@
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
   }
 
   "npc_dota_hero_hivemind_enigma"
@@ -107,6 +113,9 @@
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
   }
 
   "npc_dota_hero_hivemind_wraith"
@@ -116,8 +125,8 @@
     "Ability1"        "split_wraith"
     "Ability2"        "wraithpyre" 
     "Ability3"        "ghostly_fireball" 
-    "Ability4"        ""
-    "Ability5"        ""
+    "Ability4"        "summon_wraith"
+    "Ability5"        "leap_strike"
     "Ability6"        ""
     "Ability7"        ""
     "Ability8"        ""
@@ -127,12 +136,15 @@
     "Ability12"       ""
     "Ability13"       ""
     "Ability14"       ""
-    "Ability15"       "collapse_singularity"
+    "Ability15"       "wraith_swap_positions"
     "Ability16"       "set_spawn_point"
 
     "StatusHealth"      "1000"
     "StatusHealthRegen" "0"
     "StatusMana"        "1000"
     "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
   }
 }

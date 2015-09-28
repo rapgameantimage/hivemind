@@ -84,7 +84,7 @@ function GameMode:OnNPCSpawned(keys)
 
   local npc = EntIndexToHScript(keys.entindex)
 
-  if npc:IsHero() then
+  if npc:IsHero() and npc:GetPlayerOwner() then
     -- Create the corresponding split units for this hero
     CustomNetTables:SetTableValue("split_units", tostring(npc:GetEntityIndex()), {})
     -- See if the split units have been precached yet

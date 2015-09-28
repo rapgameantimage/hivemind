@@ -1,4 +1,13 @@
 function GameMode:CreateSplitUnits(hero)
+  print("Started CreateSplitUnits")
+  -- This flag happens during certain abilities, e.g. when creating illusions via CreateUnitByName
+  local skip_status = CustomNetTables:GetTableValue("gamestate", "dont_create_split_units")
+  if skip_status ~= nil then
+    if skip_status["1"] ~= nil then
+      return
+    end
+  end
+
   -- Set these tables in split_units_definitions.lua
   local num = NUMBER_OF_SPLIT_UNITS[hero:GetName()]
   local unitname = SPLIT_UNIT_NAMES[hero:GetName()]
@@ -51,6 +60,16 @@ function GameMode:SplitHero(ability)
 
   -- hide hero
   caster:AddNewModifier(caster, nil, "modifier_hidden", {})
+
+  -- turn off toggle abilities, if any
+  for i = 0, caster:GetAbilityCount() - 1 do
+    local ab = caster:GetAbilityByIndex(i)
+    if ab ~= nil then
+      if ab:IsToggle() and ab:GetToggleState() then
+        ab:ToggleAbility()
+      end
+    end
+  end
 
   -- enable split position setting
   caster:SwapAbilities(ability:GetAbilityName(), "set_spawn_point", false, true)

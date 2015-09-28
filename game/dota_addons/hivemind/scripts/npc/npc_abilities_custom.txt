@@ -1575,7 +1575,7 @@
       "04"
       {
         "var_type"  "FIELD_FLOAT"
-        "debuff_duration" "5"
+        "debuff_duration" "3"
       }
       "05"
       {
@@ -1601,7 +1601,7 @@
     "AbilityCastRange"  "1400"
     "AbilityCastPoint"  "0.5"
     "AbilityTextureName"  "ghostly_fireball"
-    "AbilityDamage" "175"
+    "AbilityDamage" "135"
 
     "precache"
     {
@@ -1620,6 +1620,91 @@
       {
         "var_type"  "FIELD_INTEGER"
         "radius"  "300"
+      }
+    }
+  }
+
+  "summon_wraith"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/wraith/summon_wraith"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityCooldown"        "10"
+    "AbilityManaCost"        "250"
+    "AbilityCastRange"       "250"
+    "AbilityCastPoint"      "0.2"
+    "AbilityTextureName"    "summon_wraith"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "wraith_duration" "5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "wraith_max_hits" "3"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "wraith_damage_percent" "50"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_slow" "15"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_duration" "4"
+      }
+    }
+  }
+
+  "wraith_swap_positions"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/wraith/summon_wraith"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "AbilityCooldown" "2"
+    "AbilityTextureName"  "spectre_reality"
+  }
+
+  "leap_strike"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"   "heroes/wraith/leap_strike"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityCooldown" "10"
+    "AbilityManaCost" "175"
+    "AbilityCastRange"  "550"
+    "AbilityCastPoint"  "0.1"
+    "AbilityTextureName"  "skeleton_king_mortal_strike"
+    "AbilityDamage"   "90"
+
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts"
+      "particle"  "particles/units/heroes/hero_ursa/ursa_earthshock.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "stun_duration" "1.5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "250"
       }
     }
   }

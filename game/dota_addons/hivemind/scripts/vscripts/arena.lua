@@ -34,9 +34,10 @@ Checks for units outside these bounds, then moves them inside.
 Creates four rectangles around each side of the map, then covers those with point_simple_obstruction entities.
 Then stores the new arena size in current_bounds, and calls the function to create particles.
 
-https://www.youtube.com/watch?v=qfR00nu5xQw
+https://www.youtube.com/watch?v=VOo3E6ZeGOo
 ]]-- 
 function Arena:Shrink()
+	print("Started Arena:Shrink()")
 	local new_bounds = {
 		max_x = current_bounds.max_x - SHRINK_AMOUNT,
 		min_x = current_bounds.min_x + SHRINK_AMOUNT,
@@ -46,7 +47,6 @@ function Arena:Shrink()
 
 	-- Make sure we are not shrinking the arena beyond MIN_BOUNDS
 	if new_bounds.max_x < MIN_BOUNDS.max_x or new_bounds.min_x > MIN_BOUNDS.min_x or new_bounds.max_y < MIN_BOUNDS.max_y or new_bounds.min_y > MIN_BOUNDS.min_y then
-		print("Can't shrink beyond arena minimum size")
 		return
 	end
 
@@ -168,12 +168,6 @@ function Arena:Reset(restart_timer)
 	Arena:DestroyWallParticles()
 	for k,ent in pairs(Entities:FindAllByClassname("point_simple_obstruction")) do
 		ent:Destroy()
-	end
-	for k,ent in pairs(Entities:FindAllByClassname("npc_dota_thinker")) do
-		if ent:HasModifier("modifier_arena_shrinker") then
-			ent:Destroy()
-			break
-		end
 	end
 	current_bounds = ORIGINAL_BOUNDS
 	if restart_timer then

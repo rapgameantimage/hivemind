@@ -3,16 +3,16 @@ ghostly_fireball = class({})
 function ghostly_fireball:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
+	local speed = 900
+	local maximum_possible_duration = self:GetCastRange(target, nil) / speed   	-- shouldn't actually be necessary; just a failsafe
 
-	-- Wacky edge case:
-	if caster:GetAbsOrigin() == target then
+	-- Self-cast handling to prevent buggy LinearProjectile particles:
+	if DistanceBetweenVectors(caster:GetAbsOrigin(), target) < self:GetCastRange(target, nil) * 0.03 * maximum_possible_duration then
 		self:OnProjectileHit(nil, target)
 		return
 	end
 
-	-- 99.999% of the time:
-	local speed = 900
-	local maximum_possible_duration = self:GetCastRange(target, nil) / speed   	-- shouldn't actually be necessary; just a failsafe
+	-- Most of the time:
 	caster:AddNewModifier(self:GetCaster(), self, "modifier_ghostly_fireball_travel", {duration = maximum_possible_duration})
 	caster:AddNoDraw()
 	local direction = DirectionFromAToB(caster:GetAbsOrigin(), target)
@@ -28,6 +28,7 @@ function ghostly_fireball:OnSpellStart()
 		Source = caster,
 	})
 	caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
+	self.cast_time = GameRules:GetGameTime()
 end
 
 function ghostly_fireball:OnProjectileThink(loc)
@@ -49,12 +50,18 @@ function ghostly_fireball:OnProjectileHit(target, loc)
 			modifier_ghostly_fireball = {duration = self:GetSpecialValueFor("slow_duration")},
 		},
 	})
-	caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
+	if GameRules:GetGameTime() - self.cast_time >= 0.25 then
+		caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
+	end
 	FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), false)
 end
 
 function ghostly_fireball:GetCastAnimation()
 	return ACT_DOTA_CAST_ABILITY_1
+end
+
+function ghostly_fireball:GetAOERadius()
+	return self:GetSpecialValueFor("radius")
 end
 
 ---
@@ -90,4 +97,12 @@ end
 
 function modifier_ghostly_fireball:IsPurgable()
 	return true
+end
+
+function modifier_ghostly_fireball:GetEffectName()
+	return "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
+end
+
+function modifier_ghostly_fireball:GetEffectAttachType()
+	return PATTACH_POINT_FOLLOW
 end

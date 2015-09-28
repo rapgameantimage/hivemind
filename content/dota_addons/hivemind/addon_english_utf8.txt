@@ -120,12 +120,22 @@
 		"DOTA_Tooltip_modifier_spirit_barbs_description"								  "Losing mana upon taking damage"
 
 		"DOTA_Tooltip_ability_bane_soul_freeze"                                           "Soul Freeze"
-		"DOTA_Tooltip_ability_bane_soul_freeze_Description"                               "Every time a banshee successfully lands an attack, the target gains a stack of Soul Freeze, reducing their movement speed. This debuff lasts until death."
-		"DOTA_Tooltip_ability_bane_soul_freeze_slow_per_stack_hero"                       "HERO SLOW PER STACK:"
-		"DOTA_Tooltip_ability_bane_soul_freeze_slow_per_stack_non_hero"                   "NON-HERO SLOW PER STACK:"
-		"DOTA_Tooltip_ability_bane_soul_freeze_max_stacks"                                "MAX STACKS:"
+		"DOTA_Tooltip_ability_bane_soul_freeze_Description"                               "Every time a banshee successfully lands an attack, the target gains a stack of Soul Freeze, reducing their movement speed. The duration is refreshed each time an attack is landed."
+		"DOTA_Tooltip_ability_bane_soul_freeze_slow_per_stack"                 		      "SLOW PER STACK:"
+		"DOTA_Tooltip_ability_bane_soul_freeze_duration"								  "DURATION:"
 		"DOTA_Tooltip_modifier_soul_freeze"												  "Soul Freeze"
 		"DOTA_Tooltip_modifier_soul_freeze_description"									  "Slowed slightly for each stack of this modifier."
+
+		"DOTA_Tooltip_ability_ectoplasm"                                                  "Spit Ectoplasm"
+		"DOTA_Tooltip_ability_ectoplasm_Description"                                      "Spits a ball of ectoplasm in a straight line that affects enemy units in a small radius. Units affected by ectoplasm are slowed in movement speed and turn rate, with the effect becoming more pronounced the more they move or turn."
+		"DOTA_Tooltip_ability_ectoplasm_duration"                                         "DURATION:"
+		"DOTA_Tooltip_ability_ectoplasm_max_slow"                                         "MAX SLOW:"
+
+		"DOTA_Tooltip_ability_phantom"                                                    "Phantom"
+		"DOTA_Tooltip_ability_phantom_Description"                                        "Spawns a phantom that flies in the target direction. If it touches an enemy, it will begin to haunt them, dealing damage over time. If a haunted unit is close to of another enemy or allied unit, the phantom will temporarily vanish until the unit is alone again."
+		"DOTA_Tooltip_ability_phantom_duration"                                           "DURATION:"
+		"DOTA_Tooltip_ability_phantom_damage"                                             "DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_phantom_search_radius"                                      "SEARCH RADIUS:"
 
 		"DOTA_Tooltip_ability_set_spawn_point"                                            "Set Spawn Point"
 		"DOTA_Tooltip_ability_set_spawn_point_Description"                                "Set the location at which one of your split units will spawn."
@@ -190,7 +200,7 @@
 		"DOTA_Tooltip_ability_puck_phase_shift_datadriven"                                "Phase Shift"
 		"DOTA_Tooltip_ability_puck_phase_shift_datadriven_Description"                    "Briefly shifts into another dimension, becoming invulnerable."
 		"DOTA_Tooltip_ability_puck_phase_shift_datadriven_duration"                       "DURATION:"
-		"DOTA_Tooltip_modifier_puck_phase_shift_datadriven"								  "Phase Shift"
+		"DOTA_Tooltip_modifier_phase_shift_datadriven"								  "Phase Shift"
 
 		"DOTA_Tooltip_ability_dimensional_bind"                                           "Dimensional Bind"
 		"DOTA_Tooltip_ability_dimensional_bind_Description"                               "Launches an orb that binds units to this dimension, preventing them from changing form. Shapeshifting will be prevented if even a single split-form unit is dimensionally bound."

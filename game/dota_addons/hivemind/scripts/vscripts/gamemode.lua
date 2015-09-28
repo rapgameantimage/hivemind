@@ -72,6 +72,7 @@ function GameMode:InitGameMode()
 
   CustomNetTables:SetTableValue("gamestate", "round", {0})
   CustomNetTables:SetTableValue("gamestate", "score", {[tostring(DOTA_TEAM_GOODGUYS)] = "0", [tostring(DOTA_TEAM_BADGUYS)] = "0"})
+  CustomNetTables:SetTableValue("gamestate", "ignore_split_unit_death", {})
 
   CustomGameEventManager:RegisterListener("rematch_yes", Dynamic_Wrap(GameMode, 'OnRematchYes'))
   CustomGameEventManager:RegisterListener("move_camera", Dynamic_Wrap(GameMode, 'MoveCamera'))
@@ -90,7 +91,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test()
-  Arena:Shrink()
+  print(tostring(PlayerResource:GetPlayer(0):GetAssignedHero():GetAbsOrigin()))
 end
 
 function GameMode:CleanupParticles()
