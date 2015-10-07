@@ -42,6 +42,8 @@ function modifier_wraith:OnCreated(info)
 	self.attacks_landed = 0
 	self:OnIntervalThink()
 	self:StartIntervalThink(0.03)
+	local ice = ParticleManager:CreateParticle("particles/econ/items/wraith_king/wraith_king_relic_weapon/wraith_king_relic_weapon.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self:GetParent())
+	ParticleManager:SetParticleControlEnt(ice, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
 end
 
 function modifier_wraith:CheckState()
@@ -131,6 +133,14 @@ function modifier_wraith_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetStackCount() * self.slow * -1
 end
 
+function modifier_wraith_debuff:GetEffectName()
+	return "particles/generic_gameplay/generic_slowed_cold.vpcf"
+end
+
+function modifier_wraith_debuff:GetEffectAttachType()
+	return PATTACH_POINT_FOLLOW
+end
+
 ---
 
 wraith_swap_positions = class({})
@@ -161,9 +171,16 @@ function wraith_swap_positions:OnSpellStart()
 	caster:SetForwardVector(wraith:GetForwardVector())
 	wraith:SetAbsOrigin(casterorigin)
 	wraith:SetForwardVector(casterfv)
+end
 
-	--local wraith_modifier = wraith:FindModifierByName("modifier_wraith")
-	--if wraith_modifier then
-	--	wraith_modifier:OnIntervalThink()
-	--end
+function wraith_swap_positions:CastFilterResult()
+	if self:GetCaster():HasModifier("modifier_leap_strike") then
+		return UF_FAIL_CUSTOM
+	else
+		return UF_SUCCESS
+	end
+end
+
+function wraith_swap_positions:GetCustomCastError()
+	return "#dota_hud_error_cant_use_while_leaping"
 end

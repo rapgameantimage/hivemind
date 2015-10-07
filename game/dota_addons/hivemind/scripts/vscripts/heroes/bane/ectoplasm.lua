@@ -28,7 +28,7 @@ function ectoplasm:OnProjectileHit(target, loc)
 	local aoe = {
 		caster = self:GetCaster(),
 		center = loc,
-		radius = 150,
+		radius = 250,
 		ability = self,
 		modifiers = {
 			modifier_ectoplasm = {duration = self:GetSpecialValueFor("duration")},
@@ -55,6 +55,7 @@ function modifier_ectoplasm:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 	}
 end
 
@@ -66,10 +67,14 @@ function modifier_ectoplasm:GetModifierMoveSpeedBonus_Percentage()
 	return self:GetStackCount() * -1
 end
 
+function modifier_ectoplasm:GetModifierAttackSpeedBonus_Constant()
+	return self:GetStackCount() * -1
+end
+
 function modifier_ectoplasm:OnCreated()
 	-- settings
-	self.distance_per_stack = 40
-	self.angle_per_stack = 25
+	self.distance_per_stack = 25
+	self.angle_per_stack = 30
 	self.max_stacks = self:GetAbility():GetSpecialValueFor("max_slow")
 
 	-- initialization
@@ -105,7 +110,7 @@ function modifier_ectoplasm:OnIntervalThink()
 	end
 	self:SetStackCount(new_stack_count)
 	ParticleManager:SetParticleControl(self.particles, 1, Vector(new_stack_count, 0, 0)) -- scale sprites
-	ParticleManager:SetParticleControl(self.particles, 2, Vector(1 + new_stack_count / 10, 1 + new_stack_count / 10, 1 + new_stack_count / 10)) -- scale blobs
+	ParticleManager:SetParticleControl(self.particles, 2, Vector(1 + new_stack_count / 15, 1 + new_stack_count / 15, 1 + new_stack_count / 15)) -- scale blobs
 end
 
 function modifier_ectoplasm:OnDestroy()

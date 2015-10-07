@@ -5,6 +5,7 @@ function ghostly_fireball:OnSpellStart()
 	local target = self:GetCursorPosition()
 	local speed = 900
 	local maximum_possible_duration = self:GetCastRange(target, nil) / speed   	-- shouldn't actually be necessary; just a failsafe
+	self.cast_time = GameRules:GetGameTime()
 
 	-- Self-cast handling to prevent buggy LinearProjectile particles:
 	if DistanceBetweenVectors(caster:GetAbsOrigin(), target) < self:GetCastRange(target, nil) * 0.03 * maximum_possible_duration then
@@ -28,7 +29,6 @@ function ghostly_fireball:OnSpellStart()
 		Source = caster,
 	})
 	caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
-	self.cast_time = GameRules:GetGameTime()
 end
 
 function ghostly_fireball:OnProjectileThink(loc)
@@ -50,10 +50,10 @@ function ghostly_fireball:OnProjectileHit(target, loc)
 			modifier_ghostly_fireball = {duration = self:GetSpecialValueFor("slow_duration")},
 		},
 	})
+	FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), false)
 	if GameRules:GetGameTime() - self.cast_time >= 0.25 then
 		caster:EmitSound("Hero_SkeletonKing.Hellfire_Blast")
 	end
-	FindClearSpaceForUnit(caster, caster:GetAbsOrigin(), false)
 end
 
 function ghostly_fireball:GetCastAnimation()

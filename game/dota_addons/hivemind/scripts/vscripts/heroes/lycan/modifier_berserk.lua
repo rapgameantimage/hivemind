@@ -18,7 +18,6 @@ end
 
 function modifier_berserk:OnCreated()
 	if not IsServer() then return end
-	print("Hello")
 	self.particles = ParticleManager:CreateParticle("particles/heroes/lycan/berserk.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self:GetParent())
 	ParticleManager:SetParticleControlEnt(self.particles, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_attack1", self:GetParent():GetAbsOrigin(), true)
 	self.particles2 = ParticleManager:CreateParticle("particles/heroes/lycan/berserk.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self:GetParent())

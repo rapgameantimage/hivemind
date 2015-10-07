@@ -10,5 +10,8 @@ function split_wraith:GetCustomCastError()
 end
 
 function split_wraith:OnSpellStart()
+	if RandomInt(1, 100) == 1 then
+		EmitSoundOnClient("Mr_Skeltal.Doot_Doot", self:GetCaster():GetPlayerOwner())
+	end
 	GameMode:SplitHero(self)
 end

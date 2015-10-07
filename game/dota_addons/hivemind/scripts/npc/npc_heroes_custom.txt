@@ -94,7 +94,7 @@
     "override_hero" "npc_dota_hero_enigma"
     "Ability1"        "split_enigma"
     "Ability2"        "dimensional_bind" 
-    "Ability3"        "wormhole" 
+    "Ability3"        "repulsion" 
     "Ability4"        "crippling_gravity"
     "Ability5"        "singularity"
     "Ability6"        ""

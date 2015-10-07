@@ -1420,6 +1420,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "MaxLevel"  "1"
     "ScriptFile"  "heroes/enigma/singularity"
+    "AbilityTextureName"  "enigma_black_hole"
   }
 
   "singularity_old"
@@ -1466,6 +1467,49 @@
       {
         "var_type"  "FIELD_FLOAT"
         "delay"  "10"
+      }
+    }
+  }
+
+  "repulsion"
+  {
+    "BaseClass" "ability_lua"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "ScriptFile"  "heroes/enigma/repulsion"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "wormhole"
+    "AbilityManaCost" "200"
+    "AbilityCooldown" "18"
+    "AbilityCastPoint"  "0.3"
+
+    "precache"
+    {
+      "particle"  "particles/items_fx/force_staff.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_slardar.vsndevts"
+      "soundfile" "soundevents/game_sounds_items.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "push_distance" "650"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "push_duration" "0.4"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "collision_damage"    "65"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "collision_stun"  "0.5"
       }
     }
   }
@@ -1601,7 +1645,7 @@
     "AbilityCastRange"  "1400"
     "AbilityCastPoint"  "0.5"
     "AbilityTextureName"  "ghostly_fireball"
-    "AbilityDamage" "135"
+    "AbilityDamage" "100"
 
     "precache"
     {
@@ -1704,7 +1748,7 @@
       "02"
       {
         "var_type"  "FIELD_INTEGER"
-        "radius"    "250"
+        "radius"    "200"
       }
     }
   }

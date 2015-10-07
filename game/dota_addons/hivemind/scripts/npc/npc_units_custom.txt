@@ -76,7 +76,7 @@
 
     "Ability1"      "unify_bane"
     "Ability2"      "bane_chilling_scream"
-    "Ability3"      "bane_soul_freeze"
+    "Ability3"      ""
   }
 
   "npc_dota_nightmare_orb"

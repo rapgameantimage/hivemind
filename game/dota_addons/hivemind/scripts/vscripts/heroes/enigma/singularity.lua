@@ -5,6 +5,7 @@ function singularity:OnSpellStart()
 	local particle = ParticleManager:CreateParticleForTeam("particles/heroes/enigma/singularity_tracer.vpcf", PATTACH_WORLDORIGIN, self:GetCaster(), self:GetCaster():GetTeam())
 	ParticleManager:SetParticleControl(particle, 0, self:GetCursorPosition())
 	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_singularity_charging", {duration = self:GetSpecialValueFor("charge_time"), target = self:GetCursorPosition(), particle = particle})
+	AddFOWViewer(self:GetCaster():GetTeam(), self:GetCursorPosition(), 10, self:GetSpecialValueFor("charge_time"), false)
 end
 
 function singularity:GetCastAnimation()
@@ -83,6 +84,8 @@ function modifier_singularity_thinker:OnCreated(info)
 	StartSoundEvent("Hero_Enigma.Black_Hole", self.parent)
 
 	GridNav:DestroyTreesAroundPoint(self.location, self.pull_radius, false)
+
+	AddFOWViewer(self.team, self.location, self.pull_radius, self:GetDuration(), false)
 
 	self.tick_rate = 0.1
 	self:StartIntervalThink(self.tick_rate)

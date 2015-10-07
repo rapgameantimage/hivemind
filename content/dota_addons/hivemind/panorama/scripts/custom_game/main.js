@@ -110,7 +110,7 @@ function OnRematchNo() {
 }
 
 function CreatePickBoard() {
-	var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma"]
+	var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma", "npc_dota_hero_skeleton_king"]
 	var heroes_per_row = 2
 	var parent = $("#pick")
 

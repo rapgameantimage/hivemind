@@ -15,5 +15,6 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/main.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/split_panel.xml" />
 		<CustomUIElement type="GameInfo" layoutfile="file://{resources}/layout/custom_game/gameinfo.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/arena_timer.xml" />
 	</Panel>
 </root>

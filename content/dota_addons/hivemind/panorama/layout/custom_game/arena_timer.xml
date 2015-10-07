@@ -1,0 +1,14 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/arena_timer.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/arena_timer.js" />
+	</scripts>
+	<Panel class="arena_timer">
+		<Panel id="arena_timer_empty">
+			<Panel id="arena_timer_fill" />
+		</Panel>
+	</Panel>
+</root>

@@ -73,3 +73,6 @@
 .npc_dota_enigma_split_eidolon {
 	background-image: url("file://{images}/custom_game/units/eidolon.png");
 }
+.npc_dota_wraith_split_skeleton {
+	background-image: url("file://{images}/custom_game/units/skeleton.png");
+}

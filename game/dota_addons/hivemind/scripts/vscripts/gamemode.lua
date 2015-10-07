@@ -67,6 +67,7 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "rematch", Dynamic_Wrap(GameMode, 'Rematch'), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "update_abilities", Dynamic_Wrap(GameMode, "UpdateAbilities"), "For testing abilities", FCVAR_CHEAT )
   Convars:RegisterCommand( "cleanup_particles", Dynamic_Wrap(GameMode, "CleanupParticles"), "Destroy lots of particles", FCVAR_CHEAT )
+  Convars:RegisterCommand( "arena_shrink", Dynamic_Wrap(Arena, "Shrink"), "", FCVAR_CHEAT )
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 
@@ -91,7 +92,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test()
-  print(tostring(PlayerResource:GetPlayer(0):GetAssignedHero():GetAbsOrigin()))
+  Arena:Shrink()
 end
 
 function GameMode:CleanupParticles()

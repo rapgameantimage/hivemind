@@ -44,9 +44,11 @@ function modifier_wormhole_thinker:OnIntervalThink()
 	for k,unit in pairs(pull_units) do
 		local origin = unit:GetAbsOrigin()
 		local loc
+		local n = 0
 		repeat
+			n = n + 1
 			loc = origin + RandomVector(RandomFloat(self.min_distance, self.max_distance))
-		until GridNav:IsTraversable(loc)
+		until GridNav:IsTraversable(loc) or n > 100
 		local startpart = ParticleManager:CreateParticle("particles/econ/events/ti5/blink_dagger_start_ti5.vpcf", PATTACH_WORLDORIGIN, unit)
 		ParticleManager:SetParticleControl(startpart, 0, origin)
 		FindClearSpaceForUnit(unit, loc, false)

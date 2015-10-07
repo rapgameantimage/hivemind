@@ -22,7 +22,9 @@ MIN_BOUNDS = {
 	min_y = -512,
 }
 
-SHRINK_TIMER = 60
+ARENA_SHRINK_TIMER = 60
+
+ARENA_TICK_TIMER = 0.25
 
 WALL_VISUAL_BUFFER = 48
 
@@ -46,7 +48,7 @@ function Arena:Shrink()
 	}
 
 	-- Make sure we are not shrinking the arena beyond MIN_BOUNDS
-	if new_bounds.max_x < MIN_BOUNDS.max_x or new_bounds.min_x > MIN_BOUNDS.min_x or new_bounds.max_y < MIN_BOUNDS.max_y or new_bounds.min_y > MIN_BOUNDS.min_y then
+	if not Arena:CanArenaExpand() then
 		return
 	end
 
@@ -166,6 +168,8 @@ end
 
 function Arena:Reset(restart_timer)
 	Arena:DestroyWallParticles()
+	Timers:RemoveTimer("arena_controller")
+	Timers:RemoveTimer("arena_shrink_tick")
 	for k,ent in pairs(Entities:FindAllByClassname("point_simple_obstruction")) do
 		ent:Destroy()
 	end
@@ -176,14 +180,47 @@ function Arena:Reset(restart_timer)
 end
 
 function Arena:StartTimer()
-	Timers:CreateTimer(SHRINK_TIMER, function()
-		if GameMode:IsGameplay() then
-			local result = Arena:Shrink()
-			if result then
-				return SHRINK_TIMER
+	shrink_timer_start_time = GameRules:GetGameTime()
+	Timers:CreateTimer("arena_controller", {
+		endTime = ARENA_SHRINK_TIMER,
+		useGameTime = true,
+		callback = function()
+			if GameMode:IsGameplay() then
+				Arena:Shrink()
+				if Arena:CanArenaExpand() then
+					shrink_timer_start_time = GameRules:GetGameTime()
+					return ARENA_SHRINK_TIMER
+				end
 			end
-		end
-	end)
+		end,
+	})
+	Timers:CreateTimer("arena_shrink_tick", {
+		end_time = ARENA_TICK_TIMER,
+		useGameTime = true,
+		callback = function ()
+			if GameMode:IsGameplay() and Arena:CanArenaExpand() then
+				CustomGameEventManager:Send_ServerToAllClients("arena_shrink_tick", {
+					percent_elapsed = (GameRules:GetGameTime() - shrink_timer_start_time) / ARENA_SHRINK_TIMER
+				})
+				return ARENA_TICK_TIMER
+			end
+		end,
+	})
+end
+
+function Arena:CanArenaExpand()
+	local new_bounds = {
+		max_x = current_bounds.max_x - SHRINK_AMOUNT,
+		min_x = current_bounds.min_x + SHRINK_AMOUNT,
+		max_y = current_bounds.max_y - SHRINK_AMOUNT,
+		min_y = current_bounds.min_y + SHRINK_AMOUNT,
+	}
+
+	if new_bounds.max_x < MIN_BOUNDS.max_x or new_bounds.min_x > MIN_BOUNDS.min_x or new_bounds.max_y < MIN_BOUNDS.max_y or new_bounds.min_y > MIN_BOUNDS.min_y then
+		return false
+	else
+		return true
+	end
 end
 
 Arena:Reset(true)		-- Just in case we're getting here via script_reload. Pointless in normal gameplay.

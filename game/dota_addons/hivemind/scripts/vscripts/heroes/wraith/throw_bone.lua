@@ -20,7 +20,7 @@ function throw_bone:OnSpellStart()
 		EffectName = "particles/heroes/wraith/bone.vpcf",
 		vSpawnOrigin = caster:GetOrigin(),
 		vVelocity = self.direction * 1200,
-		fDistance = 1000,
+		fDistance = 1200,
 		fStartRadius = 100,
 		fEndRadius = 100,
 		Source = caster,
