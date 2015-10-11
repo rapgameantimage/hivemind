@@ -18,9 +18,7 @@
 		
 		<Panel id="center">
 			<Panel id="center-contents">
-				<Label id="left-score" class="score" text="0" />
-				<Label id="middle" text="-" />
-				<Label id="right-score" class="score" text="0" />
+				<Label id="scoretext" class="score" />
 			</Panel>
 		</Panel>
 

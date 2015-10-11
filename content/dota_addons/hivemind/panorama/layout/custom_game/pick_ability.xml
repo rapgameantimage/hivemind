@@ -1,0 +1,12 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/main.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/pick_ability.js" />
+	</scripts>
+	<Panel class="pick-ability" onmouseover="OnMouseover()" onmouseout="OnMouseout()">
+		<DOTAAbilityImage />
+	</Panel>
+</root>

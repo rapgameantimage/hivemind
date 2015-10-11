@@ -36,4 +36,12 @@
 	{
 		"winning_team"	"short"
 	}
+	"pickscreen_hero_clicked"
+	{
+		"hero"		"string"
+	}
+	"opponent_didnt_pick_yet"
+	{
+	
+	}
 }

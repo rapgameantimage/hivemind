@@ -1,5 +1,5 @@
 "use strict";
-
+ 
 var POST_ROUND_DELAY = 5
 var END_GAME_DELAY = 2
 
@@ -63,7 +63,7 @@ function OnMatchCompleted(event) {
 		$("#gameover").style.visibility = "visible"
 	})
 }
-
+ 
 function OnRematchAccepted() {
 	$.Msg("It's a rematch!")
 	$("#gameover").style.visibility = "collapse"
@@ -110,47 +110,13 @@ function OnRematchNo() {
 }
 
 function CreatePickBoard() {
-	var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma", "npc_dota_hero_skeleton_king"]
-	var heroes_per_row = 2
-	var parent = $("#pick")
-
-	var number_of_rows = Math.ceil(pickable_heroes.length / heroes_per_row)
-
-	parent.RemoveAndDeleteChildren()
-	var header = $.CreatePanel("Panel", parent, "pick-header")
-	header.BLoadLayout("file://{resources}/layout/custom_game/pick_header.xml", false, false)
-
-	for (var i = 0; i < number_of_rows; i++) {
-		var row = $.CreatePanel("Panel", parent, "")
-		row.SetHasClass("pick-row", true)
-		for (var j = i * heroes_per_row; j < (i + 1) * heroes_per_row; j++) {
-			if (j < pickable_heroes.length) {
-				var hero = $.CreatePanel("Panel", row, "")
-				hero.BLoadLayout("file://{resources}/layout/custom_game/pick_hero.xml", false, false)
-				hero.GetChild(0).heroname = pickable_heroes[j]
-			}
-		}
-	}
-} 
-
-function OnNewHeroPicked(event) {
-	// This is just cosmetic. The event is sent to the server in pick_hero.js
-	var parent = $("#pick")
-	$.Each(parent.FindChildrenWithClassTraverse("pick-row"), function(index, value) {
-		$.Each(index.Children(), function(index, value) {
-			if (index.GetChild(0).heroname == event.hero) {
-				index.SetHasClass("picked", true)
-				index.SetHasClass("unpicked", false)
-			} else {
-				index.SetHasClass("picked", false)
-				index.SetHasClass("unpicked", true)
-			}
-		})
-	})
-} 
+	$("#pick-wrapper").Children(0).RemoveAndDeleteChildren
+	$.CreatePanel("Panel", $("#pick-wrapper"), "pick")
+	$("#pick").BLoadLayout("file://{resources}/layout/custom_game/pick_board.xml", false, false)
+}
 
 function OnMatchStarted() {
-	$("#pick").style.visibility = "collapse"
+//	$("#pick").style.visibility = "collapse"
 }
 
 function OnEntityKilled(event) {
@@ -161,7 +127,7 @@ function OnEntityKilled(event) {
 	var index = selection.indexOf(entity_killed)
 	if (index != -1) {
 		// If so, remove it from the array
-		selection.splice(index, 1)
+		selection.splice(index, 1) 
 		// Since there's no way to de-select an individual unit, we need to rebuild the whole selection
 		var first = true
 		for (var i = 0; i < selection.length; i++) {
@@ -170,23 +136,22 @@ function OnEntityKilled(event) {
 		}
 	}
 }
-
+ 
 function OnArenaShrink(event) {
 	SetAlert(3, $.Localize("#arena_shrink"))
 }
-
+ 
 (function()
 {
-	CreatePickBoard()		// This is actually called every time there is a rematch so isn't technically necessary to be here
+	CreatePickBoard()
 
 	//CustomNetTables.SubscribeNetTableListener("gamestate", CheckGamestate)
 	GameEvents.Subscribe("rematch_no", OnRematchNo)
 	GameEvents.Subscribe("rematch_accepted", OnRematchAccepted)
-	GameEvents.Subscribe("new_hero_picked", OnNewHeroPicked)
 	GameEvents.Subscribe("round_started", OnRoundStarted)
 	GameEvents.Subscribe("round_completed", OnRoundCompleted)
 	GameEvents.Subscribe("match_started", OnMatchStarted)
 	GameEvents.Subscribe("match_completed", OnMatchCompleted)
 	GameEvents.Subscribe("entity_killed", OnEntityKilled)
 	GameEvents.Subscribe("arena_shrink", OnArenaShrink)
-})();
+})(); 

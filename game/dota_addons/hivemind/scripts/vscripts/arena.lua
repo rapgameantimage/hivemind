@@ -22,7 +22,7 @@ MIN_BOUNDS = {
 	min_y = -512,
 }
 
-ARENA_SHRINK_TIMER = 60
+ARENA_SHRINK_TIMER = 75
 
 ARENA_TICK_TIMER = 0.25
 
@@ -222,5 +222,3 @@ function Arena:CanArenaExpand()
 		return true
 	end
 end
-
-Arena:Reset(true)		-- Just in case we're getting here via script_reload. Pointless in normal gameplay.

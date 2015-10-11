@@ -23,6 +23,8 @@
 				</Button>
 			</Panel>
 		</Panel>
-		<Panel id="pick" class="dialog" />
+		<Panel id="pick-wrapper" hittest="false">
+			<Panel id="pick" class="dialog" />
+		</Panel>
 	</Panel>
 </root>

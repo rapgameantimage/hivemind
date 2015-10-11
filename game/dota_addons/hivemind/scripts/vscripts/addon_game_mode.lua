@@ -16,9 +16,44 @@ function Precache( context )
 
   DebugPrint("[BAREBONES] Performing pre-load precache")
 
+  -- Gamewide resources
+
+  VectorTarget:Precache( context )
+
   PrecacheResource("particle", "particles/split_count.vpcf", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_custom.vsndevts", context)
+  PrecacheResource("model", "models/development/invisiblebox.vmdl", context )
   PrecacheResource("particle", "particles/arena_wall.vpcf", context)
+
+  -- Possible hero cosmetics (some are non-existent but that's ok)
+
+  PrecacheResource( "model_folder", "models/heroes/lycan", context )
+  PrecacheResource( "model_folder", "models/items/lycan", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/lycan", context )
+
+  PrecacheResource( "model_folder", "models/heroes/bane", context )
+  PrecacheResource( "model_folder", "models/items/bane", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/bane", context )
+
+  PrecacheResource( "model_folder", "models/heroes/phoenix", context )
+  PrecacheResource( "model_folder", "models/items/phoenix", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/phoenix", context )
+
+  PrecacheResource( "model_folder", "models/heroes/enigma", context )
+  PrecacheResource( "model_folder", "models/items/enigma", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/enigma", context )
+
+  -- yes, both are necessary:
+  PrecacheResource( "model_folder", "models/heroes/skeleton_king", context )
+  PrecacheResource( "model_folder", "models/items/skeleton_king", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/skeleton_king", context )
+  PrecacheResource( "model_folder", "models/heroes/wraith_king", context )
+  PrecacheResource( "model_folder", "models/items/wraith_king", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/wraith_king", context )
+
+  PrecacheResource( "model_folder", "models/heroes/tinker", context )
+  PrecacheResource( "model_folder", "models/items/tinker", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/tinker", context )
 end
 
 -- Create the game mode when we activate

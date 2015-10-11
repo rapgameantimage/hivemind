@@ -48,9 +48,28 @@
 	"gameinfo_attributions"							"Attributions:"
 	"gameinfo_attributions1"						"Nightmare Orb ambient sound: (c) 2012 Erdie, freesound.org, some changes made."
 
-	"pick_header_text"								"It's a rematch! Choose your hero:"
+	"pick_header_text"								"Choose your hero:"
+	"pick_header_waiting_for_opponent"				"Waiting for opponent..."
+
+	"hero_form"										"Hero Form"
+	"split_form"									"Split Form"
+
+	"multiplication"								"x"
+
+	"pick"											"Pick"
+	"random"										"Random"
+
+	"pick_tips_nohero"								"Click a hero to learn more."
+	"pick_tips_random"								"Roll the dice on a random hero! (There is no bonus for doing so, but it proves that you are hardcore.)"
+	"pick_tips_npc_dota_hero_lycan"					"Nikoval is a melee hero who specializes in brutal close-quarters combat. He uses his howls to slow enemies before slicing their hamstrings and bashing their skulls in. His split form is a pack of five fast-moving wolves that can pounce at enemies and inflict massive bleeding."
+	"pick_tips_npc_dota_hero_bane"					"Mara is a ranged hero who relies on elusion and trickery. He haunts his enemies with phantoms and hypnotic orbs while avoiding harm's way by slowing them with ectoplasm and becoming invisible. His split form is a flock of five banshees that can create powerful sonic waves."
+	"pick_tips_npc_dota_hero_phoenix"				"Shamarah is a ranged hero who specializes in damage over time and area control. He harasses opponents with magma and sticky flames, and summons explosive eggs that he can drag around with him. His split form is a group of four magma spirits that can create walls of fire."
+	"pick_tips_npc_dota_hero_enigma"				"Ov is a ranged hero who specializes in controlling his enemies. He summons hidden black holes that spring to life beneath his enemies' feet, and is skilled at manipulating his enemies' position and form. His split form is a cabal of five eidolons that can phase shift and apply a malicious curse."
+	"pick_tips_npc_dota_hero_skeleton_king"			"Daevol is a highly mobile melee hero. He specializes in chasing down enemies by leaping at them or becoming a spectral fireball, all the while burning away their armor. His split form is a cadre of seven skeletons that can rip off their own bones and throw them at the enemy."
 
 	"arena_shrink"									"The walls are closing in..."
 
 	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
+
+	"npc_dota_wraith_split_skeleton"                "Skeleton"			// Why won't it read this definition from resource? I'm so confused...
 }

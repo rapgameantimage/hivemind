@@ -76,3 +76,43 @@ end
 -----
 
 modifier_postmortem_damage_source = class({})
+
+-----
+
+modifier_waiting_for_new_round = class({})
+
+function modifier_waiting_for_new_round:IsHidden()
+	return true
+end
+
+function modifier_waiting_for_new_round:DeclareFunctions()
+	return {MODIFIER_PROPERTY_OVERRIDE_ANIMATION}
+end
+
+function modifier_waiting_for_new_round:GetOverrideAnimation()
+	return ACT_DOTA_VICTORY
+end
+
+function modifier_waiting_for_new_round:CheckState()
+	return {[MODIFIER_STATE_STUNNED] = true, [MODIFIER_STATE_COMMAND_RESTRICTED] = true,}
+end
+
+---
+
+modifier_nonexistent = class({})
+
+function modifier_nonexistent:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+end
+
+function modifier_nonexistent:IsHidden()
+	return true
+end

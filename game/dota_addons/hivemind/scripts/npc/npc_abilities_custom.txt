@@ -83,7 +83,7 @@
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
     "MaxLevel"    "1"
-    "AbilityTextureName"  "lycan_skull_crush"
+    "AbilityTextureName"  "antimage/the_basher_blades/antimage_mana_break"
     "AbilityCooldown"   "20"
     "AbilityManaCost"   "200"
     "AbilityCastRange"  "128"
@@ -222,7 +222,7 @@
     "AbilityCooldown" "30"
     "AbilityManaCost" "250"
     "AbilityCastPoint"  "0.1"
-    "AbilityTextureName"  "lycan_berserk"
+    "AbilityTextureName"  "lycan/hunter_of_kings_ability_icons/lycan_feral_impulse"
 
     "precache"
     {
@@ -1041,7 +1041,7 @@
     "ScriptFile"  "heroes/phoenix/dissolution"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "MaxLevel"  "1"
-    "AbilityTextureName"  "dissolution"
+    "AbilityTextureName"  "nevermore_shadowraze3_demon"
 
     "precache"
     {
@@ -1477,7 +1477,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ScriptFile"  "heroes/enigma/repulsion"
     "MaxLevel"  "1"
-    "AbilityTextureName"  "wormhole"
+    "AbilityTextureName"  "enigma/worldchasm/enigma_black_hole_worldchasm"
     "AbilityManaCost" "200"
     "AbilityCooldown" "18"
     "AbilityCastPoint"  "0.3"
@@ -1589,7 +1589,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_AOE"
     "ScriptFile"  "heroes/wraith/wraithpyre"
     "MaxLevel"  "1"
-    "AbilityTextureName"  "wraithpyre2"
+    "AbilityTextureName"  "skeleton_king/aspect_year_beast_icons/skeleton_king_reincarnation"
     "AbilityCooldown" "1"
     "AbilityManaCost" "50"
     "AbilityCastPoint"  "0"
@@ -1644,7 +1644,7 @@
     "AbilityManaCost" "300"
     "AbilityCastRange"  "1400"
     "AbilityCastPoint"  "0.5"
-    "AbilityTextureName"  "ghostly_fireball"
+    "AbilityTextureName"  "skeleton_king/aspect_year_beast_icons/skeleton_king_hellfire_blast"
     "AbilityDamage" "100"
 
     "precache"
@@ -1679,7 +1679,8 @@
     "AbilityManaCost"        "250"
     "AbilityCastRange"       "250"
     "AbilityCastPoint"      "0.2"
-    "AbilityTextureName"    "summon_wraith"
+    "AbilityTextureName"    "skeleton_king/aspect_year_beast_icons/skeleton_king_vampiric_aura"
+    "MaxLevel"              "1"
 
     "AbilitySpecial"
     {
@@ -1718,6 +1719,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "AbilityCooldown" "2"
     "AbilityTextureName"  "spectre_reality"
+    "MaxLevel"      "1"
   }
 
   "leap_strike"
@@ -1731,6 +1733,7 @@
     "AbilityCastPoint"  "0.1"
     "AbilityTextureName"  "skeleton_king_mortal_strike"
     "AbilityDamage"   "90"
+    "MaxLevel"        "1"
 
     "precache"
     {
@@ -1749,6 +1752,78 @@
       {
         "var_type"  "FIELD_INTEGER"
         "radius"    "200"
+      }
+    }
+  }
+
+  "arm_missiles"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/arm_missiles"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityCooldown" "12"
+    "AbilityManaCost" "200"
+    "AbilityCastPoint"  "0"
+    "AbilityTextureName"  "tinker_heat_seeking_missile"
+    "AbilityDamage" "100"
+    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+    "MaxLevel"    "1"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "missile_count"  "3"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "buff_duration" "10"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "half_damage_radius"  "150"
+      }
+    }
+  }
+
+  "orbital_laser"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/orbital_laser"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityCooldown" "20"
+    "AbilityManaCost" "350"
+    "AbilityCastPoint"  "0.3"
+    "AbilityTextureName"  "tinker_laser"
+    "AbilityCastRange"  "900"
+    "MaxLevel"  "1"
+
+    "VectorTarget"  "1"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/tinker/orbital_laser.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "damage_per_second" "120"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "3"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "distance"  "700"
       }
     }
   }
@@ -1790,6 +1865,15 @@
           }
       }
     }
+  }
+
+  "nonexistence"
+  {
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "BaseClass"         "ability_lua"
+    "AbilityTexureName" "rubick_empty1"
+    "MaxLevel"          "1"
+    "ScriptFile"        "heroes/general/nonexistence"
   }
 }
 

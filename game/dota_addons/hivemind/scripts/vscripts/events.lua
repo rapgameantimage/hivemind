@@ -48,6 +48,15 @@ function GameMode:OnEntityKilled( keys )
 
     -- Kill the corresponding split units
     GameMode:KillCorrespondingSplitUnits(killedUnit)
+
+    -- Add the victory modifier to victorious units
+    local enemy_hero = PlayerResource:GetPlayer(PlayerResource:GetNthPlayerIDOnTeam(enemy_team, 1)):GetAssignedHero()
+    enemy_hero:AddNewModifier(enemy_hero, nil, "modifier_waiting_for_new_round", {})
+    local enemy_units = GameMode:GetSplitUnitsForHero(enemy_hero)
+    for k,unit in pairs(enemy_units) do
+      unit:AddNewModifier(unit, nil, "modifier_waiting_for_new_round", {})
+    end
+
     -- Complete this round
     GameMode:CompleteRound()
 
@@ -131,6 +140,26 @@ function GameMode:OnRematchYes(keys)
   end
 end
 
+-- The overall game state has changed
+function GameMode:OnGameRulesStateChange(keys)
+  DebugPrint("[BAREBONES] GameRules State Changed")
+  DebugPrintTable(keys)
+
+  -- This internal handling is used to set up main barebones functions
+  GameMode:_OnGameRulesStateChange(keys)
+
+  local newState = GameRules:State_Get()
+  if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+    for i = 0,PlayerResource:GetPlayerCount()-1 do
+      print("creating fake hero for player " .. i)
+      local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(i))
+      fakehero:RespawnHero(false, false, false)
+    end
+  end
+end
+
+
+
 
 
 
@@ -140,6 +169,20 @@ end
 
 -- unused events
 
+-- This function is called once when the player fully connects and becomes "Ready" during Loading
+function GameMode:OnConnectFull(keys)
+  DebugPrint('[BAREBONES] OnConnectFull')
+  DebugPrintTable(keys)
+
+  GameMode:_OnConnectFull(keys)
+  
+  local entIndex = keys.index+1
+  -- The Player entity of the joining user
+  local ply = EntIndexToHScript(entIndex)
+  
+  -- The Player ID of the joining player
+  local playerID = ply:GetPlayerID()
+end
 
 -- Cleanup a player when they leave
 function GameMode:OnDisconnect(keys)
@@ -151,16 +194,6 @@ function GameMode:OnDisconnect(keys)
   local reason = keys.reason
   local userid = keys.userid
 
-end
--- The overall game state has changed
-function GameMode:OnGameRulesStateChange(keys)
-  DebugPrint("[BAREBONES] GameRules State Changed")
-  DebugPrintTable(keys)
-
-  -- This internal handling is used to set up main barebones functions
-  GameMode:_OnGameRulesStateChange(keys)
-
-  local newState = GameRules:State_Get()
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
@@ -342,21 +375,6 @@ end
 function GameMode:PlayerConnect(keys)
   DebugPrint('[BAREBONES] PlayerConnect')
   DebugPrintTable(keys)
-end
-
--- This function is called once when the player fully connects and becomes "Ready" during Loading
-function GameMode:OnConnectFull(keys)
-  DebugPrint('[BAREBONES] OnConnectFull')
-  DebugPrintTable(keys)
-
-  GameMode:_OnConnectFull(keys)
-  
-  local entIndex = keys.index+1
-  -- The Player entity of the joining user
-  local ply = EntIndexToHScript(entIndex)
-  
-  -- The Player ID of the joining player
-  local playerID = ply:GetPlayerID()
 end
 
 -- This function is called whenever illusions are created and tells you which was/is the original entity

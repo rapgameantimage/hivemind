@@ -23,3 +23,10 @@ SPLIT_UNIT_PARTICLE_FUNCTIONS = {
   		ParticleManager:SetParticleControlEnt(p, 0, unit, PATTACH_POINT_FOLLOW, "attach_attack1", unit:GetAbsOrigin(), true)
 	end,
 }
+
+for hero,unit in pairs(SPLIT_UNIT_NAMES) do
+  local t = {}
+  t.split_unit_name = unit
+  t.split_unit_count = NUMBER_OF_SPLIT_UNITS[hero]
+  CustomNetTables:SetTableValue("unit_info", hero, t)
+end

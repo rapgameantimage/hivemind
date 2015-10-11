@@ -35,6 +35,7 @@ function UpdateTopBar() {
 	var player1 = Game.GetPlayerIDsOnTeam(DOTA_TEAM_GOODGUYS)[0]
 	var player2 = Game.GetPlayerIDsOnTeam(DOTA_TEAM_BADGUYS)[0]
 	var scores = CustomNetTables.GetTableValue("gamestate", "score")
+	var scoretext = ""
 
 	// 0 is a valid player number, so can't just do if (player1)
 	if (player1 != null) {
@@ -48,7 +49,10 @@ function UpdateTopBar() {
 		var hero1 = Players.GetPlayerHeroEntityIndex(player1)
 		if (hero1) {
 			$("#left-hero").SetAttributeInt("hero", hero1)
-			$("#left-hero").GetChild(0).heroname = Entities.GetClassname(hero1)
+			var heroclass = Entities.GetClassname(hero1)
+			if (heroclass != "npc_dota_hero_wisp") {
+				$("#left-hero").GetChild(0).heroname = heroclass
+			}
 		} else {
 			$("#left-hero").SetAttributeInt("hero", -1)
 			$("#left-hero").GetChild(0).heroname = ""
@@ -56,11 +60,13 @@ function UpdateTopBar() {
 
 		var score1 = scores[DOTA_TEAM_GOODGUYS_str]
 		if (score1) {
-			$("#left-score").text = score1
+			scoretext = score1.toString()
 		} else {
-			$("#left-score").text = "0"
+			scoretext = "0"
 		}
 	}
+
+	scoretext = scoretext + "  -  "
 
 	if (player2 != null) {
 		var name2 = Players.GetPlayerName(player2)
@@ -73,7 +79,10 @@ function UpdateTopBar() {
 		var hero2 = Players.GetPlayerHeroEntityIndex(player2)
 		if (hero2) {
 			$("#right-hero").SetAttributeInt("hero", hero2)
-			$("#right-hero").GetChild(0).heroname = Entities.GetClassname(hero2)
+			var heroclass = Entities.GetClassname(hero2)
+			if (heroclass != "npc_dota_hero_wisp") {
+				$("#right-hero").GetChild(0).heroname = heroclass
+			}
 		} else {
 			$("#right-hero").SetAttributeInt("hero", -1)
 			$("#right-hero").GetChild(0).heroname = ""
@@ -81,11 +90,13 @@ function UpdateTopBar() {
 
 		var score2 = scores[DOTA_TEAM_BADGUYS_str]
 		if (score2) {
-			$("#right-score").text = score2
+			scoretext = scoretext + score2.toString()
 		} else {
-			$("#right-score").text = "0"
+			scoretext = scoretext + "0"
 		} 
 	}
+
+	$("#scoretext").text = scoretext
 }
  
 (function()

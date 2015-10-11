@@ -1,0 +1,16 @@
+/* Images for units */
+.npc_dota_lycan_split_wolf {
+	background-image: url("file://{images}/custom_game/units/wolf.png");
+}
+.npc_dota_bane_split_ghost {
+	background-image: url("file://{images}/custom_game/units/banshee.png");
+}
+.npc_dota_phoenix_split_spirit {
+	background-image: url("file://{images}/custom_game/units/magma_spirit.png");
+}
+.npc_dota_enigma_split_eidolon {
+	background-image: url("file://{images}/custom_game/units/eidolon.png");
+}
+.npc_dota_wraith_split_skeleton {
+	background-image: url("file://{images}/custom_game/units/skeleton.png");
+}

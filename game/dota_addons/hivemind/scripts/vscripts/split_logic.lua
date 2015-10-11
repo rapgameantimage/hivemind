@@ -290,3 +290,12 @@ function GameMode:FindSplitAbilityForHero(hero)
     end
   end
 end
+
+function GameMode:GetSplitUnitsForHero(hero)
+  local data = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
+  local units = {}
+  for index,info in pairs(data) do
+    table.insert(units, EntIndexToHScript(tonumber(index)))
+  end
+  return units
+end
