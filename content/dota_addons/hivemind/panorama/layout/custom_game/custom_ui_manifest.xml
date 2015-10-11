@@ -19,7 +19,6 @@
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/split_panel.xml" />
 		<CustomUIElement type="GameInfo" layoutfile="file://{resources}/layout/custom_game/gameinfo.xml" />
 		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/arena_timer.xml" />
-		<!-- Why is the hero selection screen the loading screen? Because Volvo won't let me skip the pick screen completely. -->
-		<CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/custom_loading_screen.xml" />
+		<CustomUIElement type="HeroSelection" layoutfile="file://{resources}/layout/custom_game/pick_screen_coverup.xml" />
 	</Panel>
 </root>

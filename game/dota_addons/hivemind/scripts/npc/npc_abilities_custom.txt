@@ -408,7 +408,7 @@
       "03"
       {
         "var_type"      "FIELD_FLOAT"
-        "movespeed_bonus" "15"
+        "movespeed_bonus" "25"
       }
     }
   }

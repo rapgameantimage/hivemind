@@ -154,4 +154,4 @@ function OnArenaShrink(event) {
 	GameEvents.Subscribe("match_completed", OnMatchCompleted)
 	GameEvents.Subscribe("entity_killed", OnEntityKilled)
 	GameEvents.Subscribe("arena_shrink", OnArenaShrink)
-})(); 
+})();

@@ -130,15 +130,18 @@
 	[
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_enigma/enigma_blackhole_m.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_enigma/enigma_blackhole_j.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_enigma/enigma_blackhole_g.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_enigma/enigma_blackhole_b.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_enigma/enigma_blackhole_c.vpcf"
@@ -154,6 +157,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_enigma/enigma_blackhole_light.vpcf"
+			m_bDisableChild = true
 		},
 	]
 }

@@ -87,6 +87,7 @@ function GameMode:InitGameMode()
   CustomGameEventManager:RegisterListener("rematch_yes", Dynamic_Wrap(GameMode, 'OnRematchYes'))
   CustomGameEventManager:RegisterListener("move_camera", Dynamic_Wrap(GameMode, 'MoveCamera'))
   CustomGameEventManager:RegisterListener("new_hero_picked", Dynamic_Wrap(GameMode, 'OnPickNewHero'))
+  CustomGameEventManager:RegisterListener("player_needs_fake_hero", Dynamic_Wrap(GameMode, 'CreateFakeHero'))
 end
 
 -- Reloads scripts and replaces the hero with itself in order. Intended for testing ability scripts.
@@ -101,7 +102,9 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  Convars:RegisterCommand( "pickhero", Dynamic_Wrap(GameMode, "ConsolePickHero"), "", FCVAR_CHEAT )
+  local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
+  GameMode:OnRematchYes({player = 1})
+  --GameMode:OnPickNewHero({PlayerID = 1, hero = "lycan"})
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -244,13 +247,18 @@ end
 
 -- a player picked a hero!
 function GameMode:OnPickNewHero(event)
+  print("OnPickNewHero called")
   -- Get the table that stores what each player has picked and add our new pick into it
   local picks
   picks = CustomNetTables:GetTableValue("gamestate", "new_hero_picks")
+  print("old picks (if any):")
+  PrintTable(picks)
   if picks == nil then
     picks = {}
   end
   picks[tostring(event.PlayerID)] = event.hero
+  print("current picks:")
+  PrintTable(picks)
 
   -- If we're the only player, we might as well just start the game.
   if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) + PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) <= 1 then
@@ -328,7 +336,15 @@ function GameMode:ConsoleForceEndgame(team)
 end
 
 function GameMode:ConsolePickHero(hero)
+  local oldhero = PlayerResource:GetPlayer(0):GetAssignedHero()
   PrecacheUnitByNameAsync("npc_dota_hero_" .. hero, function()
     PlayerResource:ReplaceHeroWith(0, "npc_dota_hero_" .. hero, 0, 0)
+    oldhero:RemoveSelf()
   end)
+end
+
+function GameMode:CreateFakeHero(event)
+  print("creating fake hero for player " .. event.PlayerID .. " via cover screen")
+  local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(event.PlayerID))
+  fakehero:RespawnHero(false, false, false)
 end

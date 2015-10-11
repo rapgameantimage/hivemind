@@ -151,9 +151,16 @@ function GameMode:OnGameRulesStateChange(keys)
   local newState = GameRules:State_Get()
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
     for i = 0,PlayerResource:GetPlayerCount()-1 do
-      print("creating fake hero for player " .. i)
-      local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(i))
-      fakehero:RespawnHero(false, false, false)
+      if PlayerResource:GetPlayer(i) then
+        if PlayerResource:GetPlayer(i):GetAssignedHero() == nil then
+          print("creating fake hero for player " .. i .. " via gamestate")
+          local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(i))
+          if fakehero then
+            fakehero:RespawnHero(false, false, false)
+          end
+          -- if it doesn't get created here, pick_screen_coverup.xml will keep trying to create it until it works.
+        end
+      end
     end
   end
 end

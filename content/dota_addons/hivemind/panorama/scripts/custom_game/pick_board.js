@@ -180,5 +180,6 @@ function OnOpponentDidntPickYet() {
 	CreatePickBoard()
 	GameEvents.Subscribe("pickscreen_hero_clicked", OnPickscreenHeroClicked)
 	GameEvents.Subscribe("opponent_didnt_pick_yet", OnOpponentDidntPickYet)
+	GameEvents.Subscribe("rematch_accepted", CreatePickBoard)
 
 })()
