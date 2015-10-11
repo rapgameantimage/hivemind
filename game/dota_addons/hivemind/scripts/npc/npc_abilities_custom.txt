@@ -907,7 +907,7 @@
       "04"
       {
         "var_type"  "FIELD_FLOAT"
-        "proc_chance" "25"
+        "proc_chance" "20"
       }
     }
   }
@@ -1755,6 +1755,26 @@
       }
     }
   }
+
+  "arcane_etchings"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/wraith/arcane_etchings"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"  "oracle_fates_edict"
+    "MaxLevel"  "1"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "magic_resist"  "35"
+      }
+    }
+  }
+
+  // TINKER
 
   "arm_missiles"
   {

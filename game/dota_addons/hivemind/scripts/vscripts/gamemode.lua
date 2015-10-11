@@ -76,7 +76,9 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "arena_shrink", Dynamic_Wrap(Arena, "Shrink"), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "set_kills_to_win", Dynamic_Wrap(GameMode, "SetKillsToWin"), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "endgame", Dynamic_Wrap(GameMode, "ConsoleForceEndgame"), "", FCVAR_CHEAT )
-  Convars:RegisterCommand( "pickhero", Dynamic_Wrap(GameMode, "ConsolePickHero"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "changehero", Dynamic_Wrap(GameMode, "ConsolePickHero"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "bot_rematch_yes", Dynamic_Wrap(GameMode, "BotRematchYes"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "bot_pick_hero", Dynamic_Wrap(GameMode, "BotPickHero"), "", FCVAR_CHEAT )
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 
@@ -103,8 +105,8 @@ end
 
 function GameMode:test(x)
   local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
-  GameMode:OnRematchYes({player = 1})
-  --GameMode:OnPickNewHero({PlayerID = 1, hero = "lycan"})
+  Convars:RegisterCommand( "bot_rematch_yes", Dynamic_Wrap(GameMode, "BotRematchYes"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "bot_pick_hero", Dynamic_Wrap(GameMode, "BotPickHero"), "", FCVAR_CHEAT )
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -275,7 +277,10 @@ function GameMode:OnPickNewHero(event)
         oldhero:RemoveSelf()
       end)
     CustomNetTables:SetTableValue("gamestate", "new_hero_picks", {})  -- Clear this out so we can use it again for the next rematch
+    print("This should be an empty table:")
+    PrintTable(CustomNetTables:GetTableValue("gamestate", "new_hero_picks"))
     GameMode:Rematch()    -- Does more things
+    return
   end
 
   -- See if both players have picked
@@ -296,6 +301,8 @@ function GameMode:OnPickNewHero(event)
       end)
     end
     CustomNetTables:SetTableValue("gamestate", "new_hero_picks", {})	-- Clear this out so we can use it again for the next rematch
+    print("This should be an empty table:")
+    PrintTable(CustomNetTables:GetTableValue("gamestate", "new_hero_picks"))
     GameMode:Rematch()		-- Does more things
   else
     CustomNetTables:SetTableValue("gamestate", "new_hero_picks", picks)
@@ -347,4 +354,12 @@ function GameMode:CreateFakeHero(event)
   print("creating fake hero for player " .. event.PlayerID .. " via cover screen")
   local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(event.PlayerID))
   fakehero:RespawnHero(false, false, false)
+end
+
+function GameMode:BotPickHero(hero)
+  GameMode:OnPickNewHero({PlayerID = 1, hero = hero})
+end
+
+function GameMode:BotRematchYes()
+  GameMode:OnRematchYes({PlayerID = 1, player = 1})
 end

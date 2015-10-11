@@ -313,7 +313,7 @@
 
     "Ability1"      "unify_wraith"
     "Ability2"      "throw_bone"
-    "Ability3"      ""
+    "Ability3"      "arcane_etchings"
   }
 
   "npc_arena_corner"

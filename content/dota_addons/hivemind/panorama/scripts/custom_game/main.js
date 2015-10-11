@@ -140,12 +140,11 @@ function OnEntityKilled(event) {
 function OnArenaShrink(event) {
 	SetAlert(3, $.Localize("#arena_shrink"))
 }
- 
+
 (function()
 {
 	CreatePickBoard()
 
-	//CustomNetTables.SubscribeNetTableListener("gamestate", CheckGamestate)
 	GameEvents.Subscribe("rematch_no", OnRematchNo)
 	GameEvents.Subscribe("rematch_accepted", OnRematchAccepted)
 	GameEvents.Subscribe("round_started", OnRoundStarted)

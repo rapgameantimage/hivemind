@@ -32,7 +32,7 @@ function throw_bone:OnSpellStart()
 		victim = caster,
 		attacker = caster,
 		damage = self:GetSpecialValueFor("health_cost"),
-		damage_type = DAMAGE_TYPE_MAGICAL,
+		damage_type = DAMAGE_TYPE_PURE,
 		ability = self,
 	})
 end

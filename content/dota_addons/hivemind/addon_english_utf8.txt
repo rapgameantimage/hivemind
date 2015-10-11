@@ -10,24 +10,30 @@
 		"dota_hud_error_min_range"								"Target Is Within Minimum Range"
 		"dota_hud_error_dimensional_bind_split"					"Can't Unify With Any Unit Affected By Dimensional Bind"
 		"dota_hud_error_dimensional_bind_hero"					"Can't Split While Affected By Dimensional Bind"
+		"dota_hud_error_cant_use_while_leaping"					"Can't Use While Leaping"
 
 		// ******************** HEROES ********************
 		"npc_dota_hero_lycan"                                                             "Nikoval"
 		"npc_dota_hero_bane"                                                              "Mara"
 		"npc_dota_hero_phoenix"                                                           "Shamarah"
 		"npc_dota_hero_enigma"                                                            "Ov"
+		"npc_dota_hero_skeleton_king"                                                     "Daevol"
+
+		"npc_dota_hero_wisp"															  "No Hero"
 
 		// ******************** UNITS ********************
 		"npc_dota_lycan_split_wolf"                                                       "Wolf"
 		"npc_dota_bane_split_ghost"                                                       "Banshee"
 		"npc_dota_phoenix_split_spirit"                                                   "Magma Spirit"
 		"npc_dota_enigma_split_eidolon"                                                   "Eidolon"
+		"npc_dota_wraith_split_skeleton"                                                  "Skeleton"
 		"npc_dota_nightmare_orb"                                                          "Nightmare Orb"
 		"npc_dummy_unit"                                                                  "Dummy Unit"
 		"npc_dota_hero_hivemind_lycan"                                                    "Nikoval"
 		"npc_dota_hero_hivemind_bane"                                                     "Mara"
 		"npc_dota_hero_hivemind_phoenix"                                                  "Shamarah"
 		"npc_dota_hero_hivemind_enigma"                                                   "Ov"
+		"npc_dota_hero_hivemind_wraith"                                                   "Daevol"
 
 		// ******************** ABILITIES ********************
 		"DOTA_Tooltip_ability_split_lycan"                                                "Split Form"
@@ -223,10 +229,13 @@
 		"DOTA_Tooltip_modifier_crippling_gravity_description"							  "Disarmed and affected by a tapering movement speed slow."
 
 		"DOTA_Tooltip_ability_singularity"                                                "Singularity"
-		"DOTA_Tooltip_ability_singularity_Description"                                    "Creates an inactive singularity at the target location that is invisible to enemies. It gathers strength over 2.5 seconds or until Ov activates it early by using this ability again. When active, nearby enemies are pulled towards the center of the singularity and damaged and stunned if they reach the center. Pull strength, damage, and stun time are proportional to the amount of time spent charging."
+		"DOTA_Tooltip_ability_singularity_Description"                                    "Creates an inactive, invisible singularity at the target location. It gathers strength over 2.5 seconds or until Ov activates it early by using this ability again. When active, nearby enemies are pulled in and are damaged and stunned if they reach the center. Damage and stun time are proportional to the amount of time spent charging. This ability has global range."
 		"DOTA_Tooltip_ability_singularity_singularity_duration"							  "SINGULARITY DURATION:"
 		"DOTA_Tooltip_ability_singularity_max_stun"										  "MAX STUN:"
 		"DOTA_Tooltip_ability_singularity_max_damage"									  "MAX DAMAGE:"
+
+		"DOTA_Tooltip_ability_collapse_singularity"										  "Collapse Singularity"
+		"DOTA_Tooltip_ability_collapse_singularity_description"							  "Collapses the singularity early, stopping its charging and making it active immediately."
 
 		"DOTA_Tooltip_ability_distant_malice"                                             "Distant Malice"
 		"DOTA_Tooltip_ability_distant_malice_Description"                                 "When this unit lands an attack, after a delay, the target will be affected by a dimensional echo of the attack that stuns and damages them."
@@ -234,5 +243,60 @@
 		"DOTA_Tooltip_ability_distant_malice_delay"                                       "DELAY:"
 		"DOTA_Tooltip_modifier_distant_malice"											  "Distant Malice"
 		"DOTA_Tooltip_modifier_distant_malice_description"								  "Will be stunned and damaged after a delay."
+
+		"DOTA_Tooltip_ability_repulsion"												  "Repulsion"
+		"DOTA_Tooltip_ability_repulsion_Description"									  "Pushes all enemy units away from Ov. Units that collide with a cliff, tree, wall, or other unit will stop moving and be briefly stunned and damaged. This ability has global range."
+		"DOTA_Tooltip_ability_repulsion_push_distance"									  "PUSH DISTANCE:"
+		"DOTA_Tooltip_ability_repulsion_push_duration"									  "PUSH DURATION:"
+		"DOTA_Tooltip_ability_repulsion_collision_damage"								  "COLLISION DAMAGE:"
+		"DOTA_Tooltip_ability_repulsion_collision_stun"									  "COLLISION STUN TIME:"
+
+		"DOTA_Tooltip_ability_split_wraith"                                               "Split"
+		"DOTA_Tooltip_ability_split_wraith_Description"                                   "Transforms into Daevol's split form, a cadre of 7 skeletons."
+
+		"DOTA_Tooltip_ability_unify_wraith"                                               "Unify Wraith"
+		"DOTA_Tooltip_ability_unify_wraith_Description"                                   "Returns to hero form."
+
+		"DOTA_Tooltip_ability_throw_bone"                                                 "Throw Bone"
+		"DOTA_Tooltip_ability_throw_bone_Description"                                     "Rips off a bone and throws it in the target direction, damaging and stunning the first enemy it hits. This ability has a health cost."
+		"DOTA_Tooltip_ability_throw_bone_stun_time"                                       "STUN TIME:"
+		"DOTA_Tooltip_ability_throw_bone_health_cost"                                     "HEALTH COST:"
+
+		"DOTA_Tooltip_ability_wraithpyre"                                                 "Wraithpyre"
+		"DOTA_Tooltip_ability_wraithpyre_Description"                                     "While this ability is toggled on, Daevol slowly loses mana to summon a ghostly pyre around himself, reducing nearby enemies' armor and magic resistance. One stack is applied for every second that an enemy is near."
+		"DOTA_Tooltip_ability_wraithpyre_mana_per_second"                                 "MANA PER SECOND:"
+		"DOTA_Tooltip_ability_wraithpyre_minus_armor_per_stack"                           "MINUS ARMOR PER STACK:"
+		"DOTA_Tooltip_ability_wraithpyre_minus_magic_resist_per_stack"                    "%MINUS MAGIC RESIST PER STACK:"
+		"DOTA_Tooltip_ability_wraithpyre_debuff_duration"                                 "DEBUFF DURATION:"
+		"DOTA_Tooltip_ability_wraithpyre_max_stacks"                                      "MAX STACKS:"
+		"DOTA_Tooltip_modifier_wraithpyre"												  "Wraithpyre"
+		"DOTA_Tooltip_modifier_wraithpyre_description"									  "Emitting a ghostly pyre"
+		"DOTA_Tooltip_modifier_wraithpyre_debuff"									      "Wraithpyre"
+		"DOTA_Tooltip_modifier_wraithpyre_debuff_description"							  "Reduced armor and magic resistance"
+
+		"DOTA_Tooltip_ability_ghostly_fireball"                                           "Ghostly Fireball"
+		"DOTA_Tooltip_ability_ghostly_fireball_Description"                               "Daevol turns himself into a ghostly fireball that flies towards the target location. Enemies caught in the fireball's explosion take damage and receive a tapering movespeed slow."
+		"DOTA_Tooltip_ability_ghostly_fireball_slow_duration"                             "SLOW DURATION:"
+		"DOTA_Tooltip_modifier_ghostly_fireball"										  "Ghostly Fireball"
+		"DOTA_Tooltip_modifier_ghostly_fireball_description"							  "Slowed by ghostly flames"
+		"DOTA_Tooltip_modifier_ghostly_fireball_travel"									  "Ghostly Fireball"
+		"DOTA_Tooltip_modifier_ghostly_fireball_travel_description"						  "Within a fireball"
+
+		"DOTA_Tooltip_ability_summon_wraith"                                              "Summon Wraith"
+		"DOTA_Tooltip_ability_summon_wraith_Description"                                  "Daevol summons an invulnerable wraith to flank the target. While the wraith is alive, Daevol can swap positions with it at any time. The wraith expires after attacking 3 times or after 5 seconds. Each of its attacks applies a stacking movespeed slow."
+		"DOTA_Tooltip_ability_summon_wraith_wraith_damage_percent"                        "%WRAITH OUTGOING DAMAGE:"
+		"DOTA_Tooltip_ability_summon_wraith_debuff_slow"                                  "DEBUFF SLOW:"
+		"DOTA_Tooltip_ability_summon_wraith_debuff_duration"                              "DEBUFF DURATION:"
+		"DOTA_Tooltip_modifier_wraith_debuff"											  "Wraith Strike"
+		"DOTA_Tooltip_modifier_wraith_debuff_description"								  "Slowed"
+
+		"DOTA_Tooltip_ability_wraith_swap_positions"                                      "Swap Positions"
+		"DOTA_Tooltip_ability_wraith_swap_positions_Description"                          "Swaps positions with the currently summoned wraith."
+
+		"DOTA_Tooltip_ability_leap_strike"                                                "Leap Strike"
+		"DOTA_Tooltip_ability_leap_strike_Description"                                    "Daevol leaps high into the air and lands with a ground-shaking attack, damaging and stunning enemies caught within."
+		"DOTA_Tooltip_ability_leap_strike_stun_duration"                                  "STUN DURATION:"
+		"DOTA_Tooltip_modifier_leap_strike"												  "Leap Strike"
+		"DOTA_Tooltip_modifier_leap_strike_description"									  "Why are you reading this while flying?"
 	}
 }

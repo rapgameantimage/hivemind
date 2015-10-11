@@ -12,7 +12,7 @@ var split_abilities = {
 	"npc_dota_bane_split_ghost": ["bane_chilling_scream"],
 	"npc_dota_phoenix_split_spirit": ["firewall", "dissolution"],
 	"npc_dota_enigma_split_eidolon": ["puck_phase_shift", "distant_malice"],
-	"npc_dota_wraith_split_skeleton": ["throw_bone"],
+	"npc_dota_wraith_split_skeleton": ["throw_bone", "arcane_etchings"],
 }
 var unit_info = {}
 

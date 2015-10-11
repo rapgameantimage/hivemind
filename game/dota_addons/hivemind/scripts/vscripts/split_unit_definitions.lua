@@ -24,6 +24,7 @@ SPLIT_UNIT_PARTICLE_FUNCTIONS = {
 	end,
 }
 
+-- Push this information to a nettable so that Panorama can find it later when generating the pick screen.
 for hero,unit in pairs(SPLIT_UNIT_NAMES) do
   local t = {}
   t.split_unit_name = unit
