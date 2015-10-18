@@ -16,9 +16,9 @@
 			m_flAlphaScale = 5.000000
 			m_ColorScale =
 			[
-				131,
+				224,
+				76,
 				234,
-				85,
 			]
 			m_hTexture = resource:"materials/models/heroes/mirana/javelin_color.vtex"
 		},

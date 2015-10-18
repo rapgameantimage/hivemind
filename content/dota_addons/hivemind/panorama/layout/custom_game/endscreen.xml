@@ -1,0 +1,12 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/main.css" />
+	</styles>
+	<scripts><!--
+		<include src="file://{resources}/scripts/custom_game/split_unit_ability.js" /> -->
+	</scripts>
+	<Panel class="endscreen" style="width: 100px; height: 100px; background-color: red;">
+
+	</Panel>
+</root>

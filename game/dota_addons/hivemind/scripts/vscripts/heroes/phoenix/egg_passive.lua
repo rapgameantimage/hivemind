@@ -55,4 +55,18 @@ function egg_passive:OnCreated()
 	self.effects = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf", PATTACH_POINT_FOLLOW, egg)
 	ParticleManager:SetParticleControlEnt(self.effects, 0, egg, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
 	ParticleManager:SetParticleControlEnt(self.effects, 1, egg, PATTACH_POINT_FOLLOW, "attach_hitloc", Vector(0,0,0), true)
+
+	self.seconds_left = self:GetDuration()
+	self:OnIntervalThink()
+	self:StartIntervalThink(1)
+end
+
+function egg_passive:OnIntervalThink()
+	-- Creates timer particles
+	if self.seconds_left > 0 then
+		local particle = ParticleManager:CreateParticleForPlayer("particles/colorable_counter.vpcf", PATTACH_OVERHEAD_FOLLOW, self:GetParent(), self:GetParent():GetPlayerOwner())
+		ParticleManager:SetParticleControl(particle, 1, Vector(self.seconds_left, 0, 0))															-- Number
+		ParticleManager:SetParticleControl(particle, 2, Vector(255, 255 / (self:GetDuration() - 1) * (self.seconds_left - 1), 0))	-- Color
+		self.seconds_left = self.seconds_left - 1
+	end
 end

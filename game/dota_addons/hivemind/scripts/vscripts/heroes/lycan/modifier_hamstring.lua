@@ -21,7 +21,7 @@ function modifier_hamstring:GetEffectName()
 end
 
 function modifier_hamstring:GetEffectAttachType()
-  return PATTACH_ABSORIGIN_FOLLOW
+  return PATTACH_POINT_FOLLOW
 end
 
 function modifier_hamstring:CheckState()

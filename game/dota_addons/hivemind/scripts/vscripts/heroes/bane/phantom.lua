@@ -58,7 +58,8 @@ function modifier_phantom:OnCreated(info)
 	self.search_radius = self.ability:GetSpecialValueFor("search_radius")
 	self.draw = true
 	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.tick_rate = 0.1
+	self.tick_rate = 0.25
+	self.damage_as_mana = self.ability:GetSpecialValueFor("damage_as_mana") / 100
 
 	self:StartIntervalThink(self.tick_rate)
 end
@@ -144,6 +145,8 @@ function modifier_phantom:OnIntervalThink()
 					attacker = self.caster,
 					ability = self.ability,
 				})
+				-- Add mana to the caster.
+				self.caster:GiveMana(self.damage * self.tick_rate * self.damage_as_mana)
 				-- Unhide ourselves if we haven't.
 				if not self.draw then
 					self.parent:RemoveNoDraw()

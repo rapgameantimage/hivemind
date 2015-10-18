@@ -6,6 +6,7 @@ SPLIT_UNIT_NAMES = {
   npc_dota_hero_phoenix = "npc_dota_phoenix_split_spirit",
   npc_dota_hero_enigma = "npc_dota_enigma_split_eidolon",
   npc_dota_hero_skeleton_king = "npc_dota_wraith_split_skeleton",
+  npc_dota_hero_tinker = "npc_dota_tinker_split_clockwerk",
 }
 
 NUMBER_OF_SPLIT_UNITS = {
@@ -14,6 +15,7 @@ NUMBER_OF_SPLIT_UNITS = {
   npc_dota_hero_phoenix = 4,
   npc_dota_hero_enigma = 5,
   npc_dota_hero_skeleton_king = 7,
+  npc_dota_hero_tinker = 4,
 }
 
 -- Currently not implemented:

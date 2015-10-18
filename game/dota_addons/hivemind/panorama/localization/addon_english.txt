@@ -20,13 +20,15 @@
 
 	"yes"											"Yes"
 	"no"											"No"
+	"close"											"Close"
 
 	"wins"											"wins!"
-	"rematch_question"								"Rematch?"
+	"rematch_question"								"Rematch with new heroes?"
 	"round"											"Round"
 	"in"											"in"
 	"ellipses"										"..."
 	"rematch_waiting"								"Waiting for opponent to accept rematch..."
+	"rematch_declined"								"Opponent declined rematch"
 
 	"gameinfo_nav_howto"							"How to Play"
 	"gameinfo_nav_about"							"About"
@@ -66,6 +68,34 @@
 	"pick_tips_npc_dota_hero_phoenix"				"Shamarah is a ranged hero who specializes in damage over time and area denial. He harasses opponents with magma and sticky flames, and summons explosive eggs that he can drag around with him. His split form is a group of four magma spirits that can create walls of fire."
 	"pick_tips_npc_dota_hero_enigma"				"Ov is a ranged hero who specializes in controlling his enemies. He summons hidden black holes that spring to life beneath his enemies' feet, and is skilled at manipulating his enemies' position and form. His split form is a cabal of five eidolons that can phase shift and apply a lingering curse."
 	"pick_tips_npc_dota_hero_skeleton_king"			"Daevol is a highly mobile melee hero. He specializes in chasing down enemies with wraithly magic and surprising athleticism, all the while burning away their armor. His split form is a cadre of seven skeletons that can rip off their own bones and use them as projectiles."
+	"pick_tips_npc_dota_hero_tinker"				"Dr. X is a glass-cannon ranged hero. He bombards his enemies with lasers, rockets and electric pulses while using his patented hover-boots to stay out of danger. His split form is a squad of four clockwork goons that can hook to their enemies and release electric discharges."
+
+	"tips_header"									"Tips for fighting"
+	"tips_dont_show_again"							"Don't show me this again"
+
+	"tips_vs_lycan_1"								"Watch out when you see Nikoval pull back - he's preparing his stun! Move out of melee to avoid it."
+	"tips_vs_lycan_2"								"When Nikoval's fists are glowing, he hits harder and faster but is silenced. Use the silence to your advantage!"
+	"tips_vs_lycan_3"								""
+
+	"tips_vs_bane_1"								"Mara's orb only affects units that are facing it. Look away as it rises, and make sure not to autoattack!"
+	"tips_vs_bane_2"								"If one of your units avoids the orb, you can interrupt it by stunning or silencing Mara, or save your other units by returning to hero form."
+	"tips_vs_bane_3"								"The phantoms Mara throws only damage you while you're alone. Being near enemies counts as not being alone, so try moving into melee range."
+
+	"tips_vs_phoenix_1"								"Don't underestimate Shamarah's damage over time. Avoid his magma and firewalls!"
+	"tips_vs_phoenix_2"								"Remember, if you get hit by his sticky flame or swoop, you can always avoid the damage over time by switching forms."
+	"tips_vs_phoenix_3"								""
+
+	"tips_vs_enigma_1"								"Ov's black holes have a charge time. When he gestures forward, he's just placed one, so watch out!"
+	"tips_vs_enigma_2"								"Be careful about taking too many hits from the eidolons - they apply a powerful stacking debuff that stuns and damages you 10 seconds later. Remember, you can avoid debuffs by switching forms!"
+	"tips_vs_enigma_3"								""
+
+	"tips_vs_skeleton_king_1"						"While Daevol is emitting ghostly flames, he applies a stacking debuff that reduces armor. Try not to trade hits!"
+	"tips_vs_skeleton_king_2"						"Daevol's fireball, Daevol's jump, and his skeletons' bone throw can all be dodged, so try to get out of the way!"
+	"tips_vs_skeleton_king_3"						"Don't forget to thank mr skeltal for calcium and good bones."
+
+	"tips_vs_tinker_1"								"Dr. X's electric pulse and missiles will damage him if he is too close to the explosions."
+	"tips_vs_tinker_2"								"You can't slow or immobilize Dr. X while he's hovering."
+	"tips_vs_tinker_3"								"All of Dr. X's projectiles can be dodged."
 
 	"arena_shrink"									"The walls are closing in..."
 

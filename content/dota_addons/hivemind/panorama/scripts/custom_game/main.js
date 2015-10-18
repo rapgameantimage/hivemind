@@ -7,6 +7,8 @@ var next_countdown
 var round = 0
 var nextround
 
+var dont_show_tips_for = []
+
 function CheckGamestate(table, key, value) {
 	value = value["1"]
 	if (key == "status") {
@@ -101,8 +103,9 @@ function RematchNo() {
 	})
 }
 
-function OnRematchNo() {
+function OnRematchDeclined() {
 	$("#rematch").text = $.Localize("#rematch_declined")
+	$("#winner").style.visibility = "collapse"
 	$("#rematch-buttons").style.visibility = "collapse"
 	$.Schedule(3, function() {
 		$("#gameover").style.visibility = "collapse"
@@ -120,10 +123,27 @@ function OnMatchStarted() {
 }
 
 function OnEntityKilled(event) {
+	var entity_killed = event.entindex_killed
+
+	// See if this is the player.
+	var localhero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())
+	if (entity_killed == localhero) {
+		// Find the enemy hero and show the tip screen (if the player has hidden tip screens, that is taken care of in the ShowTipsFor function)
+		var localteam = Entities.GetTeamNumber(localhero)
+		var enemyteam = 0
+		if (localteam == DOTATeam_t.DOTA_TEAM_GOODGUYS) {
+			enemyteam = DOTATeam_t.DOTA_TEAM_BADGUYS
+		} else if (localteam == DOTATeam_t.DOTA_TEAM_BADGUYS) {
+			enemyteam = DOTATeam_t.DOTA_TEAM_GOODGUYS
+		}
+		var enemyplayer = Game.GetPlayerIDsOnTeam(enemyteam)[0]
+		var enemyhero = Players.GetPlayerHeroEntityIndex(enemyplayer)
+		ShowTipsFor(Entities.GetClassname(enemyhero))
+	}
+
 	// Deselects killed units from multi-select groups, so the player's commands don't keep getting delivered to a dead unit
 	// First, see if the dead unit is selected
-	var entity_killed = event.entindex_killed
-	var selection = Players.GetSelectedEntities(0)
+	var selection = Players.GetSelectedEntities(Players.GetLocalPlayer())
 	var index = selection.indexOf(entity_killed)
 	if (index != -1) {
 		// If so, remove it from the array
@@ -141,11 +161,51 @@ function OnArenaShrink(event) {
 	SetAlert(3, $.Localize("#arena_shrink"))
 }
 
+function ShowTipsFor(hero) {
+	if (dont_show_tips_for.indexOf(hero) == -1) { 
+		$("#tips").SetAttributeString("hero", hero)
+		$("#tips-header").text = $.Localize("#tips_header") + " " + $.Localize("#" + hero)
+		var shortname = hero.substring(14)		// strip "npc_dota_hero_"
+		for (var i = 1; i <= 3; i++) {
+			// see if this tip exists and assign it if it does
+			var try_localize = $.Localize("#tips_vs_" + shortname + "_" + i)
+			if (try_localize === "tips_vs_" + shortname + "_" + i || try_localize === "")
+			{
+				$("#tip-" + i).text = ""
+			} else {
+				$("#tip-" + i).text = "+ " + try_localize
+			}
+		}
+		$("#tips-heroimage").heroname = hero
+		$("#tips-dont-show-again").checked = false
+		$("#tips").style.visibility = "visible"
+		$("#tips").SetHasClass("hidden", false)
+	}
+}
+
+function CloseTips() {
+	$("#tips").style.visibility = "collapse"
+	$("#tips").SetHasClass("hidden", true)
+	if ($("#tips-dont-show-again").checked) {
+		dont_show_tips_for.push($("#tips").GetAttributeString("hero", "na"))
+	}
+}
+
+function OnSplitHeroFinished() {
+	var units = CustomNetTables.GetTableValue("split_units", Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()).toString())
+	var first = true
+	for (var unit in units) {
+		unit = parseInt(unit)
+		GameUI.SelectUnit(unit, !first)
+		first = false
+	}
+}
+
 (function()
 {
 	CreatePickBoard()
 
-	GameEvents.Subscribe("rematch_no", OnRematchNo)
+	GameEvents.Subscribe("rematch_declined", OnRematchDeclined)
 	GameEvents.Subscribe("rematch_accepted", OnRematchAccepted)
 	GameEvents.Subscribe("round_started", OnRoundStarted)
 	GameEvents.Subscribe("round_completed", OnRoundCompleted)
@@ -153,4 +213,5 @@ function OnArenaShrink(event) {
 	GameEvents.Subscribe("match_completed", OnMatchCompleted)
 	GameEvents.Subscribe("entity_killed", OnEntityKilled)
 	GameEvents.Subscribe("arena_shrink", OnArenaShrink)
+	GameEvents.Subscribe("split_hero_finished", OnSplitHeroFinished)
 })();

@@ -72,7 +72,7 @@ function modifier_singularity_thinker:OnCreated(info)
 	self.parent = self:GetParent()
 	self.location = self.parent:GetAbsOrigin()
 	self.pull_radius = self.ability:GetSpecialValueFor("pull_radius")
-	self.max_pull = 300 * self.strength
+	self.max_pull = 550 * self.strength
 	--self.max_pull = self.ability:GetSpecialValueFor("max_pull") * self.strength
 	self.stun_time = self.ability:GetSpecialValueFor("max_stun") * self.strength
 	self.damage = self.ability:GetSpecialValueFor("max_damage") * self.strength
@@ -87,7 +87,7 @@ function modifier_singularity_thinker:OnCreated(info)
 
 	AddFOWViewer(self.team, self.location, self.pull_radius, self:GetDuration(), false)
 
-	self.tick_rate = 0.1
+	self.tick_rate = 0.03
 	self:StartIntervalThink(self.tick_rate)
 end
 
@@ -98,23 +98,21 @@ function modifier_singularity_thinker:OnIntervalThink()
 		if not self.damaged_units[unit] and not unit:IsInvulnerable() then
 			-- Calculate velocity
 			local unit_origin = unit:GetAbsOrigin()
-			local direction = ((self.location - unit_origin) * Vector(1,1,0)):Normalized()
-			local distance = DistanceBetweenVectors(self.location, unit_origin)
+			local direction = (self.location - unit_origin):Normalized()
+			-- Don't use DistanceBetweenVectors because we care about z-distance
+			local distance = (self.location - unit_origin):Length()
 			-- Speed depends on how far from the center they are
 			local speed = (self.pull_radius - distance) / self.pull_radius * self.max_pull
 			local velocity = speed * direction
-			-- Adjust this based on the velocity we saved from the previous tick
-			if self.velocities[unit] then
-				velocity = velocity - self.velocities[unit]
-			end
+			-- Velocity is in units/sec, so multiply by the tick rate to find out how much to actually move the unit by.
+			local destination = unit_origin + (velocity * self.tick_rate)
 
-			-- Apply physics
-			if not IsPhysicsUnit(unit) then
-				Physics:Unit(unit)
-			end
+			unit:SetAbsOrigin(destination)
 
-			unit:AddPhysicsVelocity(velocity)
-			self.velocities[unit] = velocity
+			-- Grant unitwalking so they don't get stuck
+			if not unit:HasModifier("modifier_singularity_unitwalking") then
+				unit:AddNewModifier(self.caster, self.ability, "modifier_singularity_unitwalking", {duration = self:GetDieTime() - GameRules:GetGameTime()})
+			end
 		end
 	end
 
@@ -122,7 +120,8 @@ function modifier_singularity_thinker:OnIntervalThink()
 	units = FindUnitsInRadius(self.team, self.location, nil, self.damage_radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
 	for k,unit in pairs(units) do
 		-- Make sure we haven't already hit them
-		if not self.damaged_units[unit] and not unit:IsInvulnerable() then
+		-- Also need to check to make sure that the unit is actually in the radius. Units in the air will be found by FindUnitsInRadius but might not actually be touching the center!
+		if not self.damaged_units[unit] and not unit:IsInvulnerable() and (unit:GetAbsOrigin() - self.location):Length() < self.damage_radius then
 			self.damaged_units[unit] = true
 			ApplyDamage({
 				damage = self.damage,
@@ -132,7 +131,9 @@ function modifier_singularity_thinker:OnIntervalThink()
 				ability = self.ability,
 			})
 			unit:AddNewModifier(self.caster, self.ability, "modifier_stunned", {duration = self.stun_time})
-			unit:SetPhysicsVelocity(Vector(0,0,0))
+			Timers:CreateTimer(self.stun_time, function()
+				FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), false)
+			end)
 			unit:EmitSound("Hero_Sven.StormBoltImpact")
 		end
 	end
@@ -160,4 +161,17 @@ function collapse_singularity:OnSpellStart()
 	if self:GetCaster():HasModifier("modifier_singularity_charging") then
 		self:GetCaster():RemoveModifierByName("modifier_singularity_charging")
 	end
+end
+
+---
+
+LinkLuaModifier("modifier_singularity_unitwalking", "heroes/enigma/singularity", LUA_MODIFIER_MOTION_NONE)
+modifier_singularity_unitwalking = class({})
+
+function modifier_singularity_unitwalking:CheckState()
+	return {[MODIFIER_STATE_NO_UNIT_COLLISION] = true}
+end
+
+function modifier_singularity_unitwalking:IsHidden()
+	return true
 end

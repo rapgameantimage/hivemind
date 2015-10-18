@@ -1,18 +1,20 @@
 var hero_picked = ""
-var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma", "npc_dota_hero_skeleton_king"]
+var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma", "npc_dota_hero_skeleton_king", "npc_dota_hero_tinker"]
 var hero_abilities = {
 	"npc_dota_hero_lycan": ["lycan_hamstring", "lycan_skull_crush", "lycan_berserk", "lycan_echoing_howl"],
 	"npc_dota_hero_bane": ["bane_flicker", "bane_nightmare_orb", "ectoplasm", "phantom"],
 	"npc_dota_hero_phoenix": ["sticky_flame", "molten_body", "fiery_birth", "swoop"],
 	"npc_dota_hero_enigma": ["dimensional_bind", "repulsion", "crippling_gravity", "singularity"],
 	"npc_dota_hero_skeleton_king": ["wraithpyre", "ghostly_fireball", "summon_wraith", "leap_strike"],
+	"npc_dota_hero_tinker": ["missile_swarm", "orbital_laser", "hover_boots", "pulse_cannon"],
 }
 var split_abilities = {
 	"npc_dota_lycan_split_wolf": ["lycan_pounce", "lycan_lacerate"],
-	"npc_dota_bane_split_ghost": ["bane_chilling_scream"],
+	"npc_dota_bane_split_ghost": ["bane_chilling_scream", "ephemeral"],
 	"npc_dota_phoenix_split_spirit": ["firewall", "dissolution"],
 	"npc_dota_enigma_split_eidolon": ["puck_phase_shift", "distant_malice"],
 	"npc_dota_wraith_split_skeleton": ["throw_bone", "arcane_etchings"],
+	"npc_dota_tinker_split_clockwerk": ["discharge", "rattletrap_hookshot"],
 }
 var unit_info = {}
 
@@ -28,7 +30,7 @@ function CreatePickBoard() {
 	$("#split-form-showcase").style.visibility = "collapse"
 
 	// Generate possible heroes and a random button
-	var heroes_per_row = 3
+	var heroes_per_row = 4
 	var parent = $("#pick-buttons-area")
 
 	var number_of_rows = Math.ceil(pickable_heroes.length + 1 / heroes_per_row)

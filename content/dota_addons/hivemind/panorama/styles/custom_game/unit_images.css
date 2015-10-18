@@ -14,3 +14,6 @@
 .npc_dota_wraith_split_skeleton {
 	background-image: url("file://{images}/custom_game/units/skeleton.png");
 }
+.npc_dota_tinker_split_clockwerk {
+	background-image: url("file://{images}/custom_game/units/clockwork.png");
+}

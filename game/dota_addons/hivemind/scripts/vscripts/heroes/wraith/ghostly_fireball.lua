@@ -1,5 +1,18 @@
 ghostly_fireball = class({})
 
+function ghostly_fireball:CastFilterResultLocation(loc)
+	if not IsServer() then return end
+	if DistanceBetweenVectors(loc, self:GetCaster():GetAbsOrigin()) < self:GetSpecialValueFor("min_range") then
+		return UF_FAIL_CUSTOM
+	else
+		return UF_SUCCESS
+	end
+end
+
+function ghostly_fireball:GetCustomCastErrorLocation(loc)
+	return "#dota_hud_error_min_range"
+end
+
 function ghostly_fireball:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()

@@ -11,6 +11,7 @@
 		"dota_hud_error_dimensional_bind_split"					"Can't Unify With Any Unit Affected By Dimensional Bind"
 		"dota_hud_error_dimensional_bind_hero"					"Can't Split While Affected By Dimensional Bind"
 		"dota_hud_error_cant_use_while_leaping"					"Can't Use While Leaping"
+		"game_over"												"GAME OVER"
 
 		// ******************** HEROES ********************
 		"npc_dota_hero_lycan"                                                             "Nikoval"
@@ -18,6 +19,7 @@
 		"npc_dota_hero_phoenix"                                                           "Shamarah"
 		"npc_dota_hero_enigma"                                                            "Ov"
 		"npc_dota_hero_skeleton_king"                                                     "Daevol"
+		"npc_dota_hero_tinker"															  "Dr. X"
 
 		"npc_dota_hero_wisp"															  "No Hero"
 
@@ -27,6 +29,7 @@
 		"npc_dota_phoenix_split_spirit"                                                   "Magma Spirit"
 		"npc_dota_enigma_split_eidolon"                                                   "Eidolon"
 		"npc_dota_wraith_split_skeleton"                                                  "Skeleton"
+		"npc_dota_tinker_split_clockwerk"												  "Clockwork Goon"
 		"npc_dota_nightmare_orb"                                                          "Nightmare Orb"
 		"npc_dummy_unit"                                                                  "Dummy Unit"
 		"npc_dota_hero_hivemind_lycan"                                                    "Nikoval"
@@ -34,13 +37,14 @@
 		"npc_dota_hero_hivemind_phoenix"                                                  "Shamarah"
 		"npc_dota_hero_hivemind_enigma"                                                   "Ov"
 		"npc_dota_hero_hivemind_wraith"                                                   "Daevol"
+		"npc_dota_hero_hivemind_tinker"															  "Dr. X"
 
 		// ******************** ABILITIES ********************
 		"DOTA_Tooltip_ability_split_lycan"                                                "Split Form"
 		"DOTA_Tooltip_ability_split_lycan_Description"                                    "Transforms into Nikoval's split form, a pack of 5 wolves."
 
 		"DOTA_Tooltip_ability_unify_lycan"                                                "Unify"
-		"DOTA_Tooltip_ability_unify_lycan_Description"                                    "Returns to hero form."
+		"DOTA_Tooltip_ability_unify_lycan_Description"                                    "Returns to hero form. Your hero will appear at this unit's position."
 
 		"DOTA_Tooltip_ability_lycan_hamstring"                                            "Hamstring"
 		"DOTA_Tooltip_ability_lycan_hamstring_Description"                                "Strikes quickly at the target's hamstring, slowing their movement tremendously. If the target has 3 or more stacks of Lacerate, immobilizes instead of slowing."
@@ -86,7 +90,7 @@
 		"DOTA_Tooltip_ability_split_bane_Description"                                     "Transforms into Mara's split form, a swarm of 5 banshees."
 
 		"DOTA_Tooltip_ability_unify_bane"                                                 "Unify"
-		"DOTA_Tooltip_ability_unify_bane_Description"                                     "Returns to hero form."
+		"DOTA_Tooltip_ability_unify_bane_Description"                                     "Returns to hero form. Your hero will appear at this unit's position."
 
 		"DOTA_Tooltip_ability_bane_flicker"                                               "Flicker"
 		"DOTA_Tooltip_ability_bane_flicker_Description"                                   "Flickers in and out of invisibility for the duration. While invisible, Mara gains a movement speed bonus."
@@ -138,10 +142,15 @@
 		"DOTA_Tooltip_ability_ectoplasm_max_slow"                                         "MAX SLOW:"
 
 		"DOTA_Tooltip_ability_phantom"                                                    "Phantom"
-		"DOTA_Tooltip_ability_phantom_Description"                                        "Spawns a phantom that flies in the target direction. If it touches an enemy, it will begin to haunt them, dealing damage over time. If a haunted unit is close to of another enemy or allied unit, the phantom will temporarily vanish until the unit is alone again."
+		"DOTA_Tooltip_ability_phantom_Description"                                        "Spawns a phantom that flies in the target direction. If it touches an enemy, it will haunt them, dealing damage over time. If a haunted unit is close to of another enemy or allied unit, the phantom will temporarily vanish until the unit is alone again. Half the damage dealt by the phantom is returned to Mara as mana."
 		"DOTA_Tooltip_ability_phantom_duration"                                           "DURATION:"
 		"DOTA_Tooltip_ability_phantom_damage"                                             "DAMAGE PER SECOND:"
 		"DOTA_Tooltip_ability_phantom_search_radius"                                      "SEARCH RADIUS:"
+
+		"DOTA_Tooltip_ability_ephemeral"												  "Ephemeral"
+		"DOTA_Tooltip_ability_ephemeral_Description"									  "This unit is ephemeral, allowing it to pass through other units freely and granting it bonus evasion."
+		"DOTA_Tooltip_ability_ephemeral_evasion"										  "%EVASION:"
+		"DOTA_Tooltip_modifier_ephemeral"												  "Ephemeral"
 
 		"DOTA_Tooltip_ability_set_spawn_point"                                            "Set Spawn Point"
 		"DOTA_Tooltip_ability_set_spawn_point_Description"                                "Set the location at which one of your split units will spawn."
@@ -150,7 +159,7 @@
 		"DOTA_Tooltip_ability_split_phoenix_Description"                                  "Transforms into Shamarah's split form, a group of 4 magma spirits."
 
 		"DOTA_Tooltip_ability_unify_phoenix"                                              "Unify"
-		"DOTA_Tooltip_ability_unify_phoenix_Description"                                  "Returns to hero form."
+		"DOTA_Tooltip_ability_unify_phoenix_Description"                                  "Returns to hero form. Your hero will appear at this unit's position."
 
 		"DOTA_Tooltip_ability_sticky_flame"                                               "Sticky Flame"
 		"DOTA_Tooltip_ability_sticky_flame_Description"                                   "Launches a ball of sticky flame towards the target point. When it lands, nearby enemies are slowed and damaged over time based on their distance from the projectile's center, with closer units being more seriously affected."
@@ -201,7 +210,7 @@
 		"DOTA_Tooltip_ability_split_enigma_Description"                                   "Transforms into Ov's split form, a cabal of 5 eidolons."
 
 		"DOTA_Tooltip_ability_unify_enigma"                                               "Unify"
-		"DOTA_Tooltip_ability_unify_enigma_Description"                                   "Returns to hero form."
+		"DOTA_Tooltip_ability_unify_enigma_Description"                                   "Returns to hero form. Your hero will appear at this unit's position."
 
 		"DOTA_Tooltip_ability_puck_phase_shift_datadriven"                                "Phase Shift"
 		"DOTA_Tooltip_ability_puck_phase_shift_datadriven_Description"                    "Briefly shifts into another dimension, becoming invulnerable."
@@ -255,7 +264,7 @@
 		"DOTA_Tooltip_ability_split_wraith_Description"                                   "Transforms into Daevol's split form, a cadre of 7 skeletons."
 
 		"DOTA_Tooltip_ability_unify_wraith"                                               "Unify Wraith"
-		"DOTA_Tooltip_ability_unify_wraith_Description"                                   "Returns to hero form."
+		"DOTA_Tooltip_ability_unify_wraith_Description"                                   "Returns to hero form. Your hero will appear at this unit's position."
 
 		"DOTA_Tooltip_ability_throw_bone"                                                 "Throw Bone"
 		"DOTA_Tooltip_ability_throw_bone_Description"                                     "Rips off a bone and throws it in the target direction, damaging and stunning the first enemy it hits. This ability has a health cost."
@@ -277,6 +286,7 @@
 		"DOTA_Tooltip_ability_ghostly_fireball"                                           "Ghostly Fireball"
 		"DOTA_Tooltip_ability_ghostly_fireball_Description"                               "Daevol turns himself into a ghostly fireball that flies towards the target location. Enemies caught in the fireball's explosion take damage and receive a tapering movespeed slow."
 		"DOTA_Tooltip_ability_ghostly_fireball_slow_duration"                             "SLOW DURATION:"
+		"DOTA_Tooltip_ability_ghostly_fireball_min_range"                          		  "MINIMUM RANGE:"
 		"DOTA_Tooltip_modifier_ghostly_fireball"										  "Ghostly Fireball"
 		"DOTA_Tooltip_modifier_ghostly_fireball_description"							  "Slowed by ghostly flames"
 		"DOTA_Tooltip_modifier_ghostly_fireball_travel"									  "Ghostly Fireball"
@@ -285,7 +295,7 @@
 		"DOTA_Tooltip_ability_summon_wraith"                                              "Summon Wraith"
 		"DOTA_Tooltip_ability_summon_wraith_Description"                                  "Daevol summons an invulnerable wraith to flank the target. While the wraith is alive, Daevol can swap positions with it at any time. The wraith expires after attacking 3 times or after 5 seconds. Each of its attacks applies a stacking movespeed slow."
 		"DOTA_Tooltip_ability_summon_wraith_wraith_damage_percent"                        "%WRAITH OUTGOING DAMAGE:"
-		"DOTA_Tooltip_ability_summon_wraith_debuff_slow"                                  "DEBUFF SLOW:"
+		"DOTA_Tooltip_ability_summon_wraith_debuff_slow"                                  "%DEBUFF SLOW:"
 		"DOTA_Tooltip_ability_summon_wraith_debuff_duration"                              "DEBUFF DURATION:"
 		"DOTA_Tooltip_modifier_wraith_debuff"											  "Wraith Strike"
 		"DOTA_Tooltip_modifier_wraith_debuff_description"								  "Slowed"
@@ -298,5 +308,45 @@
 		"DOTA_Tooltip_ability_leap_strike_stun_duration"                                  "STUN DURATION:"
 		"DOTA_Tooltip_modifier_leap_strike"												  "Leap Strike"
 		"DOTA_Tooltip_modifier_leap_strike_description"									  "Why are you reading this while flying?"
+
+		"DOTA_Tooltip_ability_arcane_etchings"                                            "Arcane Etchings"
+		"DOTA_Tooltip_ability_arcane_etchings_Description"                                "An elaborate pattern of etchings on this unit's bones grants it bonus magic resistance."
+		"DOTA_Tooltip_ability_arcane_etchings_magic_resist"                               "%MAGIC RESIST:"
+
+		"DOTA_Tooltip_ability_split_tinker"                                               "Split"
+		"DOTA_Tooltip_ability_split_tinker_Description"                                   "Transforms into Dr. X's split form, a squad of four clockwork goons."
+
+		"DOTA_Tooltip_ability_unify_tinker"                                               "Unify"
+		"DOTA_Tooltip_ability_unify_tinker_Description"                                   "Returns to hero form. Your hero will appear at this unit's position."
+
+		"DOTA_Tooltip_ability_orbital_laser"                                              "Orbital Laser"
+		"DOTA_Tooltip_ability_orbital_laser_Description"                                  "Calls down a laser from above that damages units in its path. IMPORTANT: This is a VECTOR TARGETED ability - you must click and drag to cast (or tap twice to quick-cast)."
+		"DOTA_Tooltip_ability_orbital_laser_damage_per_second"                            "DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_orbital_laser_duration"                                     "DURATION:"
+
+		"DOTA_Tooltip_ability_hover_boots"                                                "Hover Boots"
+		"DOTA_Tooltip_ability_hover_boots_Description"                                    "Dr. X begins to hover in the air. While hovering, Dr. X moves more quickly, cannot be slowed or immobilized unless stunned, can cast and attack while moving, can pass over cliffs, and destroys nearby trees."
+		"DOTA_Tooltip_ability_hover_boots_speed"                                          "MOVEMENT SPEED:"
+		"DOTA_Tooltip_ability_hover_boots_duration"                                       "DURATION:"
+
+		"DOTA_Tooltip_ability_pulse_cannon"                                               "Pulse Cannon"
+		"DOTA_Tooltip_ability_pulse_cannon_Description"                                   "Creates an electric pulse that damages and briefly immobilizes the first enemy it hits. If Dr. X is too close to the explosion, he will also be affected."
+		"DOTA_Tooltip_ability_pulse_cannon_debuff_duration"                               "IMMOBILIZE DURATION:"
+		"DOTA_Tooltip_ability_pulse_cannon_self_affect_distance"                          "SELF AFFECT DISTANCE:"
+
+		"DOTA_Tooltip_ability_discharge"                                                  "Discharge"
+		"DOTA_Tooltip_ability_discharge_Description"                                      "Releases an electrical discharge that pushes nearby enemies away, burns their mana, and damages them slightly."
+		"DOTA_Tooltip_ability_discharge_mana_burn"                                        "MANA BURN:"
+
+		"DOTA_Tooltip_ability_missile_swarm"                                              "Missile Swarm"
+		"DOTA_Tooltip_ability_missile_swarm_Description"                                  "Dr. X becomes temporarily immobile (unless hovering) and fires out a series of missiles in quick succession that damage the first enemy they hit. Nearby units also take damage proportional to their distance from the explosion. If Dr. X is within the explosion's radius, he will be damaged."
+		"DOTA_Tooltip_ability_missile_swarm_rockets"                                      "ROCKETS:"
+		"DOTA_Tooltip_ability_missile_swarm_radius"                                       "DAMAGE RADIUS:"
+
+		"DOTA_Tooltip_ability_rattletrap_hookshot"                                        "Hookshot"
+		"DOTA_Tooltip_ability_rattletrap_hookshot_Description"                            ""
+		"DOTA_Tooltip_ability_rattletrap_hookshot_duration"                               "DURATION:"
+		"DOTA_Tooltip_ability_rattletrap_hookshot_tooltip_range"                          "TOOLTIP RANGE:"
+		"DOTA_Tooltip_ability_rattletrap_hookshot_damage"                                 "DAMAGE:"
 	}
 }

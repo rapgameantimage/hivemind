@@ -2,13 +2,13 @@ leap_strike = class({})
 
 function leap_strike:OnSpellStart()
 	-- config
-	local leap_duration = .5
+	local leap_duration = .9
 
 	local caster = self:GetCaster()
 	local vector = self:GetCursorPosition()
 
 	caster:AddNewModifier(caster, self, "modifier_leap_strike", {duration = leap_duration, target_x = vector.x, target_y = vector.y, target_z = vector.z, peak_height = peak_height})
-	StartAnimation(caster, {duration = 0.6, activity = ACT_DOTA_ATTACK_EVENT, rate = 1})
+	StartAnimation(caster, {duration = 0.8, activity = ACT_DOTA_ATTACK_EVENT, rate = .6})
 end
 
 function leap_strike:GetAOERadius()
@@ -30,13 +30,13 @@ function modifier_leap_strike:OnCreated(info)
 	self.direction = DirectionFromAToB(self.old_pos, self.target)
 	self.duration = self:GetDuration()
 	self.horizontal_motion = self.direction * self.distance / self.duration
-	self.vertical_force = Vector(0, 0, 3000)
+	self.vertical_force = Vector(0, 0, 2300)
 	self.gravity = self.vertical_force.z * 2 * self.tick_rate / self.duration * -1
 	self.caster = self:GetCaster()
 	self.ticks = 0
 	Physics:Unit(self.caster)
 	self.caster:SetPhysicsFriction(0)
-	self.caster:AddPhysicsVelocity(self.horizontal_motion + self.vertical_force)
+	--self.caster:AddPhysicsVelocity(self.horizontal_motion + self.vertical_force)
 	self.caster:FollowNavMesh(false)
 	self.caster:SetNavCollisionType(PHYSICS_NAV_NOTHING)
 	self.caster:SetAutoUnstuck(false)
@@ -47,7 +47,8 @@ end
 function modifier_leap_strike:OnIntervalThink()
 	local elapsed = GameRules:GetGameTime() - self:GetCreationTime()
 	local vertical_motion = Vector(0, 0, self.gravity)
-	self.caster:AddPhysicsVelocity(vertical_motion)
+	-- Take the unit's current position. Then add the horizontal motion/sec. Then add the initial vertical force, plus one tick of gravity per tick. Then multiply by the tick rate to find out how much to move it this tick.
+	self.caster:SetAbsOrigin(self.caster:GetAbsOrigin() + (self.horizontal_motion + self.vertical_force + (Vector(0, 0, self.gravity * self.ticks))) * self.tick_rate)
 	self.ticks = self.ticks + 1
 end
 

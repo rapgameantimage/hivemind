@@ -33,6 +33,8 @@ UNIFY_DELAY = 0.5
 KILLS_TO_WIN = 5
 POST_ROUND_DELAY = 5 -- Also set this in main.js
 
+hover_boots_movement = {}
+
 function GameMode:PostLoadPrecache()
   DebugPrint("[BAREBONES] Performing Post-Load precache")    
 end
@@ -59,8 +61,6 @@ function GameMode:InitGameMode()
 
   GameMode:_InitGameMode()
 
-  VectorTarget:Init()
-
   LinkLuaModifier("modifier_hidden", "modifiers", LUA_MODIFIER_MOTION_NONE)
   LinkLuaModifier("modifier_splitting", "modifiers", LUA_MODIFIER_MOTION_NONE)
   LinkLuaModifier("modifier_ok_to_complete_transformation", "modifiers", LUA_MODIFIER_MOTION_NONE)
@@ -79,6 +79,8 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "changehero", Dynamic_Wrap(GameMode, "ConsolePickHero"), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "bot_rematch_yes", Dynamic_Wrap(GameMode, "BotRematchYes"), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "bot_pick_hero", Dynamic_Wrap(GameMode, "BotPickHero"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "bot_rematch_no", Dynamic_Wrap(GameMode, "BotRematchNo"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "bot_changehero", Dynamic_Wrap(GameMode, "BotChangeHero"), "", FCVAR_CHEAT )
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 
@@ -87,9 +89,25 @@ function GameMode:InitGameMode()
   CustomNetTables:SetTableValue("gamestate", "ignore_split_unit_death", {})
 
   CustomGameEventManager:RegisterListener("rematch_yes", Dynamic_Wrap(GameMode, 'OnRematchYes'))
+  CustomGameEventManager:RegisterListener("rematch_no", Dynamic_Wrap(GameMode, 'OnRematchNo'))
   CustomGameEventManager:RegisterListener("move_camera", Dynamic_Wrap(GameMode, 'MoveCamera'))
   CustomGameEventManager:RegisterListener("new_hero_picked", Dynamic_Wrap(GameMode, 'OnPickNewHero'))
   CustomGameEventManager:RegisterListener("player_needs_fake_hero", Dynamic_Wrap(GameMode, 'CreateFakeHero'))
+
+  FilterManager:Init()
+
+  VectorTarget:Init({noOrderFilter = true})
+  FilterManager:AddFilter("order", function(ctx, params)
+      return VectorTarget:OrderFilter(params)
+    end,
+  {})
+end
+
+if GameRules:GetGameModeEntity() then
+  FilterManager:AddFilter("order", function(ctx, params)
+      return VectorTarget:OrderFilter(params)
+    end,
+  {})
 end
 
 -- Reloads scripts and replaces the hero with itself in order. Intended for testing ability scripts.
@@ -105,8 +123,10 @@ end
 
 function GameMode:test(x)
   local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
-  Convars:RegisterCommand( "bot_rematch_yes", Dynamic_Wrap(GameMode, "BotRematchYes"), "", FCVAR_CHEAT )
-  Convars:RegisterCommand( "bot_pick_hero", Dynamic_Wrap(GameMode, "BotPickHero"), "", FCVAR_CHEAT )
+    FilterManager:AddFilter("order", function(ctx, params)
+      return VectorTarget:OrderFilter(params)
+    end,
+  {})
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -351,9 +371,11 @@ function GameMode:ConsolePickHero(hero)
 end
 
 function GameMode:CreateFakeHero(event)
-  print("creating fake hero for player " .. event.PlayerID .. " via cover screen")
-  local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(event.PlayerID))
-  fakehero:RespawnHero(false, false, false)
+  if PlayerResource:GetPlayer(event.PlayerID):GetAssignedHero() == nil then
+    print("creating fake hero for player " .. event.PlayerID .. " via cover screen")
+    local fakehero = CreateHeroForPlayer("npc_dota_hero_wisp", PlayerResource:GetPlayer(event.PlayerID))
+    fakehero:RespawnHero(false, false, false)
+  end
 end
 
 function GameMode:BotPickHero(hero)
@@ -362,4 +384,16 @@ end
 
 function GameMode:BotRematchYes()
   GameMode:OnRematchYes({PlayerID = 1, player = 1})
+end
+
+function GameMode:BotRematchNo()
+  GameMode:OnRematchNo({PlayerID = 1})
+end
+
+function GameMode:BotChangeHero(hero)
+  local oldhero = PlayerResource:GetPlayer(1):GetAssignedHero()
+  PrecacheUnitByNameAsync("npc_dota_hero_" .. hero, function()
+    PlayerResource:ReplaceHeroWith(1, "npc_dota_hero_" .. hero, 0, 0)
+    oldhero:RemoveSelf()
+  end)
 end

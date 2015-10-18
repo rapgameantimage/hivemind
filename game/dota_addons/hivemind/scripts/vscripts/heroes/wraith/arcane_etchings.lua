@@ -20,3 +20,7 @@ end
 function modifier_arcane_etchings:GetModifierMagicalResistanceBonus()
 	return self.magic_resist
 end
+
+function modifier_arcane_etchings:IsHidden()
+	return true
+end

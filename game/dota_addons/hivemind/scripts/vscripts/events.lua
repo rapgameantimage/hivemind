@@ -140,6 +140,17 @@ function GameMode:OnRematchYes(keys)
   end
 end
 
+-- a player clicked no on rematch :(
+function GameMode:OnRematchNo(keys)
+  CustomGameEventManager:Send_ServerToAllClients("rematch_declined", {})
+  Timers:CreateTimer(3, function()
+    local winning_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
+    print("making team " .. winning_team .. " win")
+    GameRules:SetCustomVictoryMessage("#game_over")
+    GameRules:SetGameWinner(winning_team)
+  end)
+end
+
 -- The overall game state has changed
 function GameMode:OnGameRulesStateChange(keys)
   DebugPrint("[BAREBONES] GameRules State Changed")
@@ -150,6 +161,7 @@ function GameMode:OnGameRulesStateChange(keys)
 
   local newState = GameRules:State_Get()
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+    print("looking for players to create fake heroes for...")
     for i = 0,PlayerResource:GetPlayerCount()-1 do
       if PlayerResource:GetPlayer(i) then
         if PlayerResource:GetPlayer(i):GetAssignedHero() == nil then
@@ -159,7 +171,11 @@ function GameMode:OnGameRulesStateChange(keys)
             fakehero:RespawnHero(false, false, false)
           end
           -- if it doesn't get created here, pick_screen_coverup.xml will keep trying to create it until it works.
+        else
+          print("player " .. i .. " seems to already have a hero")
         end
+      else
+        print("unable to find player " .. i .. "... maybe they disconnected?")
       end
     end
   end

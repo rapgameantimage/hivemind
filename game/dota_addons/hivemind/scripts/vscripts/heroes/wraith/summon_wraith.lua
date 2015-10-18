@@ -58,7 +58,7 @@ end
 function modifier_wraith:OnIntervalThink()
 	if not IsServer() then return end
 
-	if not self.target or self.target:IsNull() or not self.target:IsAlive() then
+	if not self.target or self.target:IsNull() or not self.target:IsAlive() or self.target:HasModifier("modifier_hidden") then
 		self:Destroy()
 	end
 

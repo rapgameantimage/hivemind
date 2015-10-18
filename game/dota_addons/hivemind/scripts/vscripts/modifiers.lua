@@ -116,3 +116,8 @@ end
 function modifier_nonexistent:IsHidden()
 	return true
 end
+
+function modifier_nonexistent:OnCreated()
+	if not IsServer() then return end
+	self:GetParent():AddNoDraw()
+end

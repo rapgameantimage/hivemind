@@ -14,6 +14,14 @@ function OnSplitAbilityClicked() {
 	}
 }
 
+function OnMouseover() {
+	$.DispatchEvent("DOTAShowAbilityTooltip", $.GetContextPanel(), $.GetContextPanel().Children(0)[0].Children(0)[0].abilityname)
+}
+
+function OnMouseout() {
+	$.DispatchEvent("DOTAHideAbilityTooltip")
+}
+
 (function()
 {
 	UpdateAbilityCooldown()

@@ -7,7 +7,7 @@
 		<include src="file://{resources}/scripts/custom_game/split_unit_ability.js" />
 	</scripts>
 	<Panel class="ability" hittest="false">
-		<Button class="ability_icon" onactivate="OnSplitAbilityClicked()">
+		<Button class="ability_icon" onactivate="OnSplitAbilityClicked()" onmouseover="OnMouseover()" onmouseout="OnMouseout()">
 			<DOTAAbilityImage />
 		</Button>
 	</Panel>

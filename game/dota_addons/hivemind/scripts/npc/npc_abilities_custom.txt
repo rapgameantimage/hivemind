@@ -80,7 +80,7 @@
   {
     "BaseClass"       "ability_lua"
     "ScriptFile"      "heroes/lycan/skull_crush"
-    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_POINT"
     "AbilityUnitDamageType" "DAMAGE_TYPE_PHYSICAL"
     "MaxLevel"    "1"
     "AbilityTextureName"  "antimage/the_basher_blades/antimage_mana_break"
@@ -110,7 +110,7 @@
       "03"
       {
         "var_type"    "FIELD_INTEGER"
-        "search_distance_from_self" "100"
+        "search_distance_from_self" "128"
       }
     }
   }
@@ -385,7 +385,7 @@
     "MaxLevel" "1"
     "AbilityCooldown" "30"
     "AbilityCastPoint" "0"
-    "AbilityManaCost" "300"
+    "AbilityManaCost" "250"
 
     "precache"
     {
@@ -426,7 +426,7 @@
 
     "AbilityManaCost" "600"
     "AbilityCooldown" "22"
-    "AbilityCastPoint" "0"
+    "AbilityCastPoint" "0.1"
     "AbilityCastRange" "700"
     "AbilityChannelTime"  "4.5"
 
@@ -708,7 +708,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
     "MaxLevel"  "1"
     "AbilityTextureName"  "spectre_haunt"
-    "AbilityManaCost" "200"
+    "AbilityManaCost" "160"
     "AbilityCooldown" "5"
     "AbilityCastPoint"  "0.4"
 
@@ -725,7 +725,7 @@
       "01"
       {
         "var_type"  "FIELD_FLOAT"
-        "duration"  "15"
+        "duration"  "10"
       }
       "02"
       {
@@ -736,6 +736,29 @@
       {
         "var_type"  "FIELD_INTEGER"
         "search_radius" "250"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage_as_mana"  "50"
+      }
+    }
+  }
+
+  "ephemeral"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/bane/ephemeral"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "spectre_spectral_dagger"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "evasion"   "25"
       }
     }
   }
@@ -923,6 +946,11 @@
     "AbilityManaCost" "350"
     "AbilityCooldown" "3"
 
+    "precache"
+    {
+      "particle"  "particles/colorable_counter.vpcf"
+    }
+
     "AbilitySpecial"
     {
       "01"
@@ -938,7 +966,7 @@
       "03"
       {
         "var_type"  "FIELD_FLOAT"
-        "delay"  "6"
+        "delay"  "5"
       }
       "04"
       {
@@ -1361,7 +1389,7 @@
       "01"
       {
         "var_type"  "FIELD_FLOAT"
-        "duration"  "5"
+        "duration"  "4"
       }
     }
   }
@@ -1420,7 +1448,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
     "MaxLevel"  "1"
     "ScriptFile"  "heroes/enigma/singularity"
-    "AbilityTextureName"  "enigma_black_hole"
+    "AbilityTextureName"  "enigma/worldchasm/enigma_black_hole_worldchasm"
   }
 
   "singularity_old"
@@ -1477,7 +1505,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "ScriptFile"  "heroes/enigma/repulsion"
     "MaxLevel"  "1"
-    "AbilityTextureName"  "enigma/worldchasm/enigma_black_hole_worldchasm"
+    "AbilityTextureName"  "invoker_deafening_blast"
     "AbilityManaCost" "200"
     "AbilityCooldown" "18"
     "AbilityCastPoint"  "0.3"
@@ -1665,6 +1693,11 @@
         "var_type"  "FIELD_INTEGER"
         "radius"  "300"
       }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "min_range"   "400"
+      }
     }
   }
 
@@ -1729,7 +1762,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
     "AbilityCooldown" "10"
     "AbilityManaCost" "175"
-    "AbilityCastRange"  "550"
+    "AbilityCastRange"  "650"
     "AbilityCastPoint"  "0.1"
     "AbilityTextureName"  "skeleton_king_mortal_strike"
     "AbilityDamage"   "90"
@@ -1776,6 +1809,38 @@
 
   // TINKER
 
+  "split_tinker"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/tinker/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "tinker_march_of_the_machines"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+    }
+  }
+
+  "unify_tinker"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/tinker/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "tinker_rearm"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
+
   "arm_missiles"
   {
     "BaseClass" "ability_lua"
@@ -1814,8 +1879,8 @@
     "BaseClass" "ability_lua"
     "ScriptFile"  "heroes/tinker/orbital_laser"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityCooldown" "20"
-    "AbilityManaCost" "350"
+    "AbilityCooldown" "10"
+    "AbilityManaCost" "250"
     "AbilityCastPoint"  "0.3"
     "AbilityTextureName"  "tinker_laser"
     "AbilityCastRange"  "900"
@@ -1844,6 +1909,182 @@
       {
         "var_type"  "FIELD_INTEGER"
         "distance"  "700"
+      }
+    }
+  }
+
+  "hover_boots"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/hover_boots"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"  "1"
+    "AbilityManaCost" "150"
+    "AbilityCooldown" "13"
+    "AbilityTextureName"  "rubick_telekinesis"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/tinker/hover_boots.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "speed"     "500"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "4"
+      }
+    }
+  }
+
+  "pulse_cannon"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/pulse_cannon"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_ENEMY"
+    "AbilityDamage" "150"
+    "AbilityCastPoint"  "0.3"
+    "AbilityManaCost" "75"
+    "AbilityCooldown" "2"
+    "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
+    "AbilityTextureName"  "storm_spirit_electric_vortex"
+    "AbilityCastRange"  "1200"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/tinker/pulse.vpcf"
+      "particle"  "particles/heroes/tinker/pulse_target.vpcf"
+      "particle"  "particles/heroes/tinker/pulse_hit.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_duration" "1.5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "self_affect_distance"  "150"
+      }
+    }
+  }
+
+  "discharge"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/discharge"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityCooldown" "8"
+    "AbilityCastPoint"  "0.3"
+    "AbilityDamage" "40"
+    "AbilityTextureName"  "invoker_wex"
+
+    "precache"
+    {
+      "particle" "particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "push_distance" "200"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "push_duration" "0.4"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "mana_burn" "80"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"  "200"
+      }
+    }
+  }
+
+  "missile_swarm"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/missile_swarm"
+    "AbilityTextureName"  "tinker_heat_seeking_missile"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityCooldown" "12"
+    "AbilityManaCost" "200"
+    "AbilityCastPoint"  "0"
+    "AbilityDamage" "75"
+    "AbilityCastRange"  "1500"
+    "MaxLevel"  "1"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/tinker/missile_swarm.vpcf"
+      "particle"  "particles/heroes/tinker/missile_swarm_ground.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "rockets"   "5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "250"
+      }
+    }
+  }
+
+  "hookshot"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/tinker/hookshot"
+    "AbilityTextureName"  "rattletrap_hookshot"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityCooldown" "12"
+    "AbilityCastPoint"  "0.3"
+    "AbilityDamage" "80"
+    "AbilityCastRange"  "2000"
+    "MaxLevel"  "1"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_rattletrap/rattletrap_hookshot_b.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "stun_duration" "1"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_distance" "2000"
       }
     }
   }

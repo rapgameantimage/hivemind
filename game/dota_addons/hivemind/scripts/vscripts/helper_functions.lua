@@ -213,3 +213,35 @@ function SimpleAOE(info)
 		SimpleAOEModifiers()
 	end
 end
+
+---
+
+FilterManager = class({})
+FilterManager.filters = {}
+FilterManager.filter_index = 0
+
+function FilterManager:AddFilter(filtertype, func, context)
+	local index = FilterManager.filter_index
+	FilterManager.filters[index] = {filtertype = filtertype, func = func, context = context}
+	FilterManager.filter_index = FilterManager.filter_index + 1
+	return index
+end
+
+function FilterManager:RemoveFilter(id)
+	FilterManager.filters[id] = nil
+end
+
+function FilterManager:Init()
+	if GameRules:GetGameModeEntity() then
+		GameRules:GetGameModeEntity():SetExecuteOrderFilter(function(context, order)
+			for k,filter in pairs(FilterManager.filters) do
+				if filter.filtertype == "order" and not filter.func(context, order) then
+					return false
+				end
+			end
+			return true
+		end, {})
+	end
+end
+
+FilterManager:Init()

@@ -12,6 +12,10 @@
 	{
 		"nothing"	"short"
 	}
+	"rematch_declined"
+	{
+		"nothing"	"short"
+	}
 	"camera"
 	{
 		"target"	"short"
