@@ -1,0 +1,8 @@
+arena_2v2
+{
+	material materials/overviews/arena_2v2.vmat
+	pos_x -2816
+	pos_y 3072
+	scale 5.500
+}
+

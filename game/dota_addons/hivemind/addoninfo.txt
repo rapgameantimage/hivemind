@@ -1,9 +1,13 @@
 "AddonInfo"
 {
 	"IsPlayable"	"1"
-	"maps"			"arena"
+	"maps"			"arena arena_2v2"
 	"arena"
 	{
 		"MaxPlayers"		"2"
+	}
+	"arena_2v2"
+	{
+		"MaxPlayers"		"4"
 	}
 }

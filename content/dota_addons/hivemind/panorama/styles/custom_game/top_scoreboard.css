@@ -1,6 +1,6 @@
 .top_scoreboard {
 	width: 100%;
-	height: 55px;
+	height: 100%;
 	flow-children: right;
 	margin-left: 200px;
 	margin-right: 200px;
@@ -16,36 +16,36 @@
 	horizontal-align: right; 
 	text-align: right;
 }
-.hero {
-	width: 128px;
-	height: 100%;
-}
 #center {
 	horizontal-align: center;
 	width: 10%;
-}
-#middle {
-	margin: 0 10px;
 }
 .score {
 	margin: 0 5px;
 }
 DOTAHeroImage {
-	width: 98px;
+	height: 45px;
+	width: 80px;
 	margin: 0 10px;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
 	box-shadow: #000000 0px 0px 10px 0px;
 }
-.right Label {
+DOTAHeroImage.right {
 	horizontal-align: right;
+}
+Label.right {
+	horizontal-align: right;
+	width: 365px;
 }
 Label {
 	font-size: 24px;
 	margin-top: 5px;
 }
-.wrap {
+.top_scoreboard .player {
 	flow-children: right;
+	width: 100%;
+	height: 45px;
 }
 #left-wrap {
 	horizontal-align: left;
@@ -66,10 +66,12 @@ Label {
 	text-align: center;
 	horizontal-align: center;
 }
-#right-name {
-	width: 67%;
-	padding-left: 5px;
+.wrap {
+	flow-children: down;
+} 
+.name {
+	text-shadow: 2px 2px 3px 2.0 #000000;
 }
-#left-name {
-	padding-right: 5px;
+.dead {
+	saturation: 0.1;
 }

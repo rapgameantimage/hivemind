@@ -32,72 +32,68 @@ function OnIconDoubleClicked(panel) {
 }
 
 function UpdateTopBar() {
-	var player1 = Game.GetPlayerIDsOnTeam(DOTA_TEAM_GOODGUYS)[0]
-	var player2 = Game.GetPlayerIDsOnTeam(DOTA_TEAM_BADGUYS)[0]
+	var left_team = Game.GetPlayerIDsOnTeam(DOTA_TEAM_GOODGUYS)
+	var right_team = Game.GetPlayerIDsOnTeam(DOTA_TEAM_BADGUYS)
+
+	$("#left-wrap").RemoveAndDeleteChildren()
+	for (var i = 0; i < left_team.length; i++) {
+		var player = left_team[i]
+		var panel = $.CreatePanel("Panel", $("#left-wrap"), "")
+		panel.SetAttributeInt("player", player)
+		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_left.xml", false, false)
+
+		var hero = Players.GetPlayerHeroEntityIndex(player)
+		var heroclass = Entities.GetClassname(hero)
+		if (heroclass != "npc_dota_hero_wisp") {
+			panel.GetChild(0).heroname = heroclass
+			panel.GetChild(0).SetAttributeInt("hero", hero)
+		}
+
+		var name = Players.GetPlayerName(player)
+		if (name) {
+			panel.GetChild(1).text = name
+		} else {
+			panel.GetChild(1).text = ""
+		}
+	}
+   
+	$("#right-wrap").RemoveAndDeleteChildren()
+	for (var i = 0; i < right_team.length; i++) {
+		var player = right_team[i]
+		var panel = $.CreatePanel("Panel", $("#right-wrap"), "")
+		panel.SetAttributeInt("player", player)
+		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_right.xml", false, false)
+
+		var hero = Players.GetPlayerHeroEntityIndex(player)
+		var heroclass = Entities.GetClassname(hero)
+		if (heroclass != "npc_dota_hero_wisp") {
+			panel.GetChild(1).heroname = heroclass
+			panel.GetChild(1).SetAttributeInt("hero", hero)
+		}
+
+		var name = Players.GetPlayerName(player)
+		if (name) {
+			panel.GetChild(0).text = name
+		} else {
+			panel.GetChild(0).text = ""
+		}
+	}
+
 	var scores = CustomNetTables.GetTableValue("gamestate", "score")
 	var scoretext = ""
-
-	// 0 is a valid player number, so can't just do if (player1)
-	if (player1 != null) {
-		var name1 = Players.GetPlayerName(player1)
-		if (name1) {
-			$("#left-name").GetChild(0).text = name1
-		} else {
-			$("#left-name").GetChild(0).text = ""
-		}
-
-		var hero1 = Players.GetPlayerHeroEntityIndex(player1)
-		if (hero1) {
-			$("#left-hero").SetAttributeInt("hero", hero1)
-			var heroclass = Entities.GetClassname(hero1)
-			if (heroclass != "npc_dota_hero_wisp") {
-				$("#left-hero").GetChild(0).heroname = heroclass
-			}
-		} else {
-			$("#left-hero").SetAttributeInt("hero", -1)
-			$("#left-hero").GetChild(0).heroname = ""
-		}
-
-		var score1 = scores[DOTA_TEAM_GOODGUYS_str]
-		if (score1) {
-			scoretext = score1.toString()
-		} else {
-			scoretext = "0"
-		}
+	if (scores[DOTA_TEAM_GOODGUYS]) {
+		scoretext = scores[DOTA_TEAM_GOODGUYS]
+	} else {
+		scoretext = "0"
 	}
-
 	scoretext = scoretext + "  -  "
-
-	if (player2 != null) {
-		var name2 = Players.GetPlayerName(player2)
-		if (name2) {
-			$("#right-name").GetChild(0).text = name2
-		} else {
-			$("#right-name").GetChild(0).text = ""
-		}
-
-		var hero2 = Players.GetPlayerHeroEntityIndex(player2)
-		if (hero2) {
-			$("#right-hero").SetAttributeInt("hero", hero2)
-			var heroclass = Entities.GetClassname(hero2)
-			if (heroclass != "npc_dota_hero_wisp") {
-				$("#right-hero").GetChild(0).heroname = heroclass
-			}
-		} else {
-			$("#right-hero").SetAttributeInt("hero", -1)
-			$("#right-hero").GetChild(0).heroname = ""
-		}
-
-		var score2 = scores[DOTA_TEAM_BADGUYS_str]
-		if (score2) {
-			scoretext = scoretext + score2.toString()
-		} else {
-			scoretext = scoretext + "0"
-		} 
+	if (scores[DOTA_TEAM_BADGUYS]) {
+		scoretext = scoretext + scores[DOTA_TEAM_BADGUYS]
+	} else {
+		scoretext = scoretext + "0"
 	}
-
 	$("#scoretext").text = scoretext
-}
+} 
  
 (function()
 {
@@ -109,4 +105,6 @@ function UpdateTopBar() {
 	GameEvents.Subscribe("match_completed", UpdateTopBar)
 	GameEvents.Subscribe("round_completed", UpdateTopBar)
 	GameEvents.Subscribe("round_started", UpdateTopBar)
+	GameEvents.Subscribe("entity_killed", UpdateTopBar)
+	GameEvents.Subscribe("npc_spawned", UpdateTopBar)
 })();

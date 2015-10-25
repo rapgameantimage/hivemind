@@ -23,12 +23,14 @@
 	"close"											"Close"
 
 	"wins"											"wins!"
+	"win"											"win!"
+	"and"											"and"
 	"rematch_question"								"Rematch with new heroes?"
 	"round"											"Round"
 	"in"											"in"
 	"ellipses"										"..."
-	"rematch_waiting"								"Waiting for opponent to accept rematch..."
-	"rematch_declined"								"Opponent declined rematch"
+	"rematch_waiting"								"Waiting for other players to accept rematch..."
+	"rematch_declined"								"Other player declined rematch"
 
 	"gameinfo_nav_howto"							"How to Play"
 	"gameinfo_nav_about"							"About"
@@ -52,7 +54,7 @@
 	"gameinfo_attributions1"						"Nightmare Orb ambient sound: (c) 2012 Erdie, freesound.org, some changes made."
 
 	"pick_header_text"								"Choose your hero:"
-	"pick_header_waiting_for_opponent"				"Waiting for opponent..."
+	"pick_header_waiting_for_opponent"				"Waiting for other players..."
 
 	"hero_form"										"Hero Form"
 	"split_form"									"Split Form"

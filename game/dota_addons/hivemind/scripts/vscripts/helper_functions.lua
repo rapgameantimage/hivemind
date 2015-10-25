@@ -245,3 +245,29 @@ function FilterManager:Init()
 end
 
 FilterManager:Init()
+
+
+
+function GetPlayersOnTeam(team)
+	local players = {}
+	for i = 0,DOTA_MAX_PLAYERS do
+		local p = PlayerResource:GetPlayer(i)
+		if p then
+			if p:GetTeam() == team then
+				table.insert(players, p)
+			end
+		end
+	end
+	return players
+end
+
+function GetPlayersOnTeams(teams)
+	local players = {}
+	for _,team in pairs(teams) do
+		local teamplayers = GetPlayersOnTeam(team)
+		for _,player in pairs(teamplayers) do
+			table.insert(players, player)
+		end
+	end
+	return players
+end

@@ -33,32 +33,46 @@ function GameMode:OnEntityKilled( keys )
 
   -- Treat this death differently depending on what kind of unit it is
   if killedUnit:IsHero() and GameMode:IsGameplay() then
-  	-- Increment enemy score
-  	local enemy_team
-  	if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
-  		enemy_team = DOTA_TEAM_BADGUYS
-  	else
-  		enemy_team = DOTA_TEAM_GOODGUYS
-  	end
-  	local score_table = CustomNetTables:GetTableValue("gamestate", "score")
-  	local enemy_score = tonumber(score_table[tostring(enemy_team)])
- 	  enemy_score = enemy_score + 1
- 	  score_table[tostring(enemy_team)] = tostring(enemy_score)
-  	CustomNetTables:SetTableValue("gamestate", "score", score_table)
-
-    -- Kill the corresponding split units
-    GameMode:KillCorrespondingSplitUnits(killedUnit)
-
-    -- Add the victory modifier to victorious units
-    local enemy_hero = PlayerResource:GetPlayer(PlayerResource:GetNthPlayerIDOnTeam(enemy_team, 1)):GetAssignedHero()
-    enemy_hero:AddNewModifier(enemy_hero, nil, "modifier_waiting_for_new_round", {})
-    local enemy_units = GameMode:GetSplitUnitsForHero(enemy_hero)
-    for k,unit in pairs(enemy_units) do
-      unit:AddNewModifier(unit, nil, "modifier_waiting_for_new_round", {})
+    -- See if this player has allies with living heroes
+    local killed_unit_team = killedUnit:GetTeam()
+    local found_living_allied_hero = false
+    for _,p in pairs(GetPlayersOnTeam(killed_unit_team)) do
+      if p ~= player and p:GetAssignedHero():IsAlive() then
+        found_living_allied_hero = true
+      end
     end
 
-    -- Complete this round
-    GameMode:CompleteRound()
+    if not found_living_allied_hero then
+    	-- Increment enemy score
+    	local enemy_team
+    	if killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS then
+    		enemy_team = DOTA_TEAM_BADGUYS
+    	else
+    		enemy_team = DOTA_TEAM_GOODGUYS
+    	end
+    	local score_table = CustomNetTables:GetTableValue("gamestate", "score")
+    	local enemy_score = tonumber(score_table[tostring(enemy_team)])
+   	  enemy_score = enemy_score + 1
+   	  score_table[tostring(enemy_team)] = tostring(enemy_score)
+    	CustomNetTables:SetTableValue("gamestate", "score", score_table)
+
+      -- Kill the corresponding split units
+      GameMode:KillCorrespondingSplitUnits(killedUnit)
+
+      -- Add the victory modifier to victorious units
+      local enemy_players = GetPlayersOnTeam(enemy_team)
+      for _,p in pairs(enemy_players) do
+        local enemy_hero = p:GetAssignedHero()
+        enemy_hero:AddNewModifier(enemy_hero, nil, "modifier_waiting_for_new_round", {})
+        local enemy_units = GameMode:GetSplitUnitsForHero(enemy_hero)
+        for k,unit in pairs(enemy_units) do
+         unit:AddNewModifier(unit, nil, "modifier_waiting_for_new_round", {})
+        end
+      end
+
+      -- Complete this round
+      GameMode:CompleteRound()
+    end
 
   -- ignore_split_unit_death is checking to see if this event got triggered by KillCorrespondingSplitUnits, basically.
   elseif killedUnit:GetUnitLabel() == "split_unit" and not CustomNetTables:GetTableValue("gamestate", "ignore_split_unit_death")[tostring(hero:GetEntityIndex())] then
@@ -119,7 +133,6 @@ function GameMode:OnNPCSpawned(keys)
   end
 end
 
--- currently only handles 2 players
 -- event happens when a player clicks yes on the rematch popup (see main.js)
 function GameMode:OnRematchYes(keys)
   PrintTable(keys)
@@ -130,8 +143,17 @@ function GameMode:OnRematchYes(keys)
   tbl[tostring(keys.player)] = true
   PrintTable(tbl)
 
-  if tbl[tostring(PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_GOODGUYS, 1))] and tbl[tostring(PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_BADGUYS, 1))] then
-    -- A rematch was accepted by both players
+  local ready_to_rematch = true
+  for _,player in pairs(GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})) do
+    local response = tbl[tostring(player:GetPlayerID())]
+    if not response then
+      ready_to_rematch = false
+      break
+    end
+  end
+
+  if ready_to_rematch then
+    -- A rematch was accepted by all players
     CustomNetTables:SetTableValue("gamestate", "status", {"rematch"})
     CustomNetTables:SetTableValue("gamestate", "rematch", {})
     CustomGameEventManager:Send_ServerToAllClients("rematch_accepted", {})
@@ -143,12 +165,10 @@ end
 -- a player clicked no on rematch :(
 function GameMode:OnRematchNo(keys)
   CustomGameEventManager:Send_ServerToAllClients("rematch_declined", {})
-  Timers:CreateTimer(3, function()
-    local winning_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
-    print("making team " .. winning_team .. " win")
-    GameRules:SetCustomVictoryMessage("#game_over")
-    GameRules:SetGameWinner(winning_team)
-  end)
+  local winning_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
+  print("making team " .. winning_team .. " win")
+  GameRules:SetCustomVictoryMessage("#game_over")
+  GameRules:SetGameWinner(winning_team)
 end
 
 -- The overall game state has changed

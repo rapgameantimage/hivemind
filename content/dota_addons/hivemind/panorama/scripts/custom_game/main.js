@@ -50,14 +50,14 @@ function IncrementCountdown() {
 function OnMatchCompleted(event) {
 	var team = event.winning_team
 	var details = Game.GetTeamDetails(team)
-	var winner = ""
+	var win_msg = ""
 	if ( details.team_num_players == 1) {
-		winner = Players.GetPlayerName(Game.GetPlayerIDsOnTeam(team)[0])
+		win_msg = Players.GetPlayerName(Game.GetPlayerIDsOnTeam(team)[0]) + " " + $.Localize("#wins")
 	} else {
-		winner = details.team_name
+		win_msg = Players.GetPlayerName(Game.GetPlayerIDsOnTeam(team)[0]) + " " + $.Localize("#and") + " " + Players.GetPlayerName(Game.GetPlayerIDsOnTeam(team)[1]) + " " + $.Localize("#win")
 	}
 	$.Schedule(END_GAME_DELAY, function() {
-		$("#winner").text = winner + " " + $.Localize("#wins")
+		$("#winner").text = win_msg
 		$("#winner").style.visibility = "visible"
 		$("#rematch").text = $.Localize("#rematch_question")
 		$("#rematch").style.visibility = "visible"
@@ -124,21 +124,38 @@ function OnMatchStarted() {
 
 function OnEntityKilled(event) {
 	var entity_killed = event.entindex_killed
+	var attacker = event.entindex_attacker
 
 	// See if this is the player.
 	var localhero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())
-	if (entity_killed == localhero) {
+	if (entity_killed == localhero && entity_killed != attacker) {
 		// Find the enemy hero and show the tip screen (if the player has hidden tip screens, that is taken care of in the ShowTipsFor function)
 		var localteam = Entities.GetTeamNumber(localhero)
-		var enemyteam = 0
-		if (localteam == DOTATeam_t.DOTA_TEAM_GOODGUYS) {
-			enemyteam = DOTATeam_t.DOTA_TEAM_BADGUYS
-		} else if (localteam == DOTATeam_t.DOTA_TEAM_BADGUYS) {
-			enemyteam = DOTATeam_t.DOTA_TEAM_GOODGUYS
+		var enemyhero
+
+		if (Entities.IsHero(attacker)) {
+			enemyhero = attacker
+		} else {
+			var enemyteam = 0
+			if (localteam == DOTATeam_t.DOTA_TEAM_GOODGUYS) {
+				enemyteam = DOTATeam_t.DOTA_TEAM_BADGUYS
+			} else if (localteam == DOTATeam_t.DOTA_TEAM_BADGUYS) {
+				enemyteam = DOTATeam_t.DOTA_TEAM_GOODGUYS
+			}
+			var enemyplayers = Game.GetPlayerIDsOnTeam(enemyteam)
+			for (var i = 0; i < enemyplayers.length; i++) {
+				var units = CustomNetTables.GetTableValue("split_units", Players.GetPlayerHeroEntityIndex(enemyplayers[i]).toString())
+				$.Each(units, function(j,v) {
+					if (parseInt(v) == attacker) {
+						enemyhero = Players.GetPlayerHeroEntityIndex(enemyplayers[i])
+					}
+				})
+			}
 		}
-		var enemyplayer = Game.GetPlayerIDsOnTeam(enemyteam)[0]
-		var enemyhero = Players.GetPlayerHeroEntityIndex(enemyplayer)
-		ShowTipsFor(Entities.GetClassname(enemyhero))
+
+		if (enemyhero) {
+			ShowTipsFor(Entities.GetClassname(enemyhero))
+		}
 	}
 
 	// Deselects killed units from multi-select groups, so the player's commands don't keep getting delivered to a dead unit

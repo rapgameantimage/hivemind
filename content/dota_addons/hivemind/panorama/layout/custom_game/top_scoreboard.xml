@@ -6,29 +6,17 @@
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/top_scoreboard.js" />
 	</scripts>
-	<Panel class="top_scoreboard">
-		<Panel id="left-wrap" class="wrap"> 
-			<Panel id="left-hero" class="hero left">
-				<DOTAHeroImage heroimagestyle="landscape" onactivate="OnIconClicked('left')" ondblclick="OnIconDoubleClicked('left')" />
-			</Panel>
-			<Panel id="left-name" class="name left">
-				<Label />
-			</Panel>
+	<Panel class="top_scoreboard" hittest="false">
+		<Panel id="left-wrap" class="wrap" hittest="false"> 
 		</Panel>
 		
-		<Panel id="center">
-			<Panel id="center-contents">
-				<Label id="scoretext" class="score" />
+		<Panel id="center" hittest="false">
+			<Panel id="center-contents" hittest="false">
+				<Label id="scoretext" class="score" hittest="false" />
 			</Panel>
 		</Panel>
 
-		<Panel id="right-wrap" class="wrap">
-			<Panel id="right-name" class="name right">
-				<Label />
-			</Panel>
-			<Panel id="right-hero" class="hero right">
-				<DOTAHeroImage heroimagestyle="landscape" onactivate="OnIconClicked('right')" ondblclick="OnIconDoubleClicked('right')" />
-			</Panel>
+		<Panel id="right-wrap" class="wrap" hittest="false">
 		</Panel>
 	</Panel>
 </root>

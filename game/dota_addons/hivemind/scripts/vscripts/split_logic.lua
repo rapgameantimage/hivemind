@@ -1,5 +1,5 @@
 function GameMode:CreateSplitUnits(hero)
-  print("Started CreateSplitUnits")
+  print("Started CreateSplitUnits for " .. hero:GetUnitName())
   -- This flag happens during certain abilities, e.g. when creating illusions via CreateUnitByName
   local skip_status = CustomNetTables:GetTableValue("gamestate", "dont_create_split_units")
   if skip_status ~= nil then
@@ -37,7 +37,7 @@ function GameMode:CreateSplitUnits(hero)
   -- Save these in a nettable for later (will be referenced in Panorama as well as in the split/unify functions below)
   CustomNetTables:SetTableValue("split_units", tostring(hero:GetEntityIndex()), units)
   CustomGameEventManager:Send_ServerToPlayer(hero:GetPlayerOwner(), "split_units_created", {units=units, count=num}) -- Triggers a rebuild of the split sidebar panel
-  print("Finished CreateSplitUnits")
+  print("Finished CreateSplitUnits for " .. hero:GetUnitName())
 end
 
 
@@ -115,6 +115,10 @@ function GameMode:SplitHero(ability, callback)
 
   -- wait a moment
   Timers:CreateTimer(SPLIT_DELAY, function()
+  	-- Do this first in case the transformation turns out to be invalid
+  	ParticleManager:DestroyParticle(splitting_fx, false)
+  	caster:SwapAbilities(ability:GetAbilityName(), "spread_units", true, false)
+
     -- Check to see if it's ok to keep transforming
     if caster:HasModifier("modifier_ok_to_complete_transformation") then
       caster:RemoveModifierByName("modifier_ok_to_complete_transformation")
@@ -136,7 +140,6 @@ function GameMode:SplitHero(ability, callback)
         end
       end
 
-      unit:RemoveModifierByName("modifier_spread_count")
       -- in case we got stuck
       FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), false)
 
@@ -144,7 +147,6 @@ function GameMode:SplitHero(ability, callback)
       unit:RemoveModifierByName("modifier_hidden")
 
       -- particles
-      ParticleManager:DestroyParticle(splitting_fx, false)
       ParticleManager:CreateParticle("particles/split_flare.vpcf", PATTACH_ABSORIGIN_FOLLOW, unit)
     end
 
@@ -154,8 +156,6 @@ function GameMode:SplitHero(ability, callback)
       units = units,
       location = caster:GetAbsOrigin()
     })
-
-    caster:SwapAbilities(ability:GetAbilityName(), "spread_units", true, false)
 
     -- use the callback if one was provided
     if callback then
@@ -290,6 +290,16 @@ end
 
 -- Every hero's split ability checks this cast filter.
 function GameMode:SplitHeroCastFilterResult(ability)
+  local do_units_exist = false
+  print(ability:GetCaster():GetUnitName() .. " wants to split")
+  for _,unit in pairs(GameMode:GetSplitUnitsForHero(ability:GetCaster())) do
+  	do_units_exist = true
+  	break
+  end
+  if not do_units_exist then
+  	print("Uh oh, " .. ability:GetCaster():GetUnitName() .. " just tried to split to a group that doesn't exist?")
+  	return UF_FAIL_CUSTOM
+  end
   if ability:GetCaster():HasModifier("modifier_dimensional_bind") then
     return UF_FAIL_CUSTOM
   else
@@ -298,7 +308,12 @@ function GameMode:SplitHeroCastFilterResult(ability)
 end
 
 function GameMode:SplitHeroGetCustomCastError(ability)
-  return "#dota_hud_error_dimensional_bind_hero"
+	if ability:GetCaster():HasModifier("modifier_dimensional_bind") then
+  		return "#dota_hud_error_dimensional_bind_hero"
+  	else
+  		-- For if we can't find any split units.
+  		return "#dota_hud_error_hidden"	
+  	end
 end
 
 -- Mainly for when heroes die or for when we're resetting the game.

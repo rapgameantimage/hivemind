@@ -17,7 +17,7 @@ require('events')
 
 -- External libraries
 require("libraries/vector_target")
-require("statcollection/init")
+-- require("statcollection/init")
 
 -- My generalized stuff
 require('helper_functions')
@@ -38,7 +38,7 @@ POST_ROUND_DELAY = 5 -- Also set this in main.js
 
 hover_boots_movement = {}
 
-statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
+-- statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
 
 match_count = 0   -- This will be incremented to 1 before anyone plays because Rematch() is always called
 round_times = {}
@@ -130,9 +130,8 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  PrintSchema(BuildGameArray(), BuildPlayersArray())
-  print(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
-  print(PlayerResource:GetPlayer(0):GetTeam())
+  local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
+  hero:RemoveModifierByName("asdf")
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -203,6 +202,7 @@ function GameMode:NewRound()
   CustomNetTables:SetTableValue("gamestate", "status", { "gameplay" })
   local currentround = CustomNetTables:GetTableValue("gamestate", "round")
   local newroundnum = tonumber(currentround["1"]) + 1
+  print("Starting round " .. newroundnum)
   if currentround == nil then
     CustomNetTables:SetTableValue("gamestate", "round", { 1 })
   else
@@ -225,10 +225,12 @@ function GameMode:NewRound()
       -- Manually cancel ongoing transformations and return to hero form
       if hero:HasModifier("modifier_ok_to_complete_transformation") then
         hero:RemoveModifierByName("modifier_ok_to_complete_transformation")
-        hero:SwapAbilities(GameMode:FindSplitAbilityForHero(hero), "set_spawn_point", true, false)
       end
       if hero:HasModifier("modifier_hidden") then
         hero:RemoveModifierByName("modifier_hidden")
+      end
+      if hero:HasModifier("modifier_spread_count") then
+        hero:RemoveModifierByName("modifier_spread_count")
       end
       GameMode:KillCorrespondingSplitUnits(hero)
 
@@ -243,7 +245,9 @@ function GameMode:NewRound()
   end
 
   -- Triggers the "ROUND X" text in main.js
-  CustomGameEventManager:Send_ServerToAllClients("round_started", {round = newroundnum})
+  Timers:CreateTimer(0.06, function()
+    CustomGameEventManager:Send_ServerToAllClients("round_started", {round = newroundnum})
+  end)
 end
 
 function GameMode:DeclareWinner(team)
@@ -323,19 +327,27 @@ function GameMode:OnPickNewHero(event)
     return
   end
 
-  -- See if both players have picked
-  if picks[tostring(PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_GOODGUYS, 1))] and picks[tostring(PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_BADGUYS, 1))] then
-    local players = {PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_GOODGUYS, 1), PlayerResource:GetNthPlayerIDOnTeam(DOTA_TEAM_BADGUYS, 1)}
+  -- See if all players have picked
+  local have_all_players_picked = true
+  for _,player in pairs(GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})) do
+    if not picks[tostring(player:GetPlayerID())] then
+      print(player:GetPlayerID())
+      have_all_players_picked = false
+    end
+  end
+
+  if have_all_players_picked then
+    local players = GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})
     -- Create new heroes
     for k,player in pairs(players) do
-      local newhero = "npc_dota_hero_" .. picks[tostring(player)]
+      local newhero = "npc_dota_hero_" .. picks[tostring(player:GetPlayerID())]
       -- Precache in case we haven't
       PrecacheUnitByNameAsync(newhero, function()
-        local oldhero = PlayerResource:GetPlayer(player):GetAssignedHero()
+        local oldhero = player:GetAssignedHero()
         GameMode:KillCorrespondingSplitUnits(oldhero)
-        local replaced = PlayerResource:ReplaceHeroWith(player, newhero, 0, 0)
+        local replaced = PlayerResource:ReplaceHeroWith(player:GetPlayerID(), newhero, 0, 0)
         if not replaced then
-          CreateHeroForPlayer(newhero, PlayerResource:GetPlayer(player))
+          CreateHeroForPlayer(newhero, player)
         end
         oldhero:RemoveSelf()
       end)
@@ -400,22 +412,35 @@ function GameMode:CreateFakeHero(event)
   end
 end
 
-function GameMode:BotPickHero(hero)
-  GameMode:OnPickNewHero({PlayerID = 1, hero = hero})
+function GameMode:BotPickHero(hero, player)
+  if player then
+    GameMode:OnPickNewHero({PlayerID = tonumber(player), hero = hero})
+  else
+    GameMode:OnPickNewHero({PlayerID = 1, hero = hero})
+  end
 end
 
-function GameMode:BotRematchYes()
-  GameMode:OnRematchYes({PlayerID = 1, player = 1})
+function GameMode:BotRematchYes(player)
+  if player then
+    GameMode:OnRematchYes({PlayerID = player, player = player})
+  else
+    GameMode:OnRematchYes({PlayerID = 1, player = 1})
+  end
 end
 
 function GameMode:BotRematchNo()
   GameMode:OnRematchNo({PlayerID = 1})
 end
 
-function GameMode:BotChangeHero(hero)
-  local oldhero = PlayerResource:GetPlayer(1):GetAssignedHero()
+function GameMode:BotChangeHero(hero, player)
+  if not player then
+    local player = 1
+  else
+    player = tonumber(player)
+  end
+  local oldhero = PlayerResource:GetPlayer(player):GetAssignedHero()
   PrecacheUnitByNameAsync("npc_dota_hero_" .. hero, function()
-    PlayerResource:ReplaceHeroWith(1, "npc_dota_hero_" .. hero, 0, 0)
+    PlayerResource:ReplaceHeroWith(player, "npc_dota_hero_" .. hero, 0, 0)
     oldhero:RemoveSelf()
   end)
 end
