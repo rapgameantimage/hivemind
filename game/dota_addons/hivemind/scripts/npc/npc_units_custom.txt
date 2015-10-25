@@ -363,4 +363,53 @@
         }
     }
   }
+
+  "npc_dota_earth_spirit_split_tiny"
+  {
+    "BaseClass"        "npc_dota_creature"
+    "Model"             "models/heroes/tiny_01/tiny_01.vmdl"
+    "ModelScale"        "1"
+    "SoundSet"          "Hero_Tiny"
+    "Level"             "1"
+    "UnitLabel"         "split_unit"
+
+    "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackRange"       "128"
+    "AttackDamageMin"   "20"
+    "AttackDamageMax"   "20"
+    "AttackRate"        "1.35"
+    "AttackAnimationPoint"  "0.33"
+    "AttackAcquisitionRange"    "800"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "315" 
+    "MovementTurnRate"      "0.6" 
+    "FollowRange"       "250"
+
+    "ArmorPhysical"     "3"
+    "MagicalResistance" "0"
+    "StatusHealth"      "440"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "0"
+    "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
+    "Ability1"      "unify_earth_spirit"
+    "Ability2"      "throw_rockling"
+    "Ability3"      "heavyweight"
+
+    "Creature"
+    {
+        "AttachWearables"
+        {
+            "Wearable1" { "ItemDef"  "493" }
+            "Wearable2" { "ItemDef"  "494" }
+            "Wearable3" { "ItemDef"  "495" }
+            "Wearable4" { "ItemDef"  "496" }
+            "Wearable5" { "ItemDef"  "516" }
+        }
+    }
+  }
 }

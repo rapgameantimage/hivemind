@@ -17,6 +17,7 @@ require('events')
 
 -- External libraries
 require("libraries/vector_target")
+require("statcollection/init")
 
 -- My generalized stuff
 require('helper_functions')
@@ -26,6 +27,8 @@ require('split_unit_definitions')
 require('split_logic')
 require('arena')
 
+HIVEMIND_VERSION = "0.02"
+
 MAX_RADIUS_FOR_UNIFY = 800
 SPLIT_DELAY = 0.5
 UNIFY_DELAY = 0.5
@@ -34,6 +37,11 @@ KILLS_TO_WIN = 5
 POST_ROUND_DELAY = 5 -- Also set this in main.js
 
 hover_boots_movement = {}
+
+statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
+
+match_count = 0   -- This will be incremented to 1 before anyone plays because Rematch() is always called
+round_times = {}
 
 function GameMode:PostLoadPrecache()
   DebugPrint("[BAREBONES] Performing Post-Load precache")    
@@ -122,16 +130,15 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
-    FilterManager:AddFilter("order", function(ctx, params)
-      return VectorTarget:OrderFilter(params)
-    end,
-  {})
+  PrintSchema(BuildGameArray(), BuildPlayersArray())
+  print(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
+  print(PlayerResource:GetPlayer(0):GetTeam())
 end
 
 function GameMode:SetKillsToWin(kills)
   if tonumber(kills) then
     KILLS_TO_WIN = tonumber(kills)
+    statCollection:setFlags({kills_to_win = KILLS_TO_WIN})
   end
 end
 
@@ -157,6 +164,15 @@ end
 -- In (a) and (c) the name is really a bit of a misnomer, but whatever.
 function GameMode:CompleteRound()
   local currentround = GameMode:GetRound()
+
+  if currentround then
+    if currentround > 0 then
+      if round_times[currentround] then
+        round_times[currentround].end_time = GameRules:GetGameTime()
+        round_times[currentround].length = round_times[currentround].end_time - round_times[currentround].start_time
+      end
+    end
+  end
 
   -- See if someone has won
   if GameMode:GetScoreForTeam(DOTA_TEAM_GOODGUYS) >= KILLS_TO_WIN then
@@ -186,11 +202,14 @@ function GameMode:NewRound()
   -- Gamestate tracking
   CustomNetTables:SetTableValue("gamestate", "status", { "gameplay" })
   local currentround = CustomNetTables:GetTableValue("gamestate", "round")
+  local newroundnum = tonumber(currentround["1"]) + 1
   if currentround == nil then
     CustomNetTables:SetTableValue("gamestate", "round", { 1 })
   else
-    CustomNetTables:SetTableValue("gamestate", "round", { tonumber(currentround["1"]) + 1 })
+    CustomNetTables:SetTableValue("gamestate", "round", { newroundnum })
   end
+
+  round_times[newroundnum] = {start_time = GameRules:GetGameTime()}
 
   -- Cleanup
   GameMode:ClearArena()
@@ -224,13 +243,14 @@ function GameMode:NewRound()
   end
 
   -- Triggers the "ROUND X" text in main.js
-  CustomGameEventManager:Send_ServerToAllClients("round_started", {round = currentround})
+  CustomGameEventManager:Send_ServerToAllClients("round_started", {round = newroundnum})
 end
 
 function GameMode:DeclareWinner(team)
   CustomGameEventManager:Send_ServerToAllClients("match_completed", {winning_team = team})
   CustomNetTables:SetTableValue("gamestate", "winning_team", { tostring(team) })
   CustomNetTables:SetTableValue("gamestate", "status", { "finished" })
+  -- customSchema:submitRound()
 end
 
 function GameMode:GetScoreForTeam(team)
@@ -340,6 +360,8 @@ function GameMode:Rematch()
     end
   end
   ]]
+  match_count = match_count + 1
+  round_times = {}
   CustomNetTables:SetTableValue("gamestate", "round", {"0"})
   CustomNetTables:SetTableValue("gamestate", "score", {[tostring(DOTA_TEAM_GOODGUYS)] = "0", [tostring(DOTA_TEAM_BADGUYS)] = "0"})
   GameMode:CompleteRound()		-- Set up the next round as usual. From here, we re-enter the usual round start/end logic.

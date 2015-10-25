@@ -54,6 +54,10 @@ function Precache( context )
   PrecacheResource( "model_folder", "models/heroes/tinker", context )
   PrecacheResource( "model_folder", "models/items/tinker", context )
   PrecacheResource( "particle_folder", "particles/econ/items/tinker", context )
+
+  PrecacheResource( "model_folder", "models/heroes/earth_spirit", context )
+  PrecacheResource( "model_folder", "models/items/earth_spirit", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/earth_spirit", context )
 end
 
 -- Create the game mode when we activate

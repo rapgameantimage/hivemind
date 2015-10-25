@@ -11,6 +11,9 @@
 		"dota_hud_error_dimensional_bind_split"					"Can't Unify With Any Unit Affected By Dimensional Bind"
 		"dota_hud_error_dimensional_bind_hero"					"Can't Split While Affected By Dimensional Bind"
 		"dota_hud_error_cant_use_while_leaping"					"Can't Use While Leaping"
+		"dota_hud_error_max_spread_distance"					"Maximum Spread Distance Reached"
+		"dota_hud_error_no_rockling_to_throw"					"No Rockling To Throw"
+		"dota_hud_error_out_of_range"							"Out of Range"
 		"game_over"												"GAME OVER"
 
 		// ******************** HEROES ********************
@@ -40,8 +43,8 @@
 		"npc_dota_hero_hivemind_tinker"															  "Dr. X"
 
 		// ******************** ABILITIES ********************
-		"DOTA_Tooltip_ability_split_lycan"                                                "Split Form"
-		"DOTA_Tooltip_ability_split_lycan_Description"                                    "Transforms into Nikoval's split form, a pack of 5 wolves."
+		"DOTA_Tooltip_ability_split_lycan"                                                "Split"
+		"DOTA_Tooltip_ability_split_lycan_Description"                                    "Transforms into Nikoval's split form, a pack of 5 wolves. Cast this ability again while transforming to increase the distance between your units' spawn points."
 
 		"DOTA_Tooltip_ability_unify_lycan"                                                "Unify"
 		"DOTA_Tooltip_ability_unify_lycan_Description"                                    "Returns to hero form. Your hero will appear at this unit's position."
@@ -86,8 +89,8 @@
 		"DOTA_Tooltip_modifier_howling"													  "Howling"
 		"DOTA_Tooltip_modifier_howling_slow"											  "Slowed"
 
-		"DOTA_Tooltip_ability_split_bane"                                                 "Split Form"
-		"DOTA_Tooltip_ability_split_bane_Description"                                     "Transforms into Mara's split form, a swarm of 5 banshees."
+		"DOTA_Tooltip_ability_split_bane"                                                 "Split"
+		"DOTA_Tooltip_ability_split_bane_Description"                                     "Transforms into Mara's split form, a swarm of 5 banshees. Cast this ability again while transforming to increase the distance between your units' spawn points."
 
 		"DOTA_Tooltip_ability_unify_bane"                                                 "Unify"
 		"DOTA_Tooltip_ability_unify_bane_Description"                                     "Returns to hero form. Your hero will appear at this unit's position."
@@ -156,7 +159,7 @@
 		"DOTA_Tooltip_ability_set_spawn_point_Description"                                "Set the location at which one of your split units will spawn."
 
 		"DOTA_Tooltip_ability_split_phoenix"                                              "Split"
-		"DOTA_Tooltip_ability_split_phoenix_Description"                                  "Transforms into Shamarah's split form, a group of 4 magma spirits."
+		"DOTA_Tooltip_ability_split_phoenix_Description"                                  "Transforms into Shamarah's split form, a group of 4 magma spirits. Cast this ability again while transforming to increase the distance between your units' spawn points."
 
 		"DOTA_Tooltip_ability_unify_phoenix"                                              "Unify"
 		"DOTA_Tooltip_ability_unify_phoenix_Description"                                  "Returns to hero form. Your hero will appear at this unit's position."
@@ -207,7 +210,7 @@
 		"DOTA_Tooltip_ability_dissolution_dps"                                            "DAMAGE PER SECOND:"
 
 		"DOTA_Tooltip_ability_split_enigma"                                               "Split"
-		"DOTA_Tooltip_ability_split_enigma_Description"                                   "Transforms into Ov's split form, a cabal of 5 eidolons."
+		"DOTA_Tooltip_ability_split_enigma_Description"                                   "Transforms into Ov's split form, a cabal of 5 eidolons. Cast this ability again while transforming to increase the distance between your units' spawn points."
 
 		"DOTA_Tooltip_ability_unify_enigma"                                               "Unify"
 		"DOTA_Tooltip_ability_unify_enigma_Description"                                   "Returns to hero form. Your hero will appear at this unit's position."
@@ -232,7 +235,7 @@
 		"DOTA_Tooltip_ability_wormhole_radius"                                            "RADIUS:"
 
 		"DOTA_Tooltip_ability_crippling_gravity"                                          "Crippling Gravity"
-		"DOTA_Tooltip_ability_crippling_gravity_Description"                              "Crushes the target with a massive gravitational pull, disarming them and applying a tapering movement speed slow."
+		"DOTA_Tooltip_ability_crippling_gravity_Description"                              "Crushes the target with gravitational force, applying a large tapering movement and attack speed slow."
 		"DOTA_Tooltip_ability_crippling_gravity_duration"                                 "DURATION:"
 		"DOTA_Tooltip_modifier_crippling_gravity"										  "Crippled"
 		"DOTA_Tooltip_modifier_crippling_gravity_description"							  "Disarmed and affected by a tapering movement speed slow."
@@ -261,9 +264,9 @@
 		"DOTA_Tooltip_ability_repulsion_collision_stun"									  "COLLISION STUN TIME:"
 
 		"DOTA_Tooltip_ability_split_wraith"                                               "Split"
-		"DOTA_Tooltip_ability_split_wraith_Description"                                   "Transforms into Daevol's split form, a cadre of 7 skeletons."
+		"DOTA_Tooltip_ability_split_wraith_Description"                                   "Transforms into Daevol's split form, a cadre of 7 skeletons. Cast this ability again while transforming to increase the distance between your units' spawn points."
 
-		"DOTA_Tooltip_ability_unify_wraith"                                               "Unify Wraith"
+		"DOTA_Tooltip_ability_unify_wraith"                                               "Unify"
 		"DOTA_Tooltip_ability_unify_wraith_Description"                                   "Returns to hero form. Your hero will appear at this unit's position."
 
 		"DOTA_Tooltip_ability_throw_bone"                                                 "Throw Bone"
@@ -314,7 +317,7 @@
 		"DOTA_Tooltip_ability_arcane_etchings_magic_resist"                               "%MAGIC RESIST:"
 
 		"DOTA_Tooltip_ability_split_tinker"                                               "Split"
-		"DOTA_Tooltip_ability_split_tinker_Description"                                   "Transforms into Dr. X's split form, a squad of four clockwork goons."
+		"DOTA_Tooltip_ability_split_tinker_Description"                                   "Transforms into Dr. X's split form, a squad of four clockwork goons. Cast this ability again while transforming to increase the distance between your units' spawn points."
 
 		"DOTA_Tooltip_ability_unify_tinker"                                               "Unify"
 		"DOTA_Tooltip_ability_unify_tinker_Description"                                   "Returns to hero form. Your hero will appear at this unit's position."
@@ -343,10 +346,12 @@
 		"DOTA_Tooltip_ability_missile_swarm_rockets"                                      "ROCKETS:"
 		"DOTA_Tooltip_ability_missile_swarm_radius"                                       "DAMAGE RADIUS:"
 
-		"DOTA_Tooltip_ability_rattletrap_hookshot"                                        "Hookshot"
-		"DOTA_Tooltip_ability_rattletrap_hookshot_Description"                            ""
-		"DOTA_Tooltip_ability_rattletrap_hookshot_duration"                               "DURATION:"
-		"DOTA_Tooltip_ability_rattletrap_hookshot_tooltip_range"                          "TOOLTIP RANGE:"
-		"DOTA_Tooltip_ability_rattletrap_hookshot_damage"                                 "DAMAGE:"
+		"DOTA_Tooltip_ability_hookshot"                                   		          "Hookshot"
+		"DOTA_Tooltip_ability_hookshot_Description"                                       "Fires a grappling device rapidly at the target location. If the hook hits a unit, the clockwork goon launches himself into the target, stunning and dealing damage. Any enemies collided with along the way are damaged and stunned."
+		"DOTA_Tooltip_ability_hookshot_stun_duration"                                     "STUN DURATION:"
+		"DOTA_Tooltip_ability_hookshot_max_distance"                                      "MAX DISTANCE:"
+
+		"DOTA_Tooltip_ability_spread_units"												"Spread Units"
+		"DOTA_Tooltip_ability_spread_units_description"									"Increase the distance between your units when they spawn."
 	}
 }

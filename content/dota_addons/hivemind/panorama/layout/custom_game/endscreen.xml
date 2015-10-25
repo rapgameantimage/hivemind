@@ -6,7 +6,7 @@
 	<scripts><!--
 		<include src="file://{resources}/scripts/custom_game/split_unit_ability.js" /> -->
 	</scripts>
-	<Panel class="endscreen" style="width: 100px; height: 100px; background-color: red;">
+	<Panel class="endscreen" style="" hittest="false">
 
 	</Panel>
 </root>

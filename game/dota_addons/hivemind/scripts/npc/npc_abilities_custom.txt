@@ -1315,7 +1315,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"8"
+				"duration"	"5"
 			}
 		}
 	}
@@ -1956,6 +1956,7 @@
     "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
     "AbilityTextureName"  "storm_spirit_electric_vortex"
     "AbilityCastRange"  "1200"
+    "MaxLevel"	"1"
 
     "precache"
     {
@@ -2031,7 +2032,7 @@
     "AbilityCooldown" "12"
     "AbilityManaCost" "200"
     "AbilityCastPoint"  "0"
-    "AbilityDamage" "75"
+    "AbilityDamage" "60"
     "AbilityCastRange"  "1500"
     "MaxLevel"  "1"
 
@@ -2064,7 +2065,7 @@
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
     "AbilityCooldown" "12"
     "AbilityCastPoint"  "0.3"
-    "AbilityDamage" "80"
+    "AbilityDamage" "60"
     "AbilityCastRange"  "2000"
     "MaxLevel"  "1"
 
@@ -2085,6 +2086,309 @@
       {
         "var_type"  "FIELD_INTEGER"
         "max_distance" "2000"
+      }
+    }
+  }
+
+  "split_earth_spirit"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/earth_spirit/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "tiny_grow"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+    }
+  }
+
+  "unify_earth_spirit"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "earth_spirit_stone_caller"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
+
+  "rock_wave"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/rock_wave"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "earth_spirit_rolling_boulder"
+    "AbilityCooldown"  "9"
+    "AbilityManaCost" "160"
+    "AbilityCastRange"  "1000"
+    "AbilityCastPoint"  "0.35"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/earth_spirit/rock_wave1.vpcf"
+      "particle"  "particles/heroes/earth_spirit/rock_wave_soil.vpcf"
+
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"    "FIELD_INTEGER"
+        "max_damage"  "225"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "min_damage"  "75"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "max_stun"  "1.5"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "min_stun"  "0.5"
+      }
+    }
+  }
+
+  "heavyweight"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/heavyweight"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "earthshaker_aftershock"
+    "AbilityDamage" "80"
+
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
+      "particle"  "particles/heroes/earth_spirit/heavyweight.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "stun_time" "0.75"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "125"
+      }
+    }
+  }
+
+  "quake"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/quake"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "sandking_epicenter"
+    "AbilityManaCost" "250"
+    "AbilityCastRange"  "900"
+    "AbilityCooldown" "25"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "dps_start"   "20"
+      }
+      "02"
+      { 
+        "var_type"  "FIELD_INTEGER"
+        "dps_end"   "50"
+      }
+      "03"
+      { 
+        "var_type"  "FIELD_INTEGER"
+        "radius_start"  "250"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius_end"  "500"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "slow"  "35"
+      }
+      "06"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "slow_linger" "2"
+      }
+      "07"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "quake_movespeed" "150"
+      }
+      "08"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "6"
+      }
+    }
+  }
+
+  "move_quake"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/quake"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "kunkka_x_marks_the_spot"
+  }
+
+  "magnetizing_strike"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/magnetizing_strike"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "earth_spirit_magnetize"
+    "AbilityCooldown" "1"
+    "AbilityDamage" "30"
+    "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/earth_spirit/magnetic_strike_ambient.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "movespeed_steal" "10"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "attackspeed_steal" "10"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_stacks"  "5"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "3"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "mana_per_attack" "40"
+      }
+    }
+  }
+
+  "throw_rockling"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/throw_rockling"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEAHVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "tiny_toss"
+    "AbilityDamage" "65"
+    "AbilityCastRange"  "1000"
+    "AbilityCooldown" "18"
+
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts"
+      "particle"  "particles/units/heroes/hero_tiny/tiny_toss_impact.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "search_radius" "200"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage_radius" "250"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "slow"  "80"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "slow_duration" "0.6"
+      }
+    }
+  }
+
+  "earthen_passage"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/earth_spirit/earthen_passage"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "nyx_assassin_burrow"
+    "AbilityCastRange"  "900"
+    "AbilityCooldown" "16"
+    "AbilityManaCost"  "200"
+    "AbilityCastPoint"  "0.2"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_meepo/meepo_poof_end.vpcf"
+      "particle"  "particles/units/heroes/hero_ursa/ursa_earthshock_soil1.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_meepo.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "travel_time" "1.0"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_duration" "3"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "debuff_radius" "200"
       }
     }
   }
@@ -2135,6 +2439,18 @@
     "AbilityTexureName" "rubick_empty1"
     "MaxLevel"          "1"
     "ScriptFile"        "heroes/general/nonexistence"
+  }
+
+  "spread_units"
+  {
+  	"BaseClass"	"ability_lua"
+  	"ScriptFile"	"heroes/general/spread_units"
+  	"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_UNRESTRICTED | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+  	"MaxLevel"	"1"
+  	"AbilityCooldown" "0"
+  	"AbilityManaCost"	"0"
+  	"AbilityCastPoint"	"0"
+  	"AbilityTextureName"	"kunkka_x_marks_the_spot"
   }
 }
 

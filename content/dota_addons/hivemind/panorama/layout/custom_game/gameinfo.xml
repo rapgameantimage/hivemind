@@ -29,6 +29,7 @@
 				<Panel class="list">
 					<Label text="#gameinfo_main_tip1" />
 					<Label text="#gameinfo_main_tip2" />
+					<Label text="#gameinfo_main_tip3" />
 				</Panel>
 				<Label text="#gameinfo_main_good_luck" />
 			</Panel>

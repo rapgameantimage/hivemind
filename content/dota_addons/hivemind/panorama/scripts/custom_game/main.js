@@ -195,6 +195,7 @@ function OnSplitHeroFinished() {
 	var units = CustomNetTables.GetTableValue("split_units", Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()).toString())
 	var first = true
 	for (var unit in units) {
+		$.Msg(unit)
 		unit = parseInt(unit)
 		GameUI.SelectUnit(unit, !first)
 		first = false

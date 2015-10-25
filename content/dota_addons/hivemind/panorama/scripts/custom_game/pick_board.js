@@ -1,20 +1,22 @@
 var hero_picked = ""
-var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma", "npc_dota_hero_skeleton_king", "npc_dota_hero_tinker"]
+var pickable_heroes = ["npc_dota_hero_lycan", "npc_dota_hero_bane", "npc_dota_hero_phoenix", "npc_dota_hero_enigma", "npc_dota_hero_skeleton_king", "npc_dota_hero_tinker", "npc_dota_hero_earth_spirit"]
 var hero_abilities = {
-	"npc_dota_hero_lycan": ["lycan_hamstring", "lycan_skull_crush", "lycan_berserk", "lycan_echoing_howl"],
-	"npc_dota_hero_bane": ["bane_flicker", "bane_nightmare_orb", "ectoplasm", "phantom"],
-	"npc_dota_hero_phoenix": ["sticky_flame", "molten_body", "fiery_birth", "swoop"],
-	"npc_dota_hero_enigma": ["dimensional_bind", "repulsion", "crippling_gravity", "singularity"],
-	"npc_dota_hero_skeleton_king": ["wraithpyre", "ghostly_fireball", "summon_wraith", "leap_strike"],
-	"npc_dota_hero_tinker": ["missile_swarm", "orbital_laser", "hover_boots", "pulse_cannon"],
+	"npc_dota_hero_lycan": ["split_lycan", "lycan_hamstring", "lycan_skull_crush", "lycan_berserk", "lycan_echoing_howl"],
+	"npc_dota_hero_bane": ["split_bane", "bane_flicker", "bane_nightmare_orb", "ectoplasm", "phantom"],
+	"npc_dota_hero_phoenix": ["split_phoenix", "sticky_flame", "molten_body", "fiery_birth", "swoop"],
+	"npc_dota_hero_enigma": ["split_enigma", "dimensional_bind", "repulsion", "crippling_gravity", "singularity"],
+	"npc_dota_hero_skeleton_king": ["split_wraith", "wraithpyre", "ghostly_fireball", "summon_wraith", "leap_strike"],
+	"npc_dota_hero_tinker": ["split_tinker", "missile_swarm", "orbital_laser", "hover_boots", "pulse_cannon"],
+	"npc_dota_hero_earth_spirit": ["split_earth_spirit", "rock_wave", "quake", "magnetizing_strike", "earthen_passage"]
 }
 var split_abilities = {
-	"npc_dota_lycan_split_wolf": ["lycan_pounce", "lycan_lacerate"],
-	"npc_dota_bane_split_ghost": ["bane_chilling_scream", "ephemeral"],
-	"npc_dota_phoenix_split_spirit": ["firewall", "dissolution"],
-	"npc_dota_enigma_split_eidolon": ["puck_phase_shift", "distant_malice"],
-	"npc_dota_wraith_split_skeleton": ["throw_bone", "arcane_etchings"],
-	"npc_dota_tinker_split_clockwerk": ["discharge", "rattletrap_hookshot"],
+	"npc_dota_lycan_split_wolf": ["unify_lycan", "lycan_pounce", "lycan_lacerate"],
+	"npc_dota_bane_split_ghost": ["unify_bane", "bane_chilling_scream", "ephemeral"],
+	"npc_dota_phoenix_split_spirit": ["unify_phoenix", "firewall", "dissolution"],
+	"npc_dota_enigma_split_eidolon": ["unify_enigma", "puck_phase_shift", "distant_malice"],
+	"npc_dota_wraith_split_skeleton": ["unify_wraith", "throw_bone", "arcane_etchings"],
+	"npc_dota_tinker_split_clockwerk": ["unify_tinker", "discharge", "hookshot"],
+	"npc_dota_earth_spirit_split_tiny": ["unify_earth_spirit", "throw_rockling", "heavyweight"]
 }
 var unit_info = {}
 

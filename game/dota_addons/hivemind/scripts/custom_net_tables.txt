@@ -6,5 +6,6 @@
     "precache_status",
     "gamestate",
     "unit_info",
+    "statcollection",
   ]
 }

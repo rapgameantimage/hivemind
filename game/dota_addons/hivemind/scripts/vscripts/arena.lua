@@ -22,9 +22,9 @@ MIN_BOUNDS = {
 	min_y = -512,
 }
 
-ARENA_SHRINK_TIMER = 75
+ARENA_SHRINK_TIMER = 75			-- The time in seconds between shrinks.
 
-ARENA_TICK_TIMER = 0.25
+ARENA_TICK_TIMER = 0.25			-- The time in seconds between events send to clients about the arena's status to update the purple bar at the top.
 
 WALL_VISUAL_BUFFER = 48
 
@@ -208,7 +208,7 @@ function Arena:StartTimer()
 	})
 end
 
-function Arena:CanArenaExpand()
+function Arena:CanArenaExpand()			-- I think this should actually be called CanArenaShrink... Not sure what I was thinking exactly.
 	local new_bounds = {
 		max_x = current_bounds.max_x - SHRINK_AMOUNT,
 		min_x = current_bounds.min_x + SHRINK_AMOUNT,
@@ -221,4 +221,29 @@ function Arena:CanArenaExpand()
 	else
 		return true
 	end
+end
+
+function Arena:IsLocationWithinBounds(loc)
+	if loc.x > current_bounds.max_x or loc.x < current_bounds.min_x or loc.y > current_bounds.max_y or loc.y < current_bounds.min_y then
+		return false
+	else
+		return true
+	end
+end
+
+function Arena:MoveLocationWithinBounds(loc)
+	local new_loc = Vector(loc.x, loc.y, loc.z)
+	if loc.x > current_bounds.max_x then
+		new_loc.x = current_bounds.max_x
+	elseif loc.x < current_bounds.min_x then
+		new_loc.x = current_bounds.min_x
+	end
+
+	if loc.y > current_bounds.max_y then
+		new_loc.y = current_bounds.max_y
+	elseif loc.y < current_bounds.min_y then
+		new_loc.y = current_bounds.min_y
+	end
+
+	return loc
 end

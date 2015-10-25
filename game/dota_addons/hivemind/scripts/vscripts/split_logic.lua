@@ -42,7 +42,7 @@ end
 
 
 -- Gets called when a hero uses their split ability. All the work is done here.
-function GameMode:SplitHero(ability)
+function GameMode:SplitHero(ability, callback)
   local caster = ability:GetCaster()
   local player = caster:GetPlayerOwner()
   local facing = caster:GetForwardVector()
@@ -72,20 +72,42 @@ function GameMode:SplitHero(ability)
   end
 
   -- enable split position setting
-  caster:SwapAbilities(ability:GetAbilityName(), "set_spawn_point", false, true)
+  caster:SwapAbilities(ability:GetAbilityName(), "spread_units", false, true)
 
   -- stop us from losing vision (b/c we've just applied modifier_hidden, which removes all vision)
   AddFOWViewer(caster:GetTeam(), caster:GetAbsOrigin(), GameRules:IsDaytime() and caster:GetBaseDayTimeVisionRange() or caster:GetBaseNightTimeVisionRange(), SPLIT_DELAY, true)
 
+  -- count living units
+  local living_units = 0
+  for k,v in pairs(units) do
+    living_units = living_units + 1
+  end
+
+  -- calculate positions to place units at
+  local center = caster:GetAbsOrigin()
+  local radius = 150
+  local points = living_units
+  local start = RandomFloat(0, 2 * math.pi)   -- Randomize the orientation of the circle
+  local positions = {}
+  for k = 1,points do
+    local x = center.x + radius * math.cos(start + 2 * k * math.pi / points)
+    local y = center.y + radius * math.sin(start + 2 * k * math.pi / points)
+    positions[k] = Vector(x, y, 0)
+  end
+
   -- first loop through split units (still hidden)
+  local unitcount = 1
   for unit,info in pairs(units) do
     unit = EntIndexToHScript(tonumber(unit))
     if unit ~= nil then
       -- move near the hero. we have to do this now because if there isn't a delay of at least 1 tick between moving them and revealing them, the player sees them move.
-      FindClearSpaceForUnit(unit, caster:GetAbsOrigin() + RandomVector(200), false)
-      unit:SetForwardVector(facing)
+      FindClearSpaceForUnit(unit, positions[unitcount], false)
+      unit:Stop()
+      unit:SetForwardVector(DirectionFromAToB(center, positions[unitcount]))
 
       unit:AddNewModifier(caster, ability, "modifier_splitting", {duration=SPLIT_DELAY})  -- Do it for the particles
+
+      unitcount = unitcount + 1
     end
   end
 
@@ -114,7 +136,7 @@ function GameMode:SplitHero(ability)
         end
       end
 
-      unit:RemoveModifierByName("modifier_split_move_counter")
+      unit:RemoveModifierByName("modifier_spread_count")
       -- in case we got stuck
       FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), false)
 
@@ -133,12 +155,17 @@ function GameMode:SplitHero(ability)
       location = caster:GetAbsOrigin()
     })
 
-    caster:SwapAbilities(ability:GetAbilityName(), "set_spawn_point", true, false)
+    caster:SwapAbilities(ability:GetAbilityName(), "spread_units", true, false)
+
+    -- use the callback if one was provided
+    if callback then
+      callback(ability)
+    end
   end)
 end
 
 -- Gets called when a split unit uses their unify ability. All the work is done here.
-function GameMode:UnifyHero(ability)
+function GameMode:UnifyHero(ability, callback)
   local caster = ability:GetCaster()
   local player = caster:GetPlayerOwner()
   local hero = player:GetAssignedHero()
@@ -152,6 +179,8 @@ function GameMode:UnifyHero(ability)
     location = caster:GetAbsOrigin()
   }) 
 
+  local particles = {}
+
   -- hide split units
   for unit,info in pairs(units) do
     unit = EntIndexToHScript(tonumber(unit))
@@ -159,7 +188,8 @@ function GameMode:UnifyHero(ability)
       -- particles; CP1 = the place they will be dragged to (the caster's location)
       -- Note, we need to place the particles before hiding, since they will be moved underground when hiding
       local pfx = ParticleManager:CreateParticle("particles/unify.vpcf", PATTACH_ABSORIGIN, unit)
-      ParticleManager:SetParticleControl(pfx, 1, caster:GetAbsOrigin() + Vector(0, 0, 64))
+      ParticleManager:SetParticleControl(pfx, 1, GetGroundPosition(caster:GetAbsOrigin(), caster) + Vector(0, 0, 64))
+      particles[unit] = pfx
 
       unit:Stop()
       unit:AddNewModifier(caster, nil, "modifier_hidden", {})
@@ -208,6 +238,15 @@ function GameMode:UnifyHero(ability)
       units = units,
       location = caster:GetAbsOrigin()
     }) 
+
+    for k,pfx in pairs(particles) do
+      ParticleManager:DestroyParticle(pfx, true)
+    end
+
+    -- use the callback if one was provided
+    if callback then
+      callback()
+    end
   end)
 end
 

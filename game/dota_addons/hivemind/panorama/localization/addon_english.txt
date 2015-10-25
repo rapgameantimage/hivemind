@@ -38,7 +38,8 @@
 	"gameinfo_main_win"								"Be the first to reach 5 kills to win!"
 	"gameinfo_main_tips"							"Tips:"
 	"gameinfo_main_tip1"							"1. You are invulnerable for a moment while transforming. Use that to dodge enemy spells and attacks!"
-	"gameinfo_main_tip2"							"2. Cooldowns, buffs, and debuffs tick down on your hero even while in split form, and vice versa."
+	"gameinfo_main_tip2"							"2. Cooldowns, buffs, and debuffs tick down on your hero even while in split form, and vice versa. Toggle between forms often to use your cooldowns efficiently and avoid problematic debuffs."
+	"gameinfo_main_tip3"							"3. While splitting, you can cast the ability again before your transformation completes to space your units out more. Try this if you're getting shredded by AOE spells, but be careful not to get caught in the trees!"
 	"gameinfo_main_good_luck"						"Good luck!"
 
 	"gameinfo_about_author"							"This mod was created by rap_game_anti_mage. It should be considered a beta. Suggestions? Feedback? Found a bug? Leave a comment in the workshop, or shoot me an email: rapgameantimage@gmail.com."
@@ -69,6 +70,7 @@
 	"pick_tips_npc_dota_hero_enigma"				"Ov is a ranged hero who specializes in controlling his enemies. He summons hidden black holes that spring to life beneath his enemies' feet, and is skilled at manipulating his enemies' position and form. His split form is a cabal of five eidolons that can phase shift and apply a lingering curse."
 	"pick_tips_npc_dota_hero_skeleton_king"			"Daevol is a highly mobile melee hero. He specializes in chasing down enemies with wraithly magic and surprising athleticism, all the while burning away their armor. His split form is a cadre of seven skeletons that can rip off their own bones and use them as projectiles."
 	"pick_tips_npc_dota_hero_tinker"				"Dr. X is a glass-cannon ranged hero. He bombards his enemies with lasers, rockets and electric pulses while using his patented hover-boots to stay out of danger. His split form is a squad of four clockwork goons that can hook to their enemies and release electric discharges."
+	"pick_tips_npc_dota_hero_earth_spirit"			"Kyvall is a hybrid melee hero who uses the power of the earth to summon boulders and earthquakes beneath his enemies while magnetizing his attacks. His split form is a geode of five rocklings that stun nearby enemies when appearing and can throw each other to chase down enemies."
 
 	"tips_header"									"Tips for fighting"
 	"tips_dont_show_again"							"Don't show me this again"
@@ -79,7 +81,7 @@
 
 	"tips_vs_bane_1"								"Mara's orb only affects units that are facing it. Look away as it rises, and make sure not to autoattack!"
 	"tips_vs_bane_2"								"If one of your units avoids the orb, you can interrupt it by stunning or silencing Mara, or save your other units by returning to hero form."
-	"tips_vs_bane_3"								"The phantoms Mara throws only damage you while you're alone. Being near enemies counts as not being alone, so try moving into melee range."
+	"tips_vs_bane_3"								"The phantoms Mara throws only damage you while you're alone. Being near enemies counts as not being alone."
 
 	"tips_vs_phoenix_1"								"Don't underestimate Shamarah's damage over time. Avoid his magma and firewalls!"
 	"tips_vs_phoenix_2"								"Remember, if you get hit by his sticky flame or swoop, you can always avoid the damage over time by switching forms."
@@ -95,11 +97,17 @@
 
 	"tips_vs_tinker_1"								"Dr. X's electric pulse and missiles will damage him if he is too close to the explosions."
 	"tips_vs_tinker_2"								"You can't slow or immobilize Dr. X while he's hovering."
-	"tips_vs_tinker_3"								"All of Dr. X's projectiles can be dodged."
+	"tips_vs_tinker_3"								"All of Dr. X's spells can be dodged."
+
+	"tips_vs_earth_spirit_1"						"Kyvall's rock wave deals more damage when you are at the far end than when you are close up."
+	"tips_vs_earth_spirit_2"						"The rocklings stun and damage nearby units when they appear. Try not to get caught by too many!"
+	"tips_vs_earth_spirit_3"						"When the ground around Kyvall is glowing, he deals extra damage and steals movement and attack speed with each hit."
 
 	"arena_shrink"									"The walls are closing in..."
 
 	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
 
 	"npc_dota_wraith_split_skeleton"                "Skeleton"			// Why won't it read this definition from resource? I'm so confused...
+	"npc_dota_hero_earth_spirit"					"Kyvall"
+	"npc_dota_earth_spirit_split_tiny"				"Rockling"			// WHY? WHY WON'T YOU READ FROM THE RIGHT PLACE?
 }
