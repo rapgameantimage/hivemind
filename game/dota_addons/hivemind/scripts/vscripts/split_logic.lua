@@ -161,7 +161,22 @@ function GameMode:SplitHero(ability, callback)
     if callback then
       callback(ability)
     end
+
+    -- start counting time spent in split form.
+    last_form_change[player] = {form = "split", time = GameRules:GetGameTime()}
   end)
+
+  -- update time spent in hero form. this happens BEFORE the delay above, since the timer acts as a fork.
+  -- putting this at the bottom so that the whole game doesn't break if something goes wrong.
+  if last_form_change[player] then
+    local old_time = hero_time[player]
+    local additional_time = GameRules:GetGameTime() - last_form_change[player].time
+    if not old_time then
+      old_time = 0
+    end
+    hero_time[player] = old_time + additional_time
+    print(player:GetPlayerID() .. " hero time is now " .. hero_time[player])
+  end
 end
 
 -- Gets called when a split unit uses their unify ability. All the work is done here.
@@ -247,7 +262,21 @@ function GameMode:UnifyHero(ability, callback)
     if callback then
       callback()
     end
+
+    -- Start counting time spent in hero form
+    last_form_change[player] = {form = "hero", time = GameRules:GetGameTime()}
   end)
+
+  -- Update time spent in split form
+  if last_form_change[player] then
+    local old_time = split_time[player]
+    local additional_time = GameRules:GetGameTime() - last_form_change[player].time
+    if not old_time then
+      old_time = 0
+    end
+    split_time[player] = old_time + additional_time
+    print(player:GetPlayerID() .. " split time is now " .. split_time[player])
+  end
 end
 
 -- Every hero's unify ability checks this cast filter.

@@ -17,7 +17,7 @@ require('events')
 
 -- External libraries
 require("libraries/vector_target")
--- require("statcollection/init")
+require("statcollection/init")
 
 -- My generalized stuff
 require('helper_functions')
@@ -27,7 +27,7 @@ require('split_unit_definitions')
 require('split_logic')
 require('arena')
 
-HIVEMIND_VERSION = "0.02"
+HIVEMIND_VERSION = "0.03"
 
 MAX_RADIUS_FOR_UNIFY = 800
 SPLIT_DELAY = 0.5
@@ -38,10 +38,13 @@ POST_ROUND_DELAY = 5 -- Also set this in main.js
 
 hover_boots_movement = {}
 
--- statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
-
+-- Variables for stat collection
+statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
 match_count = 0   -- This will be incremented to 1 before anyone plays because Rematch() is always called
 round_times = {}
+hero_time = {}
+split_time = {}
+last_form_change = {}
 
 function GameMode:PostLoadPrecache()
   DebugPrint("[BAREBONES] Performing Post-Load precache")    
@@ -164,6 +167,7 @@ end
 function GameMode:CompleteRound()
   local currentround = GameMode:GetRound()
 
+  -- Note the length of the round
   if currentround then
     if currentround > 0 then
       if round_times[currentround] then
@@ -171,6 +175,11 @@ function GameMode:CompleteRound()
         round_times[currentround].length = round_times[currentround].end_time - round_times[currentround].start_time
       end
     end
+  end
+
+  -- Count this as the end of hero/split form for surviving units
+  for k,hero in pairs(HeroList:GetAllHeroes()) do
+    GameMode:EndFormCounter(hero)
   end
 
   -- See if someone has won
@@ -209,7 +218,12 @@ function GameMode:NewRound()
     CustomNetTables:SetTableValue("gamestate", "round", { newroundnum })
   end
 
+  -- Zero out the times used for tracking round length and time spent in each form
   round_times[newroundnum] = {start_time = GameRules:GetGameTime()}
+  local timestamp = GameRules:GetGameTime()
+  for k,player in pairs(GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})) do
+    last_form_change[player] = timestamp
+  end
 
   -- Cleanup
   GameMode:ClearArena()
@@ -241,11 +255,14 @@ function GameMode:NewRound()
         if ability ~= nil then ability:EndCooldown() end
       end
       hero:RespawnHero(false, false, false) -- wtf do these args do???
+
+      local player = hero:GetPlayerOwner()
+      last_form_change[player] = {form = "hero", time = GameRules:GetGameTime()}
     end)
   end
 
   -- Triggers the "ROUND X" text in main.js
-  Timers:CreateTimer(0.06, function()
+  Timers:CreateTimer(0.03, function()
     CustomGameEventManager:Send_ServerToAllClients("round_started", {round = newroundnum})
   end)
 end
@@ -254,7 +271,7 @@ function GameMode:DeclareWinner(team)
   CustomGameEventManager:Send_ServerToAllClients("match_completed", {winning_team = team})
   CustomNetTables:SetTableValue("gamestate", "winning_team", { tostring(team) })
   CustomNetTables:SetTableValue("gamestate", "status", { "finished" })
-  -- customSchema:submitRound()
+  customSchema:submitRound()
 end
 
 function GameMode:GetScoreForTeam(team)
@@ -364,16 +381,11 @@ end
 
 function GameMode:Rematch()
   -- Set up the rematch
-  --[[
-  for i = 0,PlayerResource:GetPlayerCount() - 1 do
-    local hero = PlayerResource:GetPlayer(i):GetAssignedHero()
-    if hero ~= nil then
-      hero:Destroy()
-    end
-  end
-  ]]
   match_count = match_count + 1
   round_times = {}
+  hero_time = {}
+  split_time = {}
+  last_forM_change = {}
   CustomNetTables:SetTableValue("gamestate", "round", {"0"})
   CustomNetTables:SetTableValue("gamestate", "score", {[tostring(DOTA_TEAM_GOODGUYS)] = "0", [tostring(DOTA_TEAM_BADGUYS)] = "0"})
   GameMode:CompleteRound()		-- Set up the next round as usual. From here, we re-enter the usual round start/end logic.
@@ -443,4 +455,27 @@ function GameMode:BotChangeHero(hero, player)
     PlayerResource:ReplaceHeroWith(player, "npc_dota_hero_" .. hero, 0, 0)
     oldhero:RemoveSelf()
   end)
+end
+
+function GameMode:EndFormCounter(hero)
+  local player = hero:GetPlayerOwner()
+  local change = last_form_change[player]
+  if change then
+    if change.form == "hero" then
+      local old_time = hero_time[player]
+      if not old_time then
+        old_time = 0
+      end
+      hero_time[player] = GameRules:GetGameTime() - change.time + old_time
+      print(player:GetPlayerID() .. " hero time is now " .. hero_time[player])
+    elseif change.form == "split" then
+      local old_time = split_time[player]
+      if not old_time then
+        old_time = 0
+      end
+      split_time[player] = GameRules:GetGameTime() - change.time + old_time
+      print(player:GetPlayerID() .. " split time is now " .. split_time[player])
+    end
+    last_form_change[player] = nil
+  end
 end

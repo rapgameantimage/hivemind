@@ -91,8 +91,11 @@ function BuildPlayersArray()
 
                     -- Example functions of generic stats defined in statcollection/lib/utilities.lua 
                     -- Keep, delete or change any as needed
-                    ph = GetHeroName(playerID), --Hero by its short name
-                    ps = GameMode:GetScoreForTeam(PlayerResource:GetPlayer(playerID):GetTeam()),
+                    ph = GetHeroName(playerID), -- Hero by its short name
+                    ps = GameMode:GetScoreForTeam(PlayerResource:GetPlayer(playerID):GetTeam()),	-- Score
+                    pi = GetItemList(hero),	-- Currently no items but will be eventually
+                    st = split_time[PlayerResource:GetPlayer(playerID)] or 0,		-- The amount of time this player spent in split form
+                    ht = hero_time[PlayerResource:GetPlayer(playerID)] or 0,		-- The amount of time this player spent in hero form
                 })
             end
         end

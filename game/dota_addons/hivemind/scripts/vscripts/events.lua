@@ -74,6 +74,8 @@ function GameMode:OnEntityKilled( keys )
       GameMode:CompleteRound()
     end
 
+    GameMode:EndFormCounter(hero)
+
   -- ignore_split_unit_death is checking to see if this event got triggered by KillCorrespondingSplitUnits, basically.
   elseif killedUnit:GetUnitLabel() == "split_unit" and not CustomNetTables:GetTableValue("gamestate", "ignore_split_unit_death")[tostring(hero:GetEntityIndex())] then
     local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
