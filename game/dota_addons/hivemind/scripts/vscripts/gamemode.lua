@@ -133,8 +133,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
-  hero:RemoveModifierByName("asdf")
+  PrintTable(BuildRoundWinnerArray())
 end
 
 function GameMode:SetKillsToWin(kills)
