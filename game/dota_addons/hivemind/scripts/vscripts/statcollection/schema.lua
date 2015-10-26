@@ -69,9 +69,11 @@ end
 function BuildGameArray()
     local game = {}
     game.m = match_count        -- Match #
-    game.rl = {}                -- Round length
+    game.l = 0                  -- Round length
     for k,v in pairs(round_times) do
-        game.rl[k] = v.length
+        if v.length then
+            game.l = game.l + v.length
+        end
     end
     return game
 end
@@ -93,7 +95,6 @@ function BuildPlayersArray()
                     -- Keep, delete or change any as needed
                     ph = GetHeroName(playerID), -- Hero by its short name
                     ps = GameMode:GetScoreForTeam(PlayerResource:GetPlayer(playerID):GetTeam()),	-- Score
-                    pi = GetItemList(hero),	-- Currently no items but will be eventually
                     st = split_time[PlayerResource:GetPlayer(playerID)] or 0,		-- The amount of time this player spent in split form
                     ht = hero_time[PlayerResource:GetPlayer(playerID)] or 0,		-- The amount of time this player spent in hero form
                 })

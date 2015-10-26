@@ -219,10 +219,6 @@ function GameMode:NewRound()
 
   -- Zero out the times used for tracking round length and time spent in each form
   round_times[newroundnum] = {start_time = GameRules:GetGameTime()}
-  local timestamp = GameRules:GetGameTime()
-  for k,player in pairs(GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})) do
-    last_form_change[player] = timestamp
-  end
 
   -- Cleanup
   GameMode:ClearArena()
@@ -384,7 +380,7 @@ function GameMode:Rematch()
   round_times = {}
   hero_time = {}
   split_time = {}
-  last_forM_change = {}
+  last_form_change = {}
   CustomNetTables:SetTableValue("gamestate", "round", {"0"})
   CustomNetTables:SetTableValue("gamestate", "score", {[tostring(DOTA_TEAM_GOODGUYS)] = "0", [tostring(DOTA_TEAM_BADGUYS)] = "0"})
   GameMode:CompleteRound()		-- Set up the next round as usual. From here, we re-enter the usual round start/end logic.
