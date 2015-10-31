@@ -4,8 +4,7 @@ function customSchema:init()
 
     -- Check the schema_examples folder for different implementations
 
-    -- Flag Example
-    -- statCollection:setFlags({version = GetVersion()})
+    statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
 
     -- Listen for changes in the current state
     ListenToGameEvent('game_rules_state_change', function(keys)
@@ -95,8 +94,8 @@ function BuildPlayersArray()
                     -- Keep, delete or change any as needed
                     ph = GetHeroName(playerID), -- Hero by its short name
                     ps = GameMode:GetScoreForTeam(PlayerResource:GetPlayer(playerID):GetTeam()),	-- Score
-                    st = split_time[PlayerResource:GetPlayer(playerID)] or 0,		-- The amount of time this player spent in split form
-                    ht = hero_time[PlayerResource:GetPlayer(playerID)] or 0,		-- The amount of time this player spent in hero form
+                    st = math.floor(split_time[PlayerResource:GetPlayer(playerID)] or 0),		-- The amount of time this player spent in split form
+                    ht = math.floor(hero_time[PlayerResource:GetPlayer(playerID)] or 0),		-- The amount of time this player spent in hero form
                 })
             end
         end

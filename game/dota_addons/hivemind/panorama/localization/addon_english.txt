@@ -73,6 +73,7 @@
 	"pick_tips_npc_dota_hero_skeleton_king"			"Daevol is a highly mobile melee hero. He specializes in chasing down enemies with wraithly magic and surprising athleticism, all the while burning away their armor. His split form is a cadre of seven skeletons that can rip off their own bones and use them as projectiles."
 	"pick_tips_npc_dota_hero_tinker"				"Dr. X is a glass-cannon ranged hero. He bombards his enemies with lasers, rockets and electric pulses while using his patented hover-boots to stay out of danger. His split form is a squad of four clockwork goons that can hook to their enemies and release electric discharges."
 	"pick_tips_npc_dota_hero_earth_spirit"			"Kyvall is a hybrid melee hero who uses the power of the earth to summon boulders and earthquakes beneath his enemies while magnetizing his attacks. His split form is a geode of five rocklings that stun nearby enemies when appearing and can throw each other to chase down enemies."
+	"pick_tips_npc_dota_hero_omniknight"			"Japhiel is a defensive melee hero who uses the power of prayer to bind and damage enemies while healing himself. His split form is a trinity of highly damaging angels that can smite enemies, make each other invulnerable, and avenge their fallen comrades."
 
 	"tips_header"									"Tips for fighting"
 	"tips_dont_show_again"							"Don't show me this again"
@@ -93,7 +94,7 @@
 	"tips_vs_enigma_2"								"Be careful about taking too many hits from the eidolons - they apply a powerful stacking debuff that stuns and damages you 10 seconds later. Remember, you can avoid debuffs by switching forms!"
 	"tips_vs_enigma_3"								""
 
-	"tips_vs_skeleton_king_1"						"While Daevol is emitting ghostly flames, he applies a stacking debuff that reduces armor. Try not to trade hits!"
+	"tips_vs_skeleton_king_1"						"While Daevol is emitting ghostly flames, he applies a stacking debuff that reduces armor."
 	"tips_vs_skeleton_king_2"						"Daevol's fireball, Daevol's jump, and his skeletons' bone throw can all be dodged, so try to get out of the way!"
 	"tips_vs_skeleton_king_3"						"Don't forget to thank mr skeltal for calcium and good bones."
 
@@ -105,6 +106,10 @@
 	"tips_vs_earth_spirit_2"						"The rocklings stun and damage nearby units when they appear. Try not to get caught by too many!"
 	"tips_vs_earth_spirit_3"						"When the ground around Kyvall is glowing, he deals extra damage and steals movement and attack speed with each hit."
 
+	"tips_vs_omniknight_1"							"If Japhiel's wave hits you 3 times in a row, you will be leashed and silenced."
+	"tips_vs_omniknight_2"							"Japhiel's red projectile deals damage based on how much damage he's taken in the last 5 seconds. Try not to burst him too hard while it's off cooldown."
+	"tips_vs_omniknight_3"							"The last angel can enter a powerful demon form once its friends are dead, but can only do it once."
+
 	"arena_shrink"									"The walls are closing in..."
 
 	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
@@ -112,4 +117,6 @@
 	"npc_dota_wraith_split_skeleton"                "Skeleton"			// Why won't it read this definition from resource? I'm so confused...
 	"npc_dota_hero_earth_spirit"					"Kyvall"
 	"npc_dota_earth_spirit_split_tiny"				"Rockling"			// WHY? WHY WON'T YOU READ FROM THE RIGHT PLACE?
+	"npc_dota_hero_omniknight"						"Japhiel"
+	"npc_dota_omniknight_split_angel"				"Seraph"
 }

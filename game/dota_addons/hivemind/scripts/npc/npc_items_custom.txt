@@ -1,5 +1,34 @@
 "DOTAAbilities"
 {
+	"item_health_potion"
+	{
+		"ID"	"1001"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"BaseClass"			"item_datadriven"
+
+		"ItemInitialCharges"	"1"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges"	"1"
+		"ItemPermanent"			"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"heal_amount"	"250"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"Heal"
+			{
+				"Target"	"Caster"
+				"HealAmount"	"%heal_amount"
+			}
+		}
+	}
   //Shield
   "item_example_item"
   {

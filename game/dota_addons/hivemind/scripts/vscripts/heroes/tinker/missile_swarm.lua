@@ -24,10 +24,9 @@ function missile_swarm:OnSpellStart()
 			iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 			bDeleteOnHit = true,
-			bProvidesVision = true,
-			iVisionRadius = 500,
-			iVisionTeamNumber = caster:GetTeam(),
-			iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,	-- doesn't work
+			--bProvidesVision = true,
+			--iVisionRadius = 500,
+			--iVisionTeamNumber = caster:GetTeam(),
 		})
 		caster:EmitSound("Hero_Tinker.Heat-Seeking_Missile")
 		rocket_count = rocket_count + 1

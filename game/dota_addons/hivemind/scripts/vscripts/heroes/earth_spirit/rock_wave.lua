@@ -22,13 +22,12 @@ function rock_wave:OnSpellStart()
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		bDeleteOnHit = false,
-		bProvidesVision = true,
-		bObstructedVision = true,
-		iVisionRadius = 600,
-		iVisionTeamNumber = caster:GetTeam(),
+		--bProvidesVision = true,
+		--bObstructedVision = true,
+		--iVisionRadius = 600,
+		--iVisionTeamNumber = caster:GetTeam(),
 	})
-	StartSoundEvent("Hero_EarthSpirit.RollingBoulder.Loop", caster)
-	--StartSoundEvent("Hero_EarthSpirit.RollingBoulder.Destroy", caster)
+	--StartSoundEvent("Hero_EarthSpirit.RollingBoulder.Loop", caster)
 end
 
 function rock_wave:OnProjectileHit(target, loc)
@@ -47,7 +46,7 @@ function rock_wave:OnProjectileHit(target, loc)
 	else
 		StopSoundEvent("Hero_EarthSpirit.RollingBoulder.Loop", self:GetCaster())
 		StartSoundEventFromPosition("Hero_EarthSpirit.RollingBoulder.Destroy", loc)
-		AddFOWViewer(self:GetCaster():GetTeam(), loc, 600, 1, true)
+		--AddFOWViewer(self:GetCaster():GetTeam(), loc, 600, 1, true)
 	end
 end
 
@@ -62,7 +61,7 @@ function rock_wave:OnProjectileThink(loc)
 		ParticleManager:SetParticleControl(p2, 1, self.direction)
 		ParticleManager:SetParticleControl(p2, 2, Vector(self.ticks, 0, 0))
 	end
-	CreateModifierThinker(self:GetCaster(), self, "modifier_rock_wave_blocker", {duration = 0.4}, loc, self:GetCaster():GetTeam(), true)
+	--CreateModifierThinker(self:GetCaster(), self, "modifier_rock_wave_blocker", {duration = 0.4}, loc, self:GetCaster():GetTeam(), true)
 	GridNav:DestroyTreesAroundPoint(loc, 64, true)
 end
 

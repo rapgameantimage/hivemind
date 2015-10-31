@@ -1,5 +1,7 @@
 BAREBONES_DEBUG_SPEW = false
 
+HIVEMIND_VERSION = "0.03"
+
 if GameMode == nil then
     DebugPrint( '[BAREBONES] creating barebones game mode' )
     _G.GameMode = class({})
@@ -18,6 +20,7 @@ require('events')
 -- External libraries
 require("libraries/vector_target")
 require("statcollection/init")
+require("libraries/cosmeticlib")
 
 -- My generalized stuff
 require('helper_functions')
@@ -26,8 +29,6 @@ require('helper_functions')
 require('split_unit_definitions')
 require('split_logic')
 require('arena')
-
-HIVEMIND_VERSION = "0.03"
 
 MAX_RADIUS_FOR_UNIFY = 800
 SPLIT_DELAY = 0.5
@@ -39,7 +40,6 @@ POST_ROUND_DELAY = 5 -- Also set this in main.js
 hover_boots_movement = {}
 
 -- Variables for stat collection
-statCollection:setFlags({version = HIVEMIND_VERSION, kills_to_win = KILLS_TO_WIN})
 match_count = 0   -- This will be incremented to 1 before anyone plays because Rematch() is always called
 round_times = {}
 hero_time = {}
@@ -133,7 +133,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  PrintTable(BuildRoundWinnerArray())
+  EmitGlobalSound("announcer_ann_custom_round_01")
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -256,9 +256,18 @@ function GameMode:NewRound()
     end)
   end
 
-  -- Triggers the "ROUND X" text in main.js
   Timers:CreateTimer(0.03, function()
+    -- Triggers the "ROUND X" text in main.js
     CustomGameEventManager:Send_ServerToAllClients("round_started", {round = newroundnum})
+
+    -- Announcer.
+    if newroundnum == KILLS_TO_WIN * 2 - 1 then
+      EmitGlobalSound("announcer_ann_custom_round_final")
+    elseif newroundnum < 10 then
+      EmitGlobalSound("announcer_ann_custom_round_0" .. newroundnum)
+    elseif newroundnum == 10 then
+      EmitGlobalSound("announcer_ann_custom_round_10")
+    end
   end)
 end
 
@@ -266,7 +275,6 @@ function GameMode:DeclareWinner(team)
   CustomGameEventManager:Send_ServerToAllClients("match_completed", {winning_team = team})
   CustomNetTables:SetTableValue("gamestate", "winning_team", { tostring(team) })
   CustomNetTables:SetTableValue("gamestate", "status", { "finished" })
-  customSchema:submitRound()
 end
 
 function GameMode:GetScoreForTeam(team)
@@ -375,6 +383,10 @@ function GameMode:OnPickNewHero(event)
 end
 
 function GameMode:Rematch()
+  if match_count > 0 then
+    -- We now know that this is not the last round, so we can submit it
+    statCollection:submitRound(false)
+  end
   -- Set up the rematch
   match_count = match_count + 1
   round_times = {}
@@ -462,14 +474,12 @@ function GameMode:EndFormCounter(hero)
         old_time = 0
       end
       hero_time[player] = GameRules:GetGameTime() - change.time + old_time
-      print(player:GetPlayerID() .. " hero time is now " .. hero_time[player])
     elseif change.form == "split" then
       local old_time = split_time[player]
       if not old_time then
         old_time = 0
       end
       split_time[player] = GameRules:GetGameTime() - change.time + old_time
-      print(player:GetPlayerID() .. " split time is now " .. split_time[player])
     end
     last_form_change[player] = nil
   end

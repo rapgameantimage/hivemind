@@ -1,7 +1,7 @@
 function UpdateAbilityCooldown() {
 	var ability = $.GetContextPanel().GetAttributeInt("ability_entindex", -1)
 	$.GetContextPanel().SetHasClass("cooldown", !Abilities.IsCooldownReady(ability))
-	$.Schedule(0.03, UpdateAbilityCooldown)
+	$.Schedule(0.25, UpdateAbilityCooldown)
 }
 
 function OnSplitAbilityClicked() {

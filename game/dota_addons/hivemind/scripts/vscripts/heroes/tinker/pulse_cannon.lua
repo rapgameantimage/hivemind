@@ -20,9 +20,9 @@ function pulse_cannon:OnSpellStart()
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		bDeleteOnHit = true,
-		bProvidesVision = true,
-		iVisionRadius = 500,
-		iVisionTeamNumber = caster:GetTeam(),
+		--bProvidesVision = true,
+		--iVisionRadius = 500,
+		--iVisionTeamNumber = caster:GetTeam(),
 	})
 	self.particle = ParticleManager:CreateParticle("particles/heroes/tinker/pulse.vpcf", PATTACH_POINT, caster)
 	caster:EmitSound("Hero_StormSpirit.ElectricVortexCast")

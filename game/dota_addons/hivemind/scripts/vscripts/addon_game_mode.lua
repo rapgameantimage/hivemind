@@ -24,6 +24,8 @@ function Precache( context )
   PrecacheResource("soundfile", "soundevents/game_sounds_custom.vsndevts", context)
   PrecacheResource("model", "models/development/invisiblebox.vmdl", context )
   PrecacheResource("particle", "particles/arena_wall.vpcf", context)
+  PrecacheResource("particle", "particles/nothing.vpcf", context)
+  PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
 
   -- Possible hero cosmetics (some are non-existent but that's ok)
 
@@ -58,6 +60,10 @@ function Precache( context )
   PrecacheResource( "model_folder", "models/heroes/earth_spirit", context )
   PrecacheResource( "model_folder", "models/items/earth_spirit", context )
   PrecacheResource( "particle_folder", "particles/econ/items/earth_spirit", context )
+
+  PrecacheResource( "model_folder", "models/heroes/omniknight", context )
+  PrecacheResource( "model_folder", "models/items/omniknight", context )
+  PrecacheResource( "particle_folder", "particles/econ/items/omniknight", context )
 end
 
 -- Create the game mode when we activate

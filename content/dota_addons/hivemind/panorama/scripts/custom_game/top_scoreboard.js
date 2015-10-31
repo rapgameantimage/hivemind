@@ -81,16 +81,20 @@ function UpdateTopBar() {
 
 	var scores = CustomNetTables.GetTableValue("gamestate", "score")
 	var scoretext = ""
-	if (scores[DOTA_TEAM_GOODGUYS]) {
-		scoretext = scores[DOTA_TEAM_GOODGUYS]
+	if (scores) {
+		if (scores[DOTA_TEAM_GOODGUYS]) {
+			scoretext = scores[DOTA_TEAM_GOODGUYS]
+		} else {
+			scoretext = "0"
+		}
+		scoretext = scoretext + "  -  "
+		if (scores[DOTA_TEAM_BADGUYS]) {
+			scoretext = scoretext + scores[DOTA_TEAM_BADGUYS]
+		} else {
+			scoretext = scoretext + "0"
+		}
 	} else {
-		scoretext = "0"
-	}
-	scoretext = scoretext + "  -  "
-	if (scores[DOTA_TEAM_BADGUYS]) {
-		scoretext = scoretext + scores[DOTA_TEAM_BADGUYS]
-	} else {
-		scoretext = scoretext + "0"
+		scoretext = "0  -  0"
 	}
 	$("#scoretext").text = scoretext
 } 

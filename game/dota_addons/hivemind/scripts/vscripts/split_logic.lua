@@ -175,7 +175,6 @@ function GameMode:SplitHero(ability, callback)
       old_time = 0
     end
     hero_time[player] = old_time + additional_time
-    print(player:GetPlayerID() .. " hero time is now " .. hero_time[player])
   end
 end
 
@@ -275,7 +274,6 @@ function GameMode:UnifyHero(ability, callback)
       old_time = 0
     end
     split_time[player] = old_time + additional_time
-    print(player:GetPlayerID() .. " split time is now " .. split_time[player])
   end
 end
 

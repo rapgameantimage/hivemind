@@ -2393,6 +2393,333 @@
     }
   }
 
+  // MIRANA
+
+  "marked_by_starlight"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/mirana/marked_by_starlight"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "mirana_starfall"
+    "AbilityCooldown" "3"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage"    "80"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "450"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_stacks"  "10"
+      }
+    }
+  }
+
+  // OMNIKNIGHT
+
+  "split_omniknight"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/omniknight/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "omniknight_guardian_angel"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+    }
+  }
+
+  "unify_omniknight"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/omniknight/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "chen_penitence"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
+
+  "smite"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/smite"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "4"
+    "AbilityTextureName"  "luna_lucent_beam_alt2"
+    "AbilityDamage" "65"
+    "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
+    "AbilityCastRange"  "800"
+    "AbilityCastPoint"  "0.3"
+
+    "precache"
+    {
+      "particle"  "particles/econ/items/luna/luna_lucent_ti5_gold/luna_eclipse_impact_notarget_moonfall_gold.vpcf"
+      "particle"  "particles/units/heroes/hero_invoker/invoker_sun_strike_team.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_luna.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "150"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "delay"     "0.8"
+      }
+    }
+  }
+
+  "holy_infusion"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/holy_infusion"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetType" "DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+    "AbilityUnitTargetFlags" "DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+    "AbilityTextureName" "omniknight_repel"
+    "MaxLevel"  "1"
+    "AbilityCastRange"  "800"
+    "AbilityChannelTime"  "5"
+    "AbilityCooldown" "10"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_wisp/wisp_tether.vpcf"
+      "particle"  "particles/items2_fx/radiance_owner.vpcf"
+      "particle"  "particles/items2_fx/radiance.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "dps"       "30"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "250"
+      }
+    }
+  }
+
+  "avenging_angel"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/avenging_angel"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"  "terrorblade_metamorphosis"
+    "MaxLevel"  "1"
+    "AbilityCastPoint"  "0"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_transform.vpcf"
+      "particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis_base_attack.vpcf"
+      "particle"  "particles/units/heroes/hero_terrorblade/terrorblade_metamorphosis.vpcf"
+      "model"     "models/items/terrorblade/endless_purgatory_demon/endless_purgatory_demon.vmdl"
+      "soundfile" "soundevents/voscripts/game_sounds_vo_vengefulspirit.vsndevts"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_terrorblade.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage_bonus"  "200"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "movespeed_bonus" "100"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "5"
+      }
+    }
+  }
+
+  "ablution"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/ablution"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityTextureName"  "omniknight_purification"
+    "MaxLevel"  "1"
+    "AbilityCastPoint"  "0.7"
+    "AbilityManaCost" "120"
+    "AbilityCooldown" "12"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_oracle/oracle_purifyingflames_heal.vpcf"
+      "soundfile" "soundevents/game_sounds_creeps.vsndevts"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "duration"  "8"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "heal_per_second" "30"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "attacks_to_dispel" "3"
+      }
+    }
+  }
+
+  "judgment"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/judgment"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "AbilityTextureName"  "vengefulspirit_wave_of_terror"
+    "MaxLevel"  "1"
+    "AbilityCastPoint"  "0.4"
+    "AbilityCooldown" "3"
+    "AbilityManaCost" "80"
+    "AbilityDamage" "50"
+    "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
+    "AbilityCastRange"  "800"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_vengefulspirit.vsndevts"
+      "particle"  "particles/heroes/omniknight/judgment_shackle.vpcf"
+      "particle"  "particles/heroes/omniknight/judgment_shackle_source.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "shackle_duration"  "4"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "shackle_leash_distance"  "200"
+      }
+    }
+  }
+
+  "wrath"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/wrath"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityTextureName" "leshrac_lightning_storm"
+    "MaxLevel"  "1"
+    "AbilityChannelTime"  "1"
+    "AbilityManaCost" "250"
+    "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
+    "AbilityCooldown" "15"
+    "AbilityCastRange"  "700"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
+      "particle"  "particles/heroes/omniknight/wrath_cloud.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "lightning_strikes" "20"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage_per_strike" "20"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "storm_radius"  "250"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "damage_radius" "128"
+      }
+    }
+  }
+
+  "retribution"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/omniknight/retribution"
+    "AbilityBehavior"        "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+    "AbilityUnitTargetTeam"      "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"      "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+    "AbilityUnitDamageType"      "DAMAGE_TYPE_MAGICAL"
+    "AbilityCooldown" "16"
+    "AbilityManaCost" "250"
+    "AbilityCastPoint"  "0.4"
+    "AbilityCastRange"  "600"
+    "MaxLevel"    "1"
+    "AbilityTextureName"  "omniknight_degen_aura"
+
+    "precache"
+    {
+      "particle"  "particles/heroes/omniknight/retribution.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_oracle.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "percent_returned"  "100"
+      }
+    }
+  }
+
   // MISC
 
   "set_spawn_point"

@@ -249,4 +249,64 @@
     "VisionDaytimeRange"    "1800"
     "VisionNighttimeRange"  "1200"
   }
+
+  "npc_dota_hero_hivemind_mirana"
+  {
+    "AbilityLayout" "5"
+    "override_hero" "npc_dota_hero_mirana"
+    "Ability1"        ""
+    "Ability2"        "marked_by_starlight" 
+    "Ability3"        "" 
+    "Ability4"        ""
+    "Ability5"        ""
+    "Ability6"        ""
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       "spread_units"
+
+    "StatusHealth"      "900"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "1000"
+    "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+  }
+
+  "npc_dota_hero_hivemind_omniknight"
+  {
+    "AbilityLayout" "5"
+    "override_hero" "npc_dota_hero_omniknight"
+    "Ability1"      "split_omniknight"
+    "Ability2"        "ablution" 
+    "Ability3"        "judgment" 
+    "Ability4"        "wrath"
+    "Ability5"        "retribution"
+    "Ability6"        ""
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       "spread_units"
+
+    "StatusHealth"      "1000"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "1000"
+    "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+  }
 }

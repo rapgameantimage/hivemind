@@ -33,6 +33,10 @@ function GameMode:OnEntityKilled( keys )
 
   -- Treat this death differently depending on what kind of unit it is
   if killedUnit:IsHero() and GameMode:IsGameplay() then
+
+    -- Kill the corresponding split units
+    GameMode:KillCorrespondingSplitUnits(killedUnit)
+
     -- See if this player has allies with living heroes
     local killed_unit_team = killedUnit:GetTeam()
     local found_living_allied_hero = false
@@ -55,9 +59,6 @@ function GameMode:OnEntityKilled( keys )
    	  enemy_score = enemy_score + 1
    	  score_table[tostring(enemy_team)] = tostring(enemy_score)
     	CustomNetTables:SetTableValue("gamestate", "score", score_table)
-
-      -- Kill the corresponding split units
-      GameMode:KillCorrespondingSplitUnits(killedUnit)
 
       -- Add the victory modifier to victorious units
       local enemy_players = GetPlayersOnTeam(enemy_team)
@@ -166,6 +167,7 @@ end
 
 -- a player clicked no on rematch :(
 function GameMode:OnRematchNo(keys)
+  statCollection:submitRound(true)
   CustomGameEventManager:Send_ServerToAllClients("rematch_declined", {})
   local winning_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
   print("making team " .. winning_team .. " win")

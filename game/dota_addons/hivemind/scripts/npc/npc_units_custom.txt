@@ -44,6 +44,7 @@
   {
     "BaseClass"        "npc_dota_creature"
     "Model"             "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.vmdl"
+    "GameSoundsFile"    "soundevents/game_sounds_creeps.vsndevts"
     "ModelScale"        "0.9"
     "SoundSet"          "n_creep_ghost"
     "Level"             "1"
@@ -285,6 +286,7 @@
     "Model"             "models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
     "ModelScale"        "1"
     "SoundSet"          "n_creep_Skeleton"
+    "GameSoundsFile"    "soundevents/game_sounds_creeps.vsndevts"
     "Level"             "1"
     "UnitLabel"         "split_unit"
 
@@ -322,6 +324,7 @@
     "Model"             "models/heroes/rattletrap/rattletrap.vmdl"
     "ModelScale"        "1"
     "SoundSet"          "Hero_Clockwerk"
+    "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
     "Level"             "1"
     "UnitLabel"         "split_unit"
 
@@ -409,6 +412,60 @@
             "Wearable3" { "ItemDef"  "495" }
             "Wearable4" { "ItemDef"  "496" }
             "Wearable5" { "ItemDef"  "516" }
+        }
+    }
+  }
+
+ "npc_dota_omniknight_split_angel"
+  {
+    "BaseClass"        "npc_dota_creature"
+    "Model"             "models/heroes/skywrath_mage/skywrath_mage.vmdl"
+    "ModelScale"        "0.8"
+    "SoundSet"          "Hero_SkywrathMage"
+    "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
+    "Level"             "1"
+    "UnitLabel"         "split_unit"
+
+    "AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackRange"       "500"
+    "AttackDamageMin"   "30"
+    "AttackDamageMax"   "32"
+    "AttackRate"        "1.2"
+    "AttackAnimationPoint"  "0.33"
+    "AttackAcquisitionRange"    "800"
+    "ProjectileModel"   "particles/units/heroes/hero_skywrath_mage/skywrath_mage_base_attack.vpcf"
+    "ProjectileSpeed"   "800"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "345" 
+    "MovementTurnRate"      "0.8" 
+    "FollowRange"       "250"
+
+    "ArmorPhysical"     "1"
+    "MagicalResistance" "0"
+    "StatusHealth"      "450"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "0"
+    "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
+    "Ability1"      "unify_omniknight"
+    "Ability2"      "smite"
+    "Ability3"      "holy_infusion"
+    "Ability4"      "avenging_angel"
+
+    "Creature"
+    {
+        "AttachWearables"
+        {
+            "Wearable1" { "ItemDef"  "8931" }
+            "Wearable2" { "ItemDef"  "8932" }
+            "Wearable3" { "ItemDef"  "8933" }
+            "Wearable4" { "ItemDef"  "8934" }
+            "Wearable5" { "ItemDef"  "8936" }
+            "Wearable6" { "ItemDef"  "8937" }
         }
     }
   }

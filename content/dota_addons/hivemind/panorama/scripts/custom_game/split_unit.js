@@ -19,7 +19,7 @@ function UpdateHealthBar() {
 	if (fill_bar != null) {
 		fill_bar.style.width = pct.toString() + "%"
 	}
-	$.Schedule(0.03, UpdateHealthBar)
+	$.Schedule(0.25, UpdateHealthBar)
 }
 
 (function()
