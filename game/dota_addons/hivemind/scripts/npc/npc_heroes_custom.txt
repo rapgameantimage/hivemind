@@ -308,5 +308,9 @@
 
     "VisionDaytimeRange"    "1800"
     "VisionNighttimeRange"  "1200"
+
+    "ArmorPhysical"     "1.5"
+    "AttackDamageMin"   "26"
+    "AttackDamageMax"    "36"
   }
 }

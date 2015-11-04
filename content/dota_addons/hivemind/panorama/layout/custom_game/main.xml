@@ -26,6 +26,10 @@
 		<Panel id="pick-wrapper" hittest="false">
 			<Panel id="pick" class="dialog" />
 		</Panel>
+		<Panel id="pick-status" class="dialog">
+			<Label text="#pick_status" id="pick-status-header" />
+			<Panel id="pick-status-body" />
+		</Panel>
 		<Panel id="tips" class="dialog hidden">
 			<Label id="tips-header" text="#lorem_ipsum" />
 			<Panel id="tips-contents">

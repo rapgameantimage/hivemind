@@ -7,7 +7,7 @@
 .unit {
 	margin: 10px 20px;
 	background-color: black;
-	height: 70px;
+	height: 65px;
 	width: 120px;
 	box-shadow: fill #000000 0px 0px 10px 0px;
 	background-position: left center;
@@ -30,6 +30,7 @@
 	font-size: 30px;
 	padding-bottom: 3px;
 	padding-left: 5px;
+	text-shadow: 2px 2px 2px 3 #000000;
 }
 
 .health_bar {

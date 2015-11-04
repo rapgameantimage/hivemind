@@ -6,7 +6,7 @@
 	width: 100%;
 	height: 200px;
 	horizontal-align: center;
-	margin-top: 150px;
+	margin-top: 80px;
 }
 #alert Label {
 	text-align: center;
@@ -92,7 +92,7 @@
 	flow-children: down;
 	horizontal-align: center;
 	vertical-align: top;
-	margin-top: 100px;
+	margin-top: 43px;
 }
 #pick-header {
 	width: 100%;
@@ -100,6 +100,7 @@
 #pick-header Label {
 	font-size: 30px;
 	height: 45px;
+	margin: 2px;
 }
 .pick-row {
 	flow-children: right;
@@ -113,15 +114,15 @@
 }
 .pick-hero DOTAHeroImage,
 .pick-hero Image {
-	width: 128px;
-	height: 72px;
+	width: 96px;
+	height: 54px;
 }
-.pick-hero.enabled:hover,
-.picked {
+#pick .pick-hero.enabled:hover,
+#pick .picked {
 	opacity: 1;
 }
-.pick-hero.enabled:active,
-.picked {
+#pick .pick-hero.enabled:active,
+#pick .picked {
 	box-shadow: inset 3px 3px 5px 6px #000000;
 }
 .pick-hero.unpicked.enabled:hover {
@@ -175,7 +176,7 @@
 }
 #pick-board-lower {
 	border-top: 1px solid #999999;
-	width: 700px;
+	width: 600px;
 	margin-top: 20px;
 	flow-children: down;
 	padding-top: 10px;
@@ -201,8 +202,8 @@
 	flow-children: right;
 }
 .ability-showcase DOTAAbilityImage {
-	width: 65px;
-	height: 65px;
+	width: 45px;
+	height: 45px;
 	margin-right: 10px;
 	border: 2px solid gray;
 	box-shadow: 0px 0px 3px 3px black;
@@ -318,4 +319,61 @@
 	margin: 0;
 	font-size: 35px;
 	vertical-align: center;
+}
+
+#pick-status {
+	width: 275px;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 43px;
+	padding: 3px;
+	flow-children: down;
+}
+#pick-status Label {
+	font-size: 24px;
+	text-align: left;
+}
+#pick-status Label#pick-status-header {
+	text-decoration: underline;
+	text-align: center;
+}
+#pick-status .pick-status-player {
+	width: 100%;
+	flow-children: right;
+}
+#pick-status .pick-status-player .playername {
+	width: 90%;
+}
+#pick-status .pick-status-player Label {
+	margin: 3px;
+	font-size: 20px;
+	height: 30px;
+}
+#pick-status .check {
+	color: #16e000;
+	horizontal-align: right;
+	visibility: collapse;
+}
+#pick-status .pick-status-player.picked .check {
+	visibility: visible;
+}
+#pick-status .pick-status-player.picked .playername {
+	color: #16e000;
+}
+#pick-status-body {
+	flow-children: down;
+	width: 100%;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.endscreen {
+	width: 700px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 50px;
+}
+.endscreen Label {
+	font-size: 30px;
 }

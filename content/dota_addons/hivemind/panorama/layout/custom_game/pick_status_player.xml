@@ -1,0 +1,10 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/dotastyles.css" />
+		<include src="file://{resources}/styles/custom_game/main.css" />
+	</styles>
+	<Panel class="pick-status-player">
+		<Label text="#lorem_ipsum" class="playername" />
+		<Label text="✓" class="check" />
+	</Panel>
+</root>

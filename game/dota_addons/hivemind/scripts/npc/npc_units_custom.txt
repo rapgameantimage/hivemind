@@ -11,6 +11,7 @@
     "SoundSet"			"Lycan_Wolf"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackRange"		"128"
@@ -49,6 +50,7 @@
     "SoundSet"          "n_creep_ghost"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
     "AttackRange"       "500"
@@ -110,6 +112,7 @@
     "SoundSet"          "Hero_Invoker"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
     "AttackRange"       "500"
@@ -158,6 +161,7 @@
     "SoundSet"          "Hero_Enigma"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
     "AttackRange"       "400"
@@ -289,6 +293,7 @@
     "GameSoundsFile"    "soundevents/game_sounds_creeps.vsndevts"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackRange"       "128"
@@ -327,6 +332,7 @@
     "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_rattletrap.vsndevts"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackRange"       "128"
@@ -375,6 +381,7 @@
     "SoundSet"          "Hero_Tiny"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackRange"       "128"
@@ -425,6 +432,7 @@
     "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts"
     "Level"             "1"
     "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
 
     "AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
     "AttackRange"       "500"

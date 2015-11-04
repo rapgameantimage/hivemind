@@ -21,6 +21,7 @@
 	"yes"											"Yes"
 	"no"											"No"
 	"close"											"Close"
+	"disconnect"									"Disconnect"
 
 	"wins"											"wins!"
 	"win"											"win!"
@@ -53,8 +54,11 @@
 	"gameinfo_attributions"							"Attributions:"
 	"gameinfo_attributions1"						"Nightmare Orb ambient sound: (c) 2012 Erdie, freesound.org, some changes made."
 
+	"endscreen_text"								"Thanks for playing Hivemind! If you enjoyed the game, please remember to like and favorite it and tell your friends. If you have any feedback, I'd love to hear it – just leave a workshop comment."
+
 	"pick_header_text"								"Choose your hero:"
 	"pick_header_waiting_for_opponent"				"Waiting for other players..."
+	"pick_status"									"Players Picking"
 
 	"hero_form"										"Hero Form"
 	"split_form"									"Split Form"
@@ -63,6 +67,14 @@
 
 	"pick"											"Pick"
 	"random"										"Random"
+
+	"will_spawn"									"is about to spawn!"
+	"has_spawned"									"has spawned!"
+
+
+
+
+
 
 	"pick_tips_nohero"								"Click a hero to learn more."
 	"pick_tips_random"								"Roll the dice on a random hero! (There is no bonus for doing so, but it proves that you are hardcore.)"
@@ -119,4 +131,10 @@
 	"npc_dota_earth_spirit_split_tiny"				"Rockling"			// WHY? WHY WON'T YOU READ FROM THE RIGHT PLACE?
 	"npc_dota_hero_omniknight"						"Japhiel"
 	"npc_dota_omniknight_split_angel"				"Seraph"
+
+	"DOTA_Tooltip_ability_item_health_potion"                                         "Health Potion"
+	"DOTA_Tooltip_ability_item_mana_potion"                                           "Mana Potion"
+	"DOTA_Tooltip_ability_item_bkb_fragment"                                          "Black King Bar Fragment"
+	"DOTA_Tooltip_ability_item_enchanted_skull"                                       "Enchanted Skull"
+	"DOTA_Tooltip_ability_item_blink_shard"                                           "Blink Shard"
 }

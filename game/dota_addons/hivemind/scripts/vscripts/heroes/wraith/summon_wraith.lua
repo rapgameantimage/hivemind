@@ -80,7 +80,7 @@ function modifier_wraith:DeclareFunctions()
 end
 
 function modifier_wraith:OnAttackLanded(info)
-	if info.attacker == self:GetParent() then
+	if info.attacker == self:GetParent() and not info.target:IsMagicImmune() then
 		self.attacks_landed = self.attacks_landed + 1
 		info.target:AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_wraith_debuff", {duration = self:GetAbility():GetSpecialValueFor("debuff_duration")})
 		if self.attacks_landed >= self:GetAbility():GetSpecialValueFor("wraith_max_hits") then

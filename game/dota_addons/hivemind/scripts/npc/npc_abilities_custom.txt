@@ -691,7 +691,7 @@
       "01"
       {
         "var_type"  "FIELD_FLOAT"
-        "duration"  "8"
+        "duration"  "9"
       }
       "02"
       {
@@ -2662,6 +2662,7 @@
       "soundfile" "soundevents/game_sounds_heroes/game_sounds_leshrac.vsndevts"
       "soundfile" "soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
       "particle"  "particles/heroes/omniknight/wrath_cloud.vpcf"
+      "particle"  "particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_kf_formation_circglow.vpcf"
     }
 
     "AbilitySpecial"

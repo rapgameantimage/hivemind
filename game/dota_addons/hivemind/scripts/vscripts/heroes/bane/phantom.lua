@@ -78,7 +78,7 @@ end
 function modifier_phantom:OnIntervalThink()
 	-- If we don't have a target, try to find one
 	if self.target == nil then
-		local units = FindUnitsInRadius(self.team, self.parent:GetAbsOrigin(), nil, 128, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, 0, 0, false)
+		local units = FindUnitsInRadius(self.team, self.parent:GetAbsOrigin(), nil, 128, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, 0, false)
 		if units ~= nil and next(units) ~= nil then
 			self.target = table.remove(units)
 			self.target_team = self.target:GetTeam()

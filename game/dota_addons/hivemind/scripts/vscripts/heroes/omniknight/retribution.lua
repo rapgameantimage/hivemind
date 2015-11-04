@@ -2,6 +2,9 @@ retribution = class({})
 
 function retribution:CastFilterResultTarget(target)
 	if not IsServer() then return end
+	if target:IsMagicImmune() then
+		return UF_FAIL_MAGIC_IMMUNE_ENEMY
+	end
 	local recent_damage = self:GetCaster():FindModifierByName("modifier_retribution_passive").recent_damage
 	if recent_damage then
 		if recent_damage > 0 then

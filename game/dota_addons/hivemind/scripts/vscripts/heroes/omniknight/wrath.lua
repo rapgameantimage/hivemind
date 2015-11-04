@@ -2,6 +2,10 @@ wrath = class({})
 
 function wrath:OnSpellStart()
 	self.channel_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+	self.location_pfx = ParticleManager:CreateParticle("particles/econ/items/disruptor/disruptor_resistive_pinfold/disruptor_kf_formation_circglow.vpcf", PATTACH_WORLDORIGIN, self:GetCaster())
+	ParticleManager:SetParticleControl(self.location_pfx, 0, self:GetCursorPosition())
+	ParticleManager:SetParticleControl(self.location_pfx, 1, Vector(self:GetSpecialValueFor("storm_radius"), 0, 0))
+	ParticleManager:SetParticleControl(self.location_pfx, 2, Vector(2, 0, 0))
 	self.last_particle = GameRules:GetGameTime()
 	self:GetCaster():EmitSound("Hero_Zuus.StaticField")
 end
@@ -16,7 +20,9 @@ function wrath:OnChannelFinish(interrupted)
 	if not interrupted then
 		local strikes = self:GetSpecialValueFor("lightning_strikes")
 		local interval = 0.15
-		CreateModifierThinker(self:GetCaster(), self, "modifier_wrath_thinker", {strikes = strikes, duration = strikes * interval, interval = interval}, self:GetCursorPosition(), self:GetCaster():GetTeam(), false)
+		CreateModifierThinker(self:GetCaster(), self, "modifier_wrath_thinker", {strikes = strikes, duration = strikes * interval, interval = interval, location_particle = self.location_pfx}, self:GetCursorPosition(), self:GetCaster():GetTeam(), false)
+	else
+		ParticleManager:DestroyParticle(self.location_pfx, false)
 	end
 	ParticleManager:DestroyParticle(self.channel_pfx, false)
 end
@@ -44,6 +50,7 @@ modifier_wrath_thinker = class({})
 
 function modifier_wrath_thinker:OnCreated(info)
 	if not IsServer() then return end
+	self.location_particle = info.location_particle
 	self.interval = info.interval
 	self.strikes = info.strikes
 	self.ability = self:GetAbility()
@@ -76,4 +83,5 @@ end
 function modifier_wrath_thinker:OnDestroy()
 	if not IsServer() then return end
 	ParticleManager:DestroyParticle(self.cloud, false)
+	ParticleManager:DestroyParticle(self.location_particle, false)
 end

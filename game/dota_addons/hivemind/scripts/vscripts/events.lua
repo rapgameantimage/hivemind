@@ -85,10 +85,13 @@ function GameMode:OnEntityKilled( keys )
       local found_living_split_unit = false
       for index,info in pairs(units) do
         if tonumber(index) == keys.entindex_killed then
-          units[index] = nil
+          info.dead = "1"
+          units[index] = info
           CustomNetTables:SetTableValue("split_units", tostring(hero:GetEntityIndex()), units)
         elseif EntIndexToHScript(tonumber(index)) ~= nil then
-          found_living_split_unit = true
+          if EntIndexToHScript(tonumber(index)):IsAlive() then
+            found_living_split_unit = true
+          end
         end
       end
       if not found_living_split_unit then
@@ -169,10 +172,12 @@ end
 function GameMode:OnRematchNo(keys)
   statCollection:submitRound(true)
   CustomGameEventManager:Send_ServerToAllClients("rematch_declined", {})
-  local winning_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
-  print("making team " .. winning_team .. " win")
-  GameRules:SetCustomVictoryMessage("#game_over")
-  GameRules:SetGameWinner(winning_team)
+  Timers:CreateTimer(3, function()
+    local winning_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
+    print("making team " .. winning_team .. " win")
+    GameRules:SetCustomVictoryMessage("#game_over")
+    GameRules:SetGameWinner(winning_team)
+  end)
 end
 
 -- The overall game state has changed
@@ -259,7 +264,6 @@ function GameMode:OnItemPickedUp(keys)
   DebugPrint( '[BAREBONES] OnItemPickedUp' )
   DebugPrintTable(keys)
 
-  local heroEntity = EntIndexToHScript(keys.HeroEntityIndex)
   local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local itemname = keys.itemname

@@ -3,8 +3,12 @@
 	"item_health_potion"
 	{
 		"ID"	"1001"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"BaseClass"			"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"			"item_lua"
+		"ScriptFile"		"items/health_potion"
+		"AbilityTextureName"	"item_flask"
+		"Model"				"models/props_gameplay/salve.vmdl"
+		"Effect" 			"particles/generic_gameplay/dropped_item.vpcf"
 
 		"ItemInitialCharges"	"1"
 		"ItemRequiresCharges"	"1"
@@ -19,145 +23,90 @@
 				"heal_amount"	"250"
 			}
 		}
+	}
 
-		"OnSpellStart"
+	"item_mana_potion"
+	{
+		"ID"	"1002"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"	"item_lua"
+		"AbilityTextureName"	"item_clarity"
+		"ScriptFile"	"items/mana_potion"
+		"Model"				"models/props_gameplay/clarity.vmdl"
+		"Effect" 			"particles/generic_gameplay/dropped_item.vpcf"
+		
+		"ItemInitialCharges"	"1"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges"	"1"
+		"ItemPermanent"			"0"
+
+		"AbilitySpecial"
 		{
-			"Heal"
+			"01"
 			{
-				"Target"	"Caster"
-				"HealAmount"	"%heal_amount"
+				"var_type"	"FIELD_INTEGER"
+				"mana_amount"	"400"
 			}
 		}
 	}
-  //Shield
-  "item_example_item"
-  {
-    "ID"              "1836"
-    "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitTargetTeam"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
-    "AbilityUnitTargetType"     "DOTA_UNIT_TARGET_HERO"
-    "BaseClass"           "item_datadriven"
-    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
-    "AbilityTextureName"      "item_example_item"
 
-    // Stats
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityCastRange"        "900"
-    "AbilityCastPoint"        "0.2"
-    "AbilityCooldown"       "13.0"
+	"item_bkb_fragment"
+	{
+		"ID"	"1003"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"items/bkb_fragment"
+		"AbilityTextureName"	"item_bkb_fragment"
 
-    // Item Info
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilityManaCost"       "100"
-    "ItemCost"            "750"
-    "ItemInitialCharges"      "0"
-    "ItemDroppable"         "1"
-    "ItemSellable"          "1"
-    "ItemRequiresCharges"     "0"
-    "ItemShareability"        "ITEM_NOT_SHAREABLE"
-    "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
-    
-    "MaxUpgradeLevel"       "1"
-    "ItemBaseLevel"         "1"
-    
-    "precache"
-    {
-      "particle"              "particles/frostivus_herofx/queen_shadow_strike_linear_parent.vpcf"
-      "particle_folder"       "particles/test_particle"
-      "soundfile"             "soundevents/game_sounds_heroes/game_sounds_abaddon.vsndevts"
-    }
-    "OnSpellStart"
-    {
-      "LinearProjectile"
-      {
-        "EffectName"      "particles/frostivus_herofx/queen_shadow_strike_linear_parent.vpcf"
-        "MoveSpeed"       "%speed"
-        //"StartPosition"   "attach_attack1"
-        "FixedDistance"   "%distance"
-        "StartRadius"     "%radius"
-        "EndRadius"       "%radius"
-        "TargetTeams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "TargetTypes"     "DOTA_UNIT_TARGET_HERO"
-        "TargetFlags"     "DOTA_UNIT_TARGET_FLAG_NONE"
-        "HasFrontalCone"    "0"
-        "ProvidesVision"    "0"
-        "VisionRadius"      "0"
-      }
-      "FireSound"
-      {
-        "EffectName"    "Hero_Abaddon.AphoticShield.Cast"
-        "Target"        "CASTER"
-      }
-      "ApplyModifier"
-      {
-        "Target"      "CASTER"
-        "ModifierName"  "modifier_item_shield"
-      }
-    }
-    
-    "OnProjectileHitUnit"
-    {     
-      "DeleteOnHit" "0"
-      "Damage"
-      {
-        "Target"      "TARGET"
-        "Type"    "DAMAGE_TYPE_PURE"
-        "Damage"  "%damage"
-      }
-    }
-    
-    "Modifiers"
-    {
-      "modifier_item_shield"
-      {
-        "EffectName"    "particles/test_particle/damage_immunity.vpcf"
-        "EffectAttachType"  "follow_origin"
-        "Target"      "CASTER"
-        
-        "Duration" "%duration"
-        "TextureName" "abaddon_aphotic_shield"
-        "Properties"
-        {
-          "MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"    "%damage_reduction"
-        }
-      }
-    }
-    
-    // Special  
-    //-------------------------------------------------------------------------------------------------------------
-    "AbilitySpecial"
-    {
-      "01"
-      {
-        "var_type"        "FIELD_FLOAT"
-        "duration"        "4.0"
-      }
-      
-      "02"
-      {
-        "var_type"        "FIELD_INTEGER"
-        "damage_reduction"    "-50"
-      }
-      "03"
-      {
-        "var_type"        "FIELD_INTEGER"
-        "radius"          "150"
-      }
-      "04"
-      {
-        "var_type"        "FIELD_INTEGER"
-        "speed"           "1800"
-      }
-      "05"
-      {
-        "var_type"        "FIELD_FLOAT"
-        "distance"        "900"
-      }
-      "06"
-      {
-        "var_type"        "FIELD_INTEGER"
-        "damage"          "125"
-      }
-    }
-  }
+		"ItemInitialCharges"	"1"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges"	"1"
+		"ItemPermanent"			"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"4"
+			}
+		}
+	}
+
+	"item_enchanted_skull"
+	{
+		"ID"	"1004"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"items/enchanted_skull"
+		"AbilityTextureName"	"item_enchanted_skull"
+
+		"ItemInitialCharges"	"1"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges"	"1"
+		"ItemPermanent"			"0"
+	}
+
+	"item_blink_shard"
+	{
+		"ID"	"1005"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"items/blink_shard"
+		"AbilityTextureName"	"item_blink_shard"
+
+		"ItemInitialCharges"	"1"
+		"ItemRequiresCharges"	"1"
+		"ItemDisplayCharges"	"1"
+		"ItemPermanent"			"0"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"blink_range"	"1200"
+			}
+		}
+	}
 }

@@ -48,7 +48,17 @@ end
 
 function BuildRoundWinnerArray()
     local winners = {}
-    local current_winner_team = tonumber(CustomNetTables:GetTableValue("gamestate", "winning_team")["1"])
+    local current_winner_team
+    local val = CustomNetTables:GetTableValue("gamestate", "winning_team")
+    if val then
+        if val["1"] then
+            current_winner_team = tonumber(val["1"])
+        else
+            current_winner_team = DOTA_TEAM_NOTEAM
+        end
+    else
+        current_winner_team = DOTA_TEAM_NOTEAM
+    end
     for playerID = 0, DOTA_MAX_PLAYERS do
         if PlayerResource:IsValidPlayerID(playerID) then
             if not PlayerResource:IsBroadcaster(playerID) then

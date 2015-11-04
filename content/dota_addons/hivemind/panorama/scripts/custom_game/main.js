@@ -9,30 +9,17 @@ var nextround
 
 var dont_show_tips_for = []
 
-function CheckGamestate(table, key, value) {
-	value = value["1"]
-	if (key == "status") {
-		if (value == "between_rounds") {
-			RoundCountdown()
-		} else if (value == "gameplay") {
-			NewRound(CustomNetTables.GetTableValue("gamestate", "round")["1"])
-		} else if (value == "finished") {
-			$.Schedule(END_GAME_DELAY, EndGame)
-		}
-	} else if (key == "round") {
-		round = value
-	}
-}
-
 function OnRoundStarted(event) { 
 	var num = CustomNetTables.GetTableValue("gamestate", "round")["1"]
-	$("#pick").style.visibility = "collapse"		// just in case
+	$("#pick").style.visibility = "collapse"
+	$("#pick-status").style.visibility = "collapse"
 	SetAlert(5, $.Localize("#round") + " " + num)
 }
 
 function OnRoundCompleted(event) {
 	$.Msg("OnRoundCompleted")
-	$("#pick").style.visibility = "collapse"		// just in case
+	$("#pick").style.visibility = "collapse"
+	$("#pick-status").style.visibility = "collapse"
 	round = CustomNetTables.GetTableValue("gamestate", "round")["1"]
 	nextround = parseInt(round + 1)
 	next_countdown = POST_ROUND_DELAY
@@ -71,7 +58,7 @@ function OnRematchAccepted() {
 	$("#gameover").style.visibility = "collapse"
 	
 	CreatePickBoard()
-	$("#pick").style.visibility = "visible"
+	$("#pick").style.visibility = "visible" 
 }
 
 function SetAlert(time, message) {
@@ -111,11 +98,26 @@ function OnRematchDeclined() {
 		$("#gameover").style.visibility = "collapse"
 	})
 }
-
+ 
 function CreatePickBoard() {
 	$("#pick-wrapper").Children(0).RemoveAndDeleteChildren
 	$.CreatePanel("Panel", $("#pick-wrapper"), "pick")
 	$("#pick").BLoadLayout("file://{resources}/layout/custom_game/pick_board.xml", false, false)
+
+	$("#pick-status-body").RemoveAndDeleteChildren()
+	var teams = [DOTATeam_t.DOTA_TEAM_GOODGUYS, DOTATeam_t.DOTA_TEAM_BADGUYS]
+	for (var i in teams) {
+		var players = Game.GetPlayerIDsOnTeam(teams[i])
+		for (var j in players) { 
+			var player = players[j]
+			var panel = $.CreatePanel("Panel", $("#pick-status-body"), "pick-status-player-" + player)
+			panel.SetAttributeInt("player", player)
+			panel.BLoadLayout("file://{resources}/layout/custom_game/pick_status_player.xml", false, false)
+			panel.GetChild(0).text = Players.GetPlayerName(player)
+			$.Msg(Players.GetPlayerName(player))
+		}
+	}
+	$("#pick-status").style.visibility = "visible"
 }
 
 function OnMatchStarted() {
@@ -212,13 +214,42 @@ function OnSplitHeroFinished() {
 	var units = CustomNetTables.GetTableValue("split_units", Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()).toString())
 	var first = true
 	for (var unit in units) {
-		$.Msg(unit)
 		unit = parseInt(unit)
 		GameUI.SelectUnit(unit, !first)
 		first = false
 	}
 }
+  
+function OnItemWillSpawn(event) {
+	SetAlert(3, PrefixSingularArticle($.Localize("DOTA_Tooltip_ability_" + event.item)) + " " + $.Localize("#will_spawn"))
+}
 
+function OnItemHasSpawned(event) {
+	SetAlert(3, PrefixSingularArticle($.Localize("DOTA_Tooltip_ability_" + event.item)) + " " + $.Localize("#has_spawned"))
+}
+
+function PrefixSingularArticle(thing) {
+	if ("aeiou".indexOf(thing.charAt(0)) != -1) {
+		return "An " + thing
+	} else {
+		return "A " + thing 
+	}
+}
+
+function OnGamestateChange(table, key, value) {
+	if (key === "new_hero_picks") {
+		$.Each(value, function(hero, player) {
+			var panels = $("#pick-status-body").Children()
+			for (var i in panels) {
+				var panel = panels[i]
+				if (panel.GetAttributeInt("player", -1) == player) {
+					panel.SetHasClass("picked", true)
+				}
+			}
+		})
+	}
+}
+ 
 (function()
 {
 	CreatePickBoard()
@@ -232,4 +263,7 @@ function OnSplitHeroFinished() {
 	GameEvents.Subscribe("entity_killed", OnEntityKilled)
 	GameEvents.Subscribe("arena_shrink", OnArenaShrink)
 	GameEvents.Subscribe("split_hero_finished", OnSplitHeroFinished)
+	GameEvents.Subscribe("item_will_spawn", OnItemWillSpawn)
+	GameEvents.Subscribe("item_has_spawned", OnItemHasSpawned)
+	CustomNetTables.SubscribeNetTableListener("gamestate", OnGamestateChange)
 })();

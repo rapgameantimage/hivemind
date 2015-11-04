@@ -7,7 +7,9 @@ var number_particles = [];
 function UpdatePanels(stuff) {
 	DestroyPanels()
 	var info = CustomNetTables.GetTableValue("split_units", Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()).toString())
+	$.Msg("Regenerating split unit panel with the following data:")
 	$.Msg(info)
+	// Create panels
 	for (var unit in info) {
 		// Create unit panel
 		var unitpanel = $.CreatePanel("Panel", $.GetContextPanel(), "unit")
@@ -16,21 +18,44 @@ function UpdatePanels(stuff) {
 		unitpanel.SetAttributeInt("friendly_id", friendly_id)
 		unitpanel.BLoadLayout("file://{resources}/layout/custom_game/split_unit.xml", false, false) 
 		unitpanel.FindChildrenWithClassTraverse("unit-number")[0].text = friendly_id
-		unitpanel.Children()[0].SetHasClass(Entities.GetUnitName(parseInt(unit)), true) // controls unit pic
-		// Create ability sub-panel
-		for (var i = 0; i < Entities.GetAbilityCount(parseInt(unit)); i++) {
-			var ab = Entities.GetAbility(parseInt(unit), i)
-			var name = Abilities.GetAbilityName(ab)
-			if (name != "" && name.substring(0,5) != "unify" && !Abilities.IsPassive(ab)) {
-				var abilitypanel = $.CreatePanel("Panel", unitpanel.FindChildrenWithClassTraverse("abilities")[0], "ability")
-				abilitypanel.SetAttributeInt("ability_entindex", ab)
-				abilitypanel.SetAttributeInt("unit_entindex", parseInt(unit))
-				abilitypanel.BLoadLayout("file://{resources}/layout/custom_game/split_unit_ability.xml", false, false)
-				abilitypanel.Children()[0].Children()[0].abilityname = name
+		var unitname = info[unit]["unitname"]
+		unitpanel.Children()[0].SetHasClass(unitname, true) // controls unit pic
+		if (info[unit]["dead"]) {
+			unitpanel.SetHasClass("dead", true)
+		} else {
+			// Create ability sub-panel
+			for (var i = 0; i < Entities.GetAbilityCount(parseInt(unit)); i++) {
+				var ab = Entities.GetAbility(parseInt(unit), i)
+				var name = Abilities.GetAbilityName(ab)
+				if (name != "" && name.substring(0,5) != "unify") {
+					var abilitypanel = $.CreatePanel("Panel", unitpanel.FindChildrenWithClassTraverse("abilities")[0], "ability")
+					abilitypanel.SetAttributeInt("ability_entindex", ab)
+					abilitypanel.SetAttributeInt("unit_entindex", parseInt(unit))
+					abilitypanel.BLoadLayout("file://{resources}/layout/custom_game/split_unit_ability.xml", false, false)
+					abilitypanel.Children()[0].Children()[0].abilityname = name
+				}
 			}
-		};
-		var all_units = $.GetContextPanel().Children()
+		}
 	}
+
+	// Sort panels
+	var panels = $.GetContextPanel().Children()
+	var lastpanel
+	for (var i in panels) {
+		var id = panels[i].GetAttributeInt("friendly_id", -1)
+		for (var j in panels) {
+			if (i === j) {
+				break
+			} else {
+				if (id < panels[j].GetAttributeInt("friendly_id", -1)) {
+					$.GetContextPanel().MoveChildBefore(panels[i], panels[j])
+					break
+				}
+			}
+		}
+	}
+
+	var all_units = $.GetContextPanel().Children()
 }
 
 function OnSplitHeroStart(info) {
@@ -75,6 +100,7 @@ function OnEntityKilled(info) {
 		$.Each($.GetContextPanel().Children(), function(index, value) {
 			if (index.GetAttributeInt("entindex", -1) === unit) {
 				index.SetHasClass("dead", true);
+				index.GetChild(0).GetChild(1).RemoveAndDeleteChildren()
 			}
 		});
 	}

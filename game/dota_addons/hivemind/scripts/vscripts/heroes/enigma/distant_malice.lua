@@ -21,7 +21,7 @@ function modifier_distant_malice_passive:OnAttackLanded(info)
 	if not IsServer() then return end
 
 	local ability = self:GetAbility()
-	if info.attacker == self:GetParent() and ability:IsCooldownReady() then
+	if info.attacker == self:GetParent() and ability:IsCooldownReady() and not info.target:IsMagicImmune() then
 		if not info.target:HasModifier("modifier_distant_malice") then
 			info.target:AddNewModifier(self:GetParent(), ability, "modifier_distant_malice", {duration = ability:GetSpecialValueFor("delay")})
 		else

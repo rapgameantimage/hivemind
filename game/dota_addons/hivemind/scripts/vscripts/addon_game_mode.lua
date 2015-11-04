@@ -26,6 +26,14 @@ function Precache( context )
   PrecacheResource("particle", "particles/arena_wall.vpcf", context)
   PrecacheResource("particle", "particles/nothing.vpcf", context)
   PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
+  PrecacheResource("soundfile", "soundevents/game_sounds_items.vsndevts", context)
+  PrecacheResource("particle", "particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_lvl2.vpcf", context)
+
+  -- Items
+
+  PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts", context)
+  PrecacheResource("particle", "particles/frostivus_gameplay/wraith_king_heal.vpcf", context)
+  PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf", context)
 
   -- Possible hero cosmetics (some are non-existent but that's ok)
 

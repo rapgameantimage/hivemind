@@ -3,10 +3,10 @@
 		<include src="file://{resources}/styles/dotastyles.css" />
 		<include src="file://{resources}/styles/custom_game/main.css" />
 	</styles>
-	<scripts><!--
-		<include src="file://{resources}/scripts/custom_game/split_unit_ability.js" /> -->
-	</scripts>
-	<Panel class="endscreen" style="" hittest="false">
-
+	<Panel class="endscreen dialog">
+		<Label text="#endscreen_text" />
+		<Button class="big-red-button" onactivate="Game.FinishGame()">
+			<Label text="#disconnect" />
+		</Button>
 	</Panel>
 </root>

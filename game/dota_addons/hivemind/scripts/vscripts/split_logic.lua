@@ -26,13 +26,12 @@ function GameMode:CreateSplitUnits(hero)
     unit:AddNewModifier(unit, nil, "modifier_hidden", {})
     -- Store the entity index.
     -- Entity indexes aren't guaranteed to be assigned in ascending order, so let's wait until we know what indexes we have to assign the 1-X IDs that show up in the UI.
-    units[unit:GetEntityIndex()] = {}
     table.insert(entindexes, unit:GetEntityIndex())
   end
   table.sort(entindexes) -- I think this might not be accomplishing anything? Not sure. Can't remember why I put it here.
   for i = 1,num do
     -- Assign friendly IDs to each unit (these are the numbers that appear in the sidebar portraits)
-    units[entindexes[i]] = {id = i}
+    units[entindexes[i]] = {id = i, unitname = unitname}
   end
   -- Save these in a nettable for later (will be referenced in Panorama as well as in the split/unify functions below)
   CustomNetTables:SetTableValue("split_units", tostring(hero:GetEntityIndex()), units)
@@ -46,7 +45,7 @@ function GameMode:SplitHero(ability, callback)
   local caster = ability:GetCaster()
   local player = caster:GetPlayerOwner()
   local facing = caster:GetForwardVector()
-  local units = CustomNetTables:GetTableValue("split_units", tostring(caster:GetEntityIndex()))
+  local units = GameMode:GetSplitUnitsForHero(caster, false)
 
   CustomGameEventManager:Send_ServerToPlayer(player, "split_hero_started", {
     hero = caster:GetEntityIndex(),
@@ -97,8 +96,7 @@ function GameMode:SplitHero(ability, callback)
 
   -- first loop through split units (still hidden)
   local unitcount = 1
-  for unit,info in pairs(units) do
-    unit = EntIndexToHScript(tonumber(unit))
+  for k,unit in pairs(units) do
     if unit ~= nil then
       -- move near the hero. we have to do this now because if there isn't a delay of at least 1 tick between moving them and revealing them, the player sees them move.
       FindClearSpaceForUnit(unit, positions[unitcount], false)
@@ -127,8 +125,7 @@ function GameMode:SplitHero(ability, callback)
       return
     end
 
-    for unit,info in pairs(units) do
-      unit = EntIndexToHScript(tonumber(unit))
+    for k,unit in pairs(units) do
       -- put unify on cd
       for i = 0, unit:GetAbilityCount()-1 do
         local a = unit:GetAbilityByIndex(i)
@@ -183,7 +180,7 @@ function GameMode:UnifyHero(ability, callback)
   local caster = ability:GetCaster()
   local player = caster:GetPlayerOwner()
   local hero = player:GetAssignedHero()
-  local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
+  local units = GameMode:GetSplitUnitsForHero(hero, false)
 
   CustomGameEventManager:Send_ServerToPlayer(player, "unify_hero_started", {
     casting_unit = caster:GetEntityIndex(),
@@ -196,8 +193,7 @@ function GameMode:UnifyHero(ability, callback)
   local particles = {}
 
   -- hide split units
-  for unit,info in pairs(units) do
-    unit = EntIndexToHScript(tonumber(unit))
+  for k,unit in pairs(units) do
     if unit ~= nil then
       -- particles; CP1 = the place they will be dragged to (the caster's location)
       -- Note, we need to place the particles before hiding, since they will be moved underground when hiding
@@ -372,11 +368,13 @@ function GameMode:FindSplitAbilityForHero(hero)
   end
 end
 
-function GameMode:GetSplitUnitsForHero(hero)
+function GameMode:GetSplitUnitsForHero(hero, include_dead)
   local data = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
   local units = {}
   for index,info in pairs(data) do
-    table.insert(units, EntIndexToHScript(tonumber(index)))
+    if not info.dead or include_dead then
+      table.insert(units, EntIndexToHScript(tonumber(index)))
+    end
   end
   return units
 end

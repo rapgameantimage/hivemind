@@ -24,8 +24,14 @@ function modifier_hidden:OnCreated()
 	-- Hide models
 	self:GetParent():AddNoDraw()
 
+	-- Wait a tick before moving underground to prevent issues with unify particle attachment (it needs to position on split units' models)
+	self:StartIntervalThink(0.03)
+end
+
+function modifier_hidden:OnIntervalThink()
 	-- Hide the unit underground so that we don't have to worry about hiding their particles. (Idea stolen from SpellLibrary)
 	self:GetParent():SetAbsOrigin(self:GetParent():GetAbsOrigin() + Vector(0, 0, -300))
+	self:StartIntervalThink(-1)
 end
 
 function modifier_hidden:OnDestroy()

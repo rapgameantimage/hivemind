@@ -29,6 +29,7 @@ require('helper_functions')
 require('split_unit_definitions')
 require('split_logic')
 require('arena')
+require('itemgenerator')
 
 MAX_RADIUS_FOR_UNIFY = 800
 SPLIT_DELAY = 0.5
@@ -133,7 +134,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  EmitGlobalSound("announcer_ann_custom_round_01")
+  
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -144,7 +145,7 @@ function GameMode:SetKillsToWin(kills)
 end
 
 function GameMode:CleanupParticles()
-  for i = 1,1000 do
+  for i = 1,100000 do
     ParticleManager:DestroyParticle(i, true)
   end
 end
@@ -180,6 +181,8 @@ function GameMode:CompleteRound()
   for k,hero in pairs(HeroList:GetAllHeroes()) do
     GameMode:EndFormCounter(hero)
   end
+
+  ItemGenerator:Stop()
 
   -- See if someone has won
   if GameMode:GetScoreForTeam(DOTA_TEAM_GOODGUYS) >= KILLS_TO_WIN then
@@ -225,6 +228,14 @@ function GameMode:NewRound()
   GridNav:RegrowAllTrees()
   GameRules:SetTimeOfDay(0.25)
   Arena:Reset(true)
+  local classes = {"dota_item_drop", "item_datadriven", "item_lua"}
+  -- Use a numeric loop rather than an iterative loop to ensure that dota_item_drop is destroyed first; otherwise we get invalid item drops on the ground
+  for i = 1,3 do 
+    for k,item in pairs(Entities:FindAllByClassname(classes[i])) do
+      item:Destroy()
+    end
+  end
+  ItemGenerator:Start()
 
   -- Respawn heroes
   for k,hero in pairs(HeroList:GetAllHeroes()) do

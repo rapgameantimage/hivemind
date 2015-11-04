@@ -27,6 +27,7 @@
 		"npc_dota_hero_skeleton_king"                                                     "Daevol"
 		"npc_dota_hero_tinker"															  "Dr. X"
 		"npc_dota_hero_earth_spirit"													"Kyvall"
+		"npc_dota_hero_omniknight"														"Japhiel"
 
 		"npc_dota_hero_wisp"															  "No Hero"
 
@@ -38,6 +39,8 @@
 		"npc_dota_wraith_split_skeleton"                                                  "Skeleton"
 		"npc_dota_tinker_split_clockwerk"												  "Clockwork Goon"
 		"npc_dota_earth_spirit_split_tiny"												  "Rockling"
+		"npc_dota_omniknight_split_angel"												"Seraph"
+
 		"npc_dota_nightmare_orb"                                                          "Nightmare Orb"
 		"npc_dummy_unit"                                                                  "Dummy Unit"
 		"npc_dota_hero_hivemind_lycan"                                                    "Nikoval"
@@ -47,6 +50,7 @@
 		"npc_dota_hero_hivemind_wraith"                                                   "Daevol"
 		"npc_dota_hero_hivemind_tinker"													  "Dr. X"
 		"npc_dota_hero_hivemind_earth_spirit"											"Kyvall"
+		"npc_dota_hero_hivemind_omniknight"												"Japhiel"
 
 		// ******************** ABILITIES ********************
 		"DOTA_Tooltip_ability_split_lycan"                                                "Split"
@@ -416,5 +420,54 @@
 		"DOTA_Tooltip_ability_earthen_passage_debuff_duration"                            "SILENCE DURATION:"
 		"DOTA_Tooltip_ability_earthen_passage_debuff_radius"                              "SILENCE RADIUS:"
 		"DOTA_Tooltip_modifier_earthen_passage_debuff"                              	  "Silenced"
+
+		"DOTA_Tooltip_ability_split_omniknight"                                           "Split"
+		"DOTA_Tooltip_ability_split_omniknight_Description"                               "Transforms into Japhiel's split form, a trinity of seraphs. Cast this ability again while transforming to increase the distance between your units' spawn points."
+
+		"DOTA_Tooltip_ability_unify_omniknight"                                           "Unify"
+		"DOTA_Tooltip_ability_unify_omniknight_Description"                               "Returns to hero form. Your hero will appear at this unit's position."
+
+		"DOTA_Tooltip_ability_smite"                                                      "Smite"
+		"DOTA_Tooltip_ability_smite_Description"                                          "After a short delay, calls down a damaging beam of holy light on the target location."
+		"DOTA_Tooltip_ability_smite_radius"                                               "RADIUS:"
+		"DOTA_Tooltip_ability_smite_delay"                                                "DELAY:"
+
+		"DOTA_Tooltip_ability_holy_infusion"                                              "Holy Infusion"
+		"DOTA_Tooltip_ability_holy_infusion_Description"                                  "While you channel this ability, target allied seraph is invulnerable and deals passive magical damage to nearby enemies."
+		"DOTA_Tooltip_ability_holy_infusion_dps"                                          "DAMAGE PER SECOND:"
+		"DOTA_Tooltip_modifier_holy_infusion"												"Holy Infusion"
+		"DOTA_Tooltip_modifier_holy_infusion_Description"									"Invulnerable and dealing damage to nearby units"
+
+		"DOTA_Tooltip_ability_avenging_angel"                                             "Avenging Angel"
+		"DOTA_Tooltip_ability_avenging_angel_Description"                                 "Unleashes the dark and vengeful side of heaven, gaining massive damage and movement speed. This ability can only be activated when all other allied seraphs are dead, and can only be used once."
+		"DOTA_Tooltip_ability_avenging_angel_damage_bonus"                                "%DAMAGE BONUS:"
+		"DOTA_Tooltip_ability_avenging_angel_movespeed_bonus"                             "MOVESPEED BONUS:"
+		"DOTA_Tooltip_ability_avenging_angel_duration"                                    "DURATION:"
+		"DOTA_Tooltip_modifier_avenging_angel"											"Avenging Angel"
+		"DOTA_Tooltip_modifier_avenging_angel_description"								"Gaining massive damage and movespeed bonuses"
+
+		"DOTA_Tooltip_ability_ablution"                                                   "Pray for Ablution"
+		"DOTA_Tooltip_ability_ablution_Description"                                       "Japhiel infuses himself with divine healing power, restoring health over time. The effect is dispelled if he takes too many attacks."
+		"DOTA_Tooltip_ability_ablution_duration"                                          "DURATION:"
+		"DOTA_Tooltip_ability_ablution_heal_per_second"                                   "HEAL PER SECOND:"
+		"DOTA_Tooltip_ability_ablution_attacks_to_dispel"                                 "ATTACKS TO DISPEL:"
+		"DOTA_Tooltip_modifier_ablution"													"Ablution"
+		"DOTA_Tooltip_modifier_ablution_description"										"Regenerating health"
+
+		"DOTA_Tooltip_ability_judgment"                                                   "Pray for Judgment"
+		"DOTA_Tooltip_ability_judgment_Description"                                       "Summons a sin-eater to strike enemies in the target direction. Enemies that are struck 3 times in 8 seconds will be overwhelmed by their sin and become silenced and leashed."
+		"DOTA_Tooltip_ability_judgment_shackle_duration"                                  "DEBUFF DURATION:"
+		"DOTA_Tooltip_ability_judgment_shackle_leash_distance"                            "LEASH DISTANCE:"
+		"DOTA_Tooltip_modifier_judgment_counter"										"Judgment"
+		"DOTA_Tooltip_modifier_judgment_shackle"										"Judgment"
+		"DOTA_Tooltip_modifier_judgment_shackle_description"							"This unit is overwhelmed by the knowledge of its own sinfulness"
+
+		"DOTA_Tooltip_ability_wrath"                                                      "Pray for Wrath"
+		"DOTA_Tooltip_ability_wrath_Description"                                          "After channeling, summons a lightning storm in the target area that strikes randomly at the ground beneath it, damaging enemies caught within the bolts."
+		"DOTA_Tooltip_ability_wrath_lightning_strikes"                                    "LIGHTNING STRIKES:"
+		"DOTA_Tooltip_ability_wrath_damage_per_strike"                                    "DAMAGE PER STRIKE:"
+
+		"DOTA_Tooltip_ability_retribution"                                                "Pray for Retribution"
+		"DOTA_Tooltip_ability_retribution_Description"                                    "Japhiel's divine righteousness summons a bolt of energy that deals damage to its target equal to the damage taken by Japhiel in the last 5 seconds."
 	}
 }
