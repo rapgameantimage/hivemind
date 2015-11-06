@@ -2,10 +2,164 @@
 	<styles>
 		<include src="file://{resources}/styles/dotastyles.css" />
 		<include src="file://{resources}/styles/custom_game/split_panel.css" />
+		<include src="file://{resources}/styles/custom_game/unit_images.css" />
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/split_panel.js" />
 	</scripts>
-	<Panel class="SplitPanel" hittest="false">
+	<Panel class="SplitPanel" hittest="false"> 
+		<Button class="unit" onactivate="SplitUnitClicked(0)" ondblclick="SplitUnitDoubleClicked(0)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(0,0)" onmouseover="OnMouseoverSplitAbility(0,0)" onmouseout="OnMouseoutSplitAbility(0,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(0,1)" onmouseover="OnMouseoverSplitAbility(0,1)" onmouseout="OnMouseoutSplitAbility(0,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(0,2)" onmouseover="OnMouseoverSplitAbility(0,2)" onmouseout="OnMouseoutSplitAbility(0,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(1)" ondblclick="SplitUnitDoubleClicked(1)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(1,0)" onmouseover="OnMouseoverSplitAbility(1,0)" onmouseout="OnMouseoutSplitAbility(1,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(1,1)" onmouseover="OnMouseoverSplitAbility(1,1)" onmouseout="OnMouseoutSplitAbility(1,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(1,2)" onmouseover="OnMouseoverSplitAbility(1,2)" onmouseout="OnMouseoutSplitAbility(1,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(2)" ondblclick="SplitUnitDoubleClicked(2)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(2,0)" onmouseover="OnMouseoverSplitAbility(2,0)" onmouseout="OnMouseoutSplitAbility(2,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(2,1)" onmouseover="OnMouseoverSplitAbility(2,1)" onmouseout="OnMouseoutSplitAbility(2,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(2,2)" onmouseover="OnMouseoverSplitAbility(2,2)" onmouseout="OnMouseoutSplitAbility(2,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(3)" ondblclick="SplitUnitDoubleClicked(3)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(3,0)" onmouseover="OnMouseoverSplitAbility(3,0)" onmouseout="OnMouseoutSplitAbility(3,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(3,1)" onmouseover="OnMouseoverSplitAbility(3,1)" onmouseout="OnMouseoutSplitAbility(3,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(3,2)" onmouseover="OnMouseoverSplitAbility(3,2)" onmouseout="OnMouseoutSplitAbility(3,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(4)" ondblclick="SplitUnitDoubleClicked(4)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(4,0)" onmouseover="OnMouseoverSplitAbility(4,0)" onmouseout="OnMouseoutSplitAbility(4,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(4,1)" onmouseover="OnMouseoverSplitAbility(4,1)" onmouseout="OnMouseoutSplitAbility(4,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(4,2)" onmouseover="OnMouseoverSplitAbility(4,2)" onmouseout="OnMouseoutSplitAbility(4,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(5)" ondblclick="SplitUnitDoubleClicked(5)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(5,0)" onmouseover="OnMouseoverSplitAbility(5,0)" onmouseout="OnMouseoutSplitAbility(5,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(5,1)" onmouseover="OnMouseoverSplitAbility(5,1)" onmouseout="OnMouseoutSplitAbility(5,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(5,2)" onmouseover="OnMouseoverSplitAbility(5,2)" onmouseout="OnMouseoutSplitAbility(5,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(6)" ondblclick="SplitUnitDoubleClicked(6)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(6,0)" onmouseover="OnMouseoverSplitAbility(6,0)" onmouseout="OnMouseoutSplitAbility(6,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(6,1)" onmouseover="OnMouseoverSplitAbility(6,1)" onmouseout="OnMouseoutSplitAbility(6,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(6,2)" onmouseover="OnMouseoverSplitAbility(6,2)" onmouseout="OnMouseoutSplitAbility(6,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(7)" ondblclick="SplitUnitDoubleClicked(7)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(7,0)" onmouseover="OnMouseoverSplitAbility(7,0)" onmouseout="OnMouseoutSplitAbility(7,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(7,1)" onmouseover="OnMouseoverSplitAbility(7,1)" onmouseout="OnMouseoutSplitAbility(7,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(7,2)" onmouseover="OnMouseoverSplitAbility(7,2)" onmouseout="OnMouseoutSplitAbility(7,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
+		<Button class="unit" onactivate="SplitUnitClicked(8)" ondblclick="SplitUnitDoubleClicked(8)">
+			<Label class="unit-number" />
+			<Panel class="abilities">
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(8,0)" onmouseover="OnMouseoverSplitAbility(8,0)" onmouseout="OnMouseoutSplitAbility(8,0)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(8,1)" onmouseover="OnMouseoverSplitAbility(8,1)" onmouseout="OnMouseoutSplitAbility(8,1)">
+					<DOTAAbilityImage />
+				</Button>
+				<Button class="ability_icon" onactivate="OnSplitAbilityClicked(8,2)" onmouseover="OnMouseoverSplitAbility(8,2)" onmouseout="OnMouseoutSplitAbility(8,2)">
+					<DOTAAbilityImage />
+				</Button>
+			</Panel>
+			<Panel class="health_bar">
+				<Panel class="health_bar_fill" />
+			</Panel>
+		</Button>
 	</Panel>
 </root>

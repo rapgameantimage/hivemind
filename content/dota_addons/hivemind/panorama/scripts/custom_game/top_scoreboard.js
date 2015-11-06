@@ -31,7 +31,8 @@ function OnIconDoubleClicked(panel) {
 	}
 }
 
-function UpdateTopBar() {
+function BuildTopBar() {
+	$.Msg("Building top scoreboard")
 	var left_team = Game.GetPlayerIDsOnTeam(DOTA_TEAM_GOODGUYS)
 	var right_team = Game.GetPlayerIDsOnTeam(DOTA_TEAM_BADGUYS)
 
@@ -41,7 +42,25 @@ function UpdateTopBar() {
 		var panel = $.CreatePanel("Panel", $("#left-wrap"), "")
 		panel.SetAttributeInt("player", player)
 		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_left.xml", false, false)
+	}
+   
+	$("#right-wrap").RemoveAndDeleteChildren()
+	for (var i = 0; i < right_team.length; i++) {
+		var player = right_team[i]
+		var panel = $.CreatePanel("Panel", $("#right-wrap"), "")
+		panel.SetAttributeInt("player", player)
+		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_right.xml", false, false)
+	}
+	UpdateTopBar()
+} 
+ 
+function UpdateTopBar() {
+	var left_team = $("#left-wrap").Children()
+	var right_team = $("#right-wrap").Children()
 
+	for (var i = 0; i < left_team.length; i++) {
+		var panel = left_team[i]
+		var player = panel.GetAttributeInt("player", -1)
 		var hero = Players.GetPlayerHeroEntityIndex(player)
 		var heroclass = Entities.GetClassname(hero)
 		if (heroclass != "npc_dota_hero_wisp") {
@@ -57,13 +76,9 @@ function UpdateTopBar() {
 		}
 	}
    
-	$("#right-wrap").RemoveAndDeleteChildren()
 	for (var i = 0; i < right_team.length; i++) {
-		var player = right_team[i]
-		var panel = $.CreatePanel("Panel", $("#right-wrap"), "")
-		panel.SetAttributeInt("player", player)
-		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_right.xml", false, false)
-
+		var panel = right_team[i]
+		var player = panel.GetAttributeInt("player", -1)
 		var hero = Players.GetPlayerHeroEntityIndex(player)
 		var heroclass = Entities.GetClassname(hero)
 		if (heroclass != "npc_dota_hero_wisp") {
@@ -101,14 +116,13 @@ function UpdateTopBar() {
  
 (function()
 {
-	UpdateTopBar()
+	BuildTopBar()
 	
-	//CustomNetTables.SubscribeNetTableListener("gamestate", CheckState)
-	GameEvents.Subscribe("dota_player_pick_hero", UpdateTopBar)
 	GameEvents.Subscribe("match_started", UpdateTopBar)
 	GameEvents.Subscribe("match_completed", UpdateTopBar)
 	GameEvents.Subscribe("round_completed", UpdateTopBar)
 	GameEvents.Subscribe("round_started", UpdateTopBar)
-	GameEvents.Subscribe("entity_killed", UpdateTopBar)
-	GameEvents.Subscribe("npc_spawned", UpdateTopBar)
-})();
+
+	GameEvents.Subscribe("player_team", BuildTopBar)
+	GameEvents.Subscribe("player_reconnected", BuildTopBar)
+})(); 

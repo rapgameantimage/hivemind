@@ -25,6 +25,11 @@ function GameMode:OnEntityKilled( keys )
 
   local player = killedUnit:GetPlayerOwner()
   if player == nil or killedUnit == nil then
+    if killedUnit == nil then
+      print("Uh oh... a nil unit died?")
+      print("Dump of this event:")
+      PrintTable(keys)
+    end
     -- nothing to do here, really.
     return
   end

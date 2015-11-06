@@ -7,6 +7,6 @@
 		<include src="file://{resources}/scripts/custom_game/pick_hero.js" />
 	</scripts>
 	<Panel class="pick-hero" onactivate="OnClickRandomHero()">
-		<Image src="file://{images}/custom_game/dice-icon.png" />
+		<Image src="file://{images}/custom_game/dice_icon.png" />
 	</Panel>
 </root>
