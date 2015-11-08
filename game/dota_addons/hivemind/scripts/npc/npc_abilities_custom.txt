@@ -2721,6 +2721,57 @@
     }
   }
 
+  // SHADOW DEMON
+
+  "split_shadow_demon"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/shadow_demon/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "omniknight_guardian_angel"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+    }
+  }
+
+  "unify_shadow_demon"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "chen_penitence"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
+
+  "confusion_hex"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/confusion_hex"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "4"
+    "AbilityManaCost" "50"
+    "AbilityCastPoint"  "0.3"
+    "AbilityCastRange"  "900"
+
+    "precache"
+    {
+      "particle"  "particles/neutral_fx/satyr_hellcaller.vpcf"
+    }
+  }
+
   // MISC
 
   "set_spawn_point"

@@ -313,4 +313,34 @@
     "AttackDamageMin"   "26"
     "AttackDamageMax"    "36"
   }
+
+  "npc_dota_hero_hivemind_shadow_demon"
+  {
+    "AbilityLayout" "5"
+    "override_hero" "npc_dota_hero_shadow_demon"
+    "Ability1"      "split_shadow_demon"
+    "Ability2"        "confusion_hex" 
+    "Ability3"        "" 
+    "Ability4"        ""
+    "Ability5"        ""
+    "Ability6"        ""
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       "spread_units"
+
+    "StatusHealth"      "1000"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "1000"
+    "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+  }
 }

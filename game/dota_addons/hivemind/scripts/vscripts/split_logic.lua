@@ -278,10 +278,10 @@ function GameMode:UnifyHeroCastFilterResult(ability)
   local caster = ability:GetCaster()
   local player = caster:GetPlayerOwner()
   local hero = player:GetAssignedHero()
-  local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
+  local units = GameMode:GetSplitUnitsForHero(hero)
+  PrintTable(units)
 
-  for unit,info in pairs(units) do
-    unit = EntIndexToHScript(tonumber(unit))
+  for k,unit in pairs(units) do
     if unit ~= nil then
       -- I initially had a max distance on unify, but I actually kinda think the game is more interesting without one?
       -- It still works if you uncomment here and in UnifyHeroGetCustomCastError.
@@ -297,10 +297,9 @@ function GameMode:UnifyHeroGetCustomCastError(ability)
   local caster = ability:GetCaster()
   local player = caster:GetPlayerOwner()
   local hero = player:GetAssignedHero()
-  local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
+  local units = GameMode:GetSplitUnitsForHero(hero)
 
-  for unit,info in pairs(units) do
-    unit = EntIndexToHScript(tonumber(unit))
+  for k,unit in pairs(units) do
     if unit ~= nil then
       --[[if DistanceBetweenVectors(caster:GetAbsOrigin(), unit:GetAbsOrigin()) > MAX_RADIUS_FOR_UNIFY then
         return "#dota_hud_error_units_too_far_to_unify"
@@ -341,11 +340,10 @@ end
 
 -- Mainly for when heroes die or for when we're resetting the game.
 function GameMode:KillCorrespondingSplitUnits(hero)
-  local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
+  local units = GameMode:GetSplitUnitsForHero(hero)
   CustomNetTables:SetTableValue("gamestate", "ignore_split_unit_death", {[tostring(hero:GetEntityIndex())] = true})     -- Needed to avoid an infinite loop...
   if units ~= nil then
-    for index,info in pairs(units) do
-      local unit = EntIndexToHScript(tonumber(index))
+    for k,unit in pairs(units) do
       if unit ~= nil then
         unit:ForceKill(false)
         unit:RemoveSelf()
@@ -356,7 +354,6 @@ function GameMode:KillCorrespondingSplitUnits(hero)
   CustomNetTables:SetTableValue("gamestate", "ignore_split_unit_death", {[tostring(hero:GetEntityIndex())] = nil})
 end
 
--- Actually not sure what this is for
 function GameMode:FindSplitAbilityForHero(hero)
   for i = 0, hero:GetAbilityCount()-1 do
     local a = hero:GetAbilityByIndex(i)

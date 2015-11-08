@@ -134,8 +134,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
-  PrecacheUnitByNameAsync("npc_dota_phantom", function() print("done") end)
+  PrintTable(GameMode:GetSplitUnitsForHero(PlayerResource:GetPlayer(0):GetAssignedHero()))
 end
 
 function GameMode:SetKillsToWin(kills)
