@@ -9,11 +9,15 @@ var nextround
 
 var dont_show_tips_for = []
 
+var show_videos = true
+var show_tips = true
+
 function OnRoundStarted(event) { 
 	var num = CustomNetTables.GetTableValue("gamestate", "round")["1"]
 	$("#pick").style.visibility = "collapse"
 	$("#pick-status").style.visibility = "collapse"
 	SetAlert(5, $.Localize("#round") + " " + num)
+	OnCloseVideo(false)
 }
 
 function OnRoundCompleted(event) {
@@ -58,6 +62,7 @@ function OnRematchAccepted() {
 	$("#gameover").style.visibility = "collapse"
 	
 	CreatePickBoard()
+	OnCloseVideo(false)
 	$("#pick").style.visibility = "visible" 
 }
 
@@ -114,7 +119,6 @@ function CreatePickBoard() {
 			panel.SetAttributeInt("player", player)
 			panel.BLoadLayout("file://{resources}/layout/custom_game/pick_status_player.xml", false, false)
 			panel.GetChild(0).text = Players.GetPlayerName(player)
-			$.Msg(Players.GetPlayerName(player))
 		}
 	}
 	$("#pick-status").style.visibility = "visible"
@@ -181,7 +185,7 @@ function OnArenaShrink(event) {
 }
 
 function ShowTipsFor(hero) {
-	if (dont_show_tips_for.indexOf(hero) == -1) { 
+	if (show_tips && dont_show_tips_for.indexOf(hero) == -1) { 
 		$("#tips").SetAttributeString("hero", hero)
 		$("#tips-header").text = $.Localize("#tips_header") + " " + $.Localize("#" + hero)
 		var shortname = hero.substring(14)		// strip "npc_dota_hero_"
@@ -249,7 +253,87 @@ function OnGamestateChange(table, key, value) {
 		})
 	}
 }
- 
+
+var dank_videos = [
+"http://i.imgur.com/VQLGJOL.gif",	// supa hot fire
+"http://i.imgur.com/Wgh7ftc.gif",	// 1437 punch
+"http://i.imgur.com/t3xwyYY.gif",	// bulba celebrate
+"http://i.imgur.com/sjpFD68.gif",	// notail laugh
+"http://i.imgur.com/S0pkSlc.gif",	// dendi machine gun
+"http://i.imgur.com/VRumYuX.gif",   // kanye mic drop
+"http://i.imgur.com/iCuansg.gif", 	// can't touch this
+"http://i.imgur.com/NX9ymsm.gif",	// trump yes
+"http://i.imgur.com/yWePmYt.gif", 	// fallon yes
+"http://i.imgur.com/5pDMoNK.gif",	// wrestler yes
+"http://i.imgur.com/yENPZYi.gif",	// fairly odd parents
+"http://i.imgur.com/iVQwhj9.gif",	// heyayayayay
+"http://i.imgur.com/sopOwV3.gif", 	// russian_dota.gif
+"http://i.imgur.com/37jQuHl.gif",	// newbee win ti4
+"http://i.imgur.com/meVrMOv.gif",	// draskyll and bruno
+"http://i.imgur.com/c8WzvLf.gif",	// bruno deal with it
+"http://i.imgur.com/hnYJP6P.gif",	// tobi dancing	
+]
+
+var video_url = ""
+
+function QueueVideo(url) {
+	if (url) {
+		video_url = url
+	} else {
+		video_url = dank_videos[Math.floor(Math.random() * dank_videos.length)]
+	}
+	$("#video").SetImage(video_url)
+}
+
+function ShowVideo() {
+	$("#video").SetImage("none")
+	$.Schedule(1, function() {
+		$("#video").SetImage(video_url)
+		$("#video-container").style.visibility = "visible" 
+	})
+}
+
+function OnCloseVideo(via_button) {
+	$("#video-container").style.visibility = "collapse"
+	QueueVideo()
+	if (via_button) {
+		$.DispatchEvent("DOTAShowTextTooltip", $("#options-header"), "#stop_videos")
+		$.Schedule(3, function() {$.DispatchEvent("DOTAHideTextTooltip")})
+	}
+}
+
+function TestVideo(url) {
+	QueueVideo(url)
+	$.Schedule(5, function() {ShowVideo()})
+}
+
+function OnRoundWon(event) {
+	if (Entities.GetTeamNumber(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) == parseInt(event.team) && show_videos) {
+		ShowVideo()
+	}
+}
+
+function ShowOptions() {
+	$("#options-body").style.visibility = "visible"
+}
+
+function HideOptions() {
+	$("#options-body").style.visibility = "collapse"
+}
+
+function ToggleVictoryVideos() {
+	show_videos = $("#show_victory_videos").checked
+}
+
+function ToggleTips() {
+	show_tips = $("#show_tips").checked
+}
+
+function OnPickCountdown(info) {
+	$("#pick-counter").text = info.seconds_remaining
+	$("#pick-counter").SetHasClass("time-running-out", info.seconds_remaining <= 5)
+}
+
 (function()
 {
 	CreatePickBoard()
@@ -265,5 +349,15 @@ function OnGamestateChange(table, key, value) {
 	GameEvents.Subscribe("split_hero_finished", OnSplitHeroFinished)
 	GameEvents.Subscribe("item_will_spawn", OnItemWillSpawn)
 	GameEvents.Subscribe("item_has_spawned", OnItemHasSpawned)
+	GameEvents.Subscribe("round_won", OnRoundWon)
+	GameEvents.Subscribe("pick_countdown", OnPickCountdown)
 	CustomNetTables.SubscribeNetTableListener("gamestate", OnGamestateChange)
+
+	QueueVideo()
+
+	$("#show_victory_videos").checked = true
+	$("#show_tips").checked = true
+
+	$.DispatchEvent("DOTAShowTextTooltip", $("#gameinfo-location"), "#first_time_playing")
+	$.Schedule(5, function() {$.DispatchEvent("DOTAHideTextTooltip")})
 })();

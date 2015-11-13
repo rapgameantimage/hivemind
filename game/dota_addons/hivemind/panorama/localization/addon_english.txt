@@ -36,13 +36,13 @@
 	"gameinfo_nav_howto"							"How to Play"
 	"gameinfo_nav_about"							"About"
 
-	"gameinfo_main_intro"							"In Hivemind, every hero's first ability can be used to enter \"split form,\" transforming into a group of 4-5 units with their own set of abilities. You can return to hero form by using the first ability on any split unit."
+	"gameinfo_main_intro"							"In Hivemind, every hero's first ability can be used to enter \"split form,\" transforming into a small army of units with their own unique abilities. You can return to hero form by using the first ability on any split unit."
 	"gameinfo_main_death"							"Beware, if all of your split units die, so will your hero!"
 	"gameinfo_main_win"								"Be the first to reach 5 kills to win!"
 	"gameinfo_main_tips"							"Tips:"
-	"gameinfo_main_tip1"							"1. You are invulnerable for a moment while transforming. Use that to dodge enemy spells and attacks!"
-	"gameinfo_main_tip2"							"2. Cooldowns, buffs, and debuffs tick down on your hero even while in split form, and vice versa. Toggle between forms often to use your cooldowns efficiently and avoid problematic debuffs."
-	"gameinfo_main_tip3"							"3. While splitting, you can cast the ability again before your transformation completes to space your units out more. Try this if you're getting shredded by AOE spells, but be careful not to get caught in the trees!"
+	"gameinfo_main_tip1"							"1. Cooldowns, buffs, and debuffs tick down on your hero even while in split form, and vice versa. Switch forms often to use your cooldowns efficiently and avoid debuffs."
+	"gameinfo_main_tip2"							"2. You are invulnerable for a moment while transforming, which can be helpful to dodge enemy attacks."
+	"gameinfo_main_tip3"							"3. While splitting, you can cast the ability again before your transformation completes to space your units out more. This is helpful if you're getting shredded by AoE."
 	"gameinfo_main_good_luck"						"Good luck!"
 
 	"gameinfo_about_author"							"This mod was created by rap_game_anti_mage. It should be considered a beta. Suggestions? Feedback? Found a bug? Leave a comment in the workshop, or shoot me an email: rapgameantimage@gmail.com."
@@ -71,6 +71,11 @@
 	"will_spawn"									"is about to spawn!"
 	"has_spawned"									"has spawned!"
 
+	"options"										"Options"
+	"show_victory_videos"							"Show victory videos"
+	"show_tips"										"Show tips"
+	"stop_videos"									"You can stop these videos from appearing in the options panel"
+	"first_time_playing"							"First time playing? You might find this info helpful..."
 
 
 
@@ -81,11 +86,12 @@
 	"pick_tips_npc_dota_hero_lycan"					"Nikoval is a melee hero who specializes in brutal close-quarters combat. He uses his howls to slow enemies before slicing their hamstrings and bashing their skulls in. His split form is a pack of five fast-moving wolves that can pounce at enemies and inflict massive bleeding."
 	"pick_tips_npc_dota_hero_bane"					"Mara is a ranged hero who relies on elusion and trickery. He haunts his enemies with phantoms and hypnotic orbs while avoiding harm's way by slowing them with ectoplasm and becoming invisible. His split form is a flock of five banshees that can create powerful sonic waves."
 	"pick_tips_npc_dota_hero_phoenix"				"Shamarah is a ranged hero who specializes in damage over time and area denial. He harasses opponents with magma and sticky flames, and summons explosive eggs that he can drag around with him. His split form is a group of four magma spirits that can create walls of fire."
-	"pick_tips_npc_dota_hero_enigma"				"Ov is a ranged hero who specializes in controlling his enemies. He summons hidden black holes that spring to life beneath his enemies' feet, and is skilled at manipulating his enemies' position and form. His split form is a cabal of five eidolons that can phase shift and apply a lingering curse."
+	"pick_tips_npc_dota_hero_enigma"				"Ov is a ranged hero who specializes in controlling his enemies' positions and can summon hidden black holes that spring to life beneath their feet. His split form is a cabal of five eidolons that can phase shift and apply a lingering curse."
 	"pick_tips_npc_dota_hero_skeleton_king"			"Daevol is a highly mobile melee hero. He specializes in chasing down enemies with wraithly magic and surprising athleticism, all the while burning away their armor. His split form is a cadre of seven skeletons that can rip off their own bones and use them as projectiles."
 	"pick_tips_npc_dota_hero_tinker"				"Dr. X is a glass-cannon ranged hero. He bombards his enemies with lasers, rockets and electric pulses while using his patented hover-boots to stay out of danger. His split form is a squad of four clockwork goons that can hook to their enemies and release electric discharges."
-	"pick_tips_npc_dota_hero_earth_spirit"			"Kyvall is a hybrid melee hero who uses the power of the earth to summon boulders and earthquakes beneath his enemies while magnetizing his attacks. His split form is a geode of five rocklings that stun nearby enemies when appearing and can throw each other to chase down enemies."
+	"pick_tips_npc_dota_hero_earth_spirit"			"Kyvall is a hybrid melee hero who summons boulders and earthquakes beneath his enemies while magnetizing his attacks. His split form is a geode of five rocklings that stun nearby enemies when appearing and can throw each other to chase down enemies."
 	"pick_tips_npc_dota_hero_omniknight"			"Japhiel is a defensive melee hero who uses the power of prayer to bind and damage enemies while healing himself. His split form is a trinity of highly damaging angels that can smite enemies, make each other invulnerable, and avenge their fallen comrades."
+	"pick_tips_npc_dota_hero_shadow_demon"			"Nash Raval is a fragile ranged hero who specializes in crippling his enemies with disorienting curses. He becomes stronger with each curse he lands and weaker with each curse he misses. His split form is a pack of hounds that can extend his curses and make enemies miss."
 
 	"tips_header"									"Tips for fighting"
 	"tips_dont_show_again"							"Don't show me this again"
@@ -122,6 +128,10 @@
 	"tips_vs_omniknight_2"							"Japhiel's red projectile deals damage based on how much damage he's taken in the last 5 seconds. Try not to burst him too hard while it's off cooldown."
 	"tips_vs_omniknight_3"							"The last angel can enter a powerful demon form once its friends are dead, but can only do it once."
 
+	"tips_vs_shadow_demon_1"						"Nash Raval becomes stronger and faster when his curses hit and weaker when they miss."
+	"tips_vs_shadow_demon_2"						"The Hounds of Shadow apply a stacking debuff that makes you miss more attacks with each stack."
+	"tips_vs_shadow_demon_3"						"Remember that you can always switch forms if you're getting totally bogged down by curses."
+
 	"arena_shrink"									"The walls are closing in..."
 
 	"lorem_ipsum"									"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin elit elit, facilisis eu malesuada porttitor, dictum convallis sapien."
@@ -131,6 +141,8 @@
 	"npc_dota_earth_spirit_split_tiny"				"Rockling"			// WHY? WHY WON'T YOU READ FROM THE RIGHT PLACE?
 	"npc_dota_hero_omniknight"						"Japhiel"
 	"npc_dota_omniknight_split_angel"				"Seraph"
+	"npc_dota_hero_shadow_demon"					"Nash Raval"
+	"npc_dota_shadow_demon_split_hellhound"			"Hound of Shadow"
 
 	"DOTA_Tooltip_ability_item_health_potion"                                         "Health Potion"
 	"DOTA_Tooltip_ability_item_mana_potion"                                           "Mana Potion"

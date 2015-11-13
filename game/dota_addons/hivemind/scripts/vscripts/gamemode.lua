@@ -37,6 +37,7 @@ UNIFY_DELAY = 0.5
 
 KILLS_TO_WIN = 5
 POST_ROUND_DELAY = 5 -- Also set this in main.js
+PICK_TIME = 60
 
 hover_boots_movement = {}
 
@@ -64,7 +65,7 @@ function GameMode:OnHeroInGame(hero)
 end
 
 function GameMode:OnGameInProgress()
-  -- ...
+  GameMode:StartPickTimer()
 end
 
 function GameMode:InitGameMode()
@@ -134,7 +135,7 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  PrintTable(GameMode:GetSplitUnitsForHero(PlayerResource:GetPlayer(0):GetAssignedHero()))
+  GameMode:StartPickTimer()
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -494,4 +495,27 @@ function GameMode:EndFormCounter(hero)
     end
     last_form_change[player] = nil
   end
+end
+
+function GameMode:StartPickTimer()
+  CustomNetTables:SetTableValue("gamestate", "status", { "picking" })
+  local i = PICK_TIME
+  Timers:CreateTimer(function()
+    if CustomNetTables:GetTableValue("gamestate", "status")["1"] == "picking" then
+      if i > 0 then
+        CustomGameEventManager:Send_ServerToAllClients("pick_countdown", {seconds_remaining = i})
+        i = i - 1
+        return 1
+      else
+        -- Time has expired. Pick a random hero for each player who hasn't picked yet
+        local picks = CustomNetTables:GetTableValue("gamestate", "new_hero_picks")
+        local pickable_heroes = {"lycan", "bane", "phoenix", "enigma", "skeleton_king", "tinker", "earth_spirit", "omniknight", "shadow_demon"}
+        for _,player in pairs(GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})) do
+          if not picks or not picks[tostring(player:GetPlayerID())] then
+            GameMode:OnPickNewHero({PlayerID = player:GetPlayerID(), hero = pickable_heroes[RandomInt(1, #pickable_heroes)]})
+          end
+        end
+      end
+    end
+  end)
 end

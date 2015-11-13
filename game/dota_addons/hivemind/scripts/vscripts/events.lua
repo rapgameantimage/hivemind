@@ -8,6 +8,7 @@ function GameMode:OnEntityKilled( keys )
 
   -- This internal handling is used to set up main barebones functions
   GameMode:_OnEntityKilled( keys )
+  print(keys.entindex_killed .. " has been killed")
 
   -- Don't do anything if we're in the midst of setting up a rematch
   local status = CustomNetTables:GetTableValue("gamestate", "status")
@@ -65,6 +66,8 @@ function GameMode:OnEntityKilled( keys )
    	  score_table[tostring(enemy_team)] = tostring(enemy_score)
     	CustomNetTables:SetTableValue("gamestate", "score", score_table)
 
+      CustomGameEventManager:Send_ServerToAllClients("round_won", {team = enemy_team})
+
       -- Add the victory modifier to victorious units
       local enemy_players = GetPlayersOnTeam(enemy_team)
       for _,p in pairs(enemy_players) do
@@ -85,22 +88,25 @@ function GameMode:OnEntityKilled( keys )
   -- ignore_split_unit_death is checking to see if this event got triggered by KillCorrespondingSplitUnits, basically.
   elseif killedUnit:GetUnitLabel() == "split_unit" and not CustomNetTables:GetTableValue("gamestate", "ignore_split_unit_death")[tostring(hero:GetEntityIndex())] then
     local units = CustomNetTables:GetTableValue("split_units", tostring(hero:GetEntityIndex()))
+    print("Status of friendly units as of entity " .. keys.entindex_killed .. "'s death:")
+    PrintTable(units)
     -- Check if all split units are dead
     if units ~= nil then
       local found_living_split_unit = false
       for index,info in pairs(units) do
         if tonumber(index) == keys.entindex_killed then
+          print("Marking this unit as dead")
           info.dead = "1"
           units[index] = info
           CustomNetTables:SetTableValue("split_units", tostring(hero:GetEntityIndex()), units)
-        elseif EntIndexToHScript(tonumber(index)) ~= nil then
-          if EntIndexToHScript(tonumber(index)):IsAlive() then
-            found_living_split_unit = true
-          end
+        elseif not info.dead then
+          print("Found a living split unit: " .. index)
+          found_living_split_unit = true
         end
       end
       if not found_living_split_unit then
         -- Kill the corresponding hero.
+        print("No living split unit found; killing hero.")
         hero:Kill(nil, killerEntity)
         hero:AddNoDraw()
       end
@@ -168,6 +174,7 @@ function GameMode:OnRematchYes(keys)
     CustomNetTables:SetTableValue("gamestate", "status", {"rematch"})
     CustomNetTables:SetTableValue("gamestate", "rematch", {})
     CustomGameEventManager:Send_ServerToAllClients("rematch_accepted", {})
+    GameMode:StartPickTimer()
   else
     CustomNetTables:SetTableValue("gamestate", "rematch", tbl)
   end
@@ -195,6 +202,7 @@ function GameMode:OnGameRulesStateChange(keys)
 
   local newState = GameRules:State_Get()
   if newState == DOTA_GAMERULES_STATE_PRE_GAME then
+    EmitGlobalSound("ann_announcer_choose_hero")
     print("looking for players to create fake heroes for...")
     for i = 0,PlayerResource:GetPlayerCount()-1 do
       if PlayerResource:GetPlayer(i) then

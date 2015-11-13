@@ -29,6 +29,7 @@
 		<Panel id="pick-status" class="dialog">
 			<Label text="#pick_status" id="pick-status-header" />
 			<Panel id="pick-status-body" />
+			<Label id="pick-counter" text="60" />
 		</Panel>
 		<Panel id="tips" class="dialog hidden">
 			<Label id="tips-header" text="#lorem_ipsum" />
@@ -45,5 +46,21 @@
 				<Label text="#close" />
 			</Button>
 		</Panel>
-	</Panel>
+		<Panel id="video-container">
+			<Image id="video" src="" scaling="stretch-to-fit-preserve-aspect" /> 
+			<Button id="video-close-btn" onactivate="OnCloseVideo(true)"> 
+				<Label text="#x" /> 
+			</Button>
+		</Panel>
+		<Panel id="options" onactivate="ShowOptions()" onmouseout="HideOptions()">
+			<Panel id="options-header">
+				<Label text="#options" id="options-title" />
+			</Panel>
+			<Panel id="options-body">
+				<ToggleButton id="show_victory_videos" text="#show_victory_videos" onactivate="ToggleVictoryVideos()" />
+				<ToggleButton id="show_tips" text="#show_tips" onactivate="ToggleTips()" />
+			</Panel>
+		</Panel>
+		<Panel id="gameinfo-location" onmouseout="$.DispatchEvent('DOTAHideTextTooltip')" />
+	</Panel> 
 </root>

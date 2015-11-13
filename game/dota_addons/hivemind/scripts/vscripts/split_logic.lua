@@ -279,7 +279,6 @@ function GameMode:UnifyHeroCastFilterResult(ability)
   local player = caster:GetPlayerOwner()
   local hero = player:GetAssignedHero()
   local units = GameMode:GetSplitUnitsForHero(hero)
-  PrintTable(units)
 
   for k,unit in pairs(units) do
     if unit ~= nil then

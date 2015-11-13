@@ -36,7 +36,11 @@ DOTAHeroImage.right {
 }
 Label.right {
 	horizontal-align: right;
-	width: 365px;
+	width: 75%;
+}
+.AspectRatio16x9 Label.right,
+.AspectRatio16x10 Label.right {
+	width: 85%;
 }
 Label {
 	font-size: 24px;

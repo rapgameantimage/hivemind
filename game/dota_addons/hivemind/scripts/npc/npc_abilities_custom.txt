@@ -2729,7 +2729,7 @@
     "ScriptFile"    "heroes/shadow_demon/split"
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "MaxLevel"      "1"
-    "AbilityTextureName"  "omniknight_guardian_angel"
+    "AbilityTextureName"  "lycan/hunter_of_kings_ability_icons/lycan_summon_wolves"
     "AbilityCooldown"  "10"
 
     "precache"
@@ -2746,12 +2746,50 @@
     "ScriptFile"  "heroes/shadow_demon/unify"
     "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
     "MaxLevel"      "1"
-    "AbilityTextureName"  "chen_penitence"
+    "AbilityTextureName"  "shadow_demon_disruption"
     "AbilityCooldown"  "10"
 
     "precache"
     {
       "particle"    "particles/unify.vpcf"
+    }
+  }
+
+  "curse_mastery"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/curse_mastery"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "shadow_demon_shadow_poison_release"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "cascade_radius_per_stack"  "75"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "primary_target_damage_per_stack"  "30"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "cascade_target_damage_per_stack" "10"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "movespeed_per_stack"   "15"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "charges_lost_on_miss"  "3"
+      }
     }
   }
 
@@ -2761,14 +2799,190 @@
     "ScriptFile"  "heroes/shadow_demon/confusion_hex"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
     "MaxLevel"  "1"
-    "AbilityCooldown" "4"
-    "AbilityManaCost" "50"
+    "AbilityCooldown" "2.5"
+    "AbilityManaCost" "75"
     "AbilityCastPoint"  "0.3"
     "AbilityCastRange"  "900"
+    "AbilityTextureName"  "shadow_demon_soul_catcher"
 
     "precache"
     {
       "particle"  "particles/neutral_fx/satyr_hellcaller.vpcf"
+      "particle"  "particles/units/heroes/hero_dazzle/dazzle_base_attack.vpcf"
+      "particle"  "particles/status_fx/status_effect_enchantress_untouchable.vpcf"
+      "particle"  "particles/heroes/shadow_demon/confused.vpcf"
+      "soundfile" "soundevents/game_sounds_creeps.vsndevts"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_puck.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "movement_threshold"  "300"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "stun_duration" "0.4"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "5"
+      }
+    }
+  }
+
+  "confusion_hex_cascade"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/confusion_hex"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"  "1"
+  }
+
+  "aeonic_curse"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/aeonic_curse"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "5"
+    "AbilityManaCost" "75"
+    "AbilityCastPoint"  "0.3"
+    "AbilityCastRange"  "900"
+    "AbilityTextureName"  "faceless_void\jewelofaeons\faceless_void_time_walk_1"
+
+    "precache"
+    {
+      "particle"  "particles/econ/items/faceless_void/faceless_void_jewel_of_aeons/fv_time_walk_pentagon_jewel.vpcf"
+      "particle"  "particles/econ/items/puck/puck_alliance_set/puck_base_attack_aproset.vpcf"
+      "particle"  "particles/units/heroes/hero_shadow_demon/shadow_demon_demonic_purge_impact.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_faceless_void.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "8"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "drift_duration"  "1"
+      }
+    }
+  }
+
+  "aeonic_curse_cascade"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/aeonic_curse"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"  "1"
+  }
+
+  "spectral_curse"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/spectral_curse"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "6"
+    "AbilityManaCost" "75"
+    "AbilityCastPoint"  "0.3"
+    "AbilityCastRange"  "900"
+    "AbilityTextureName"  "shadow_demon_demonic_purge"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "tick_interval" "1.5"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "illusion_outgoing_damage_pct"  "35"
+      }
+    }
+  }
+
+  "spectral_curse_cascade"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/spectral_curse"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN"
+    "MaxLevel"  "1"
+  }
+
+  "unearthly_roar"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/unearthly_roar"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "30"
+    "AbilityCastRange"  "500"
+    "AbilityCastPoint"  "0.5"
+    "AbilityTextureName"  "lycan/hunter_of_kings_ability_icons/lycan_howl"
+
+    "precache"
+    {
+      "soundfile" "soundevents/game_sounds_creeps.vsndevts"
+      "particle"  "particles/heroes/shadow_demon/unearthly_roar.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"  "250"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration" "3"
+      }
+    }
+  }
+
+  "creeping_shadows"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/shadow_demon/creeping_shadows"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "night_stalker_void_alt"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "miss_chance_per_stack" "3"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_stacks"            "12"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "3.5"
+      }
     }
   }
 

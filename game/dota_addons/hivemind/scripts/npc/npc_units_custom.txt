@@ -478,4 +478,43 @@
         }
     }
   }
+
+  "npc_dota_shadow_demon_split_hellhound"
+  {
+    "BaseClass"        "npc_dota_creature"
+    "Model"             "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
+    "ModelScale"        "0.9"
+    "SoundSet"          "Lycan_Wolf"
+    "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
+    "Level"             "1"
+    "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
+
+    "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackRange"       "128"
+    "AttackDamageMin"   "25"
+    "AttackDamageMax"   "25"
+    "AttackRate"        "1.35"
+    "AttackAnimationPoint"  "0.33"
+    "AttackAcquisitionRange"    "800"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "350" 
+    "MovementTurnRate"      "0.6" 
+    "FollowRange"       "250"
+
+    "ArmorPhysical"     "1"
+    "MagicalResistance" "0"
+    "StatusHealth"      "375"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "0"
+    "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
+    "Ability1"      "unify_shadow_demon"
+    "Ability2"      "unearthly_roar"
+    "Ability3"      "creeping_shadows"
+  }
 }

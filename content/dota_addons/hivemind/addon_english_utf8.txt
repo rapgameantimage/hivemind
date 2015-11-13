@@ -17,7 +17,30 @@
 		"dota_hud_error_hidden"									" "
 		"dota_hud_error_cant_cast_while_other_split_units_alive"	"Can't Cast While Other Split Units Are Alive"
 		"dota_hud_error_no_recent_damage"						"No Recent Damage To Return"
+
 		"game_over"												"GAME OVER"
+
+		// ******************** ITEMS ********************
+		"DOTA_Tooltip_ability_item_health_potion"                                         "Health Potion"
+		"DOTA_Tooltip_ability_item_health_potion_Description"                             "Restores some health to this unit. Single use."
+		"DOTA_Tooltip_ability_item_health_potion_heal_amount"                             "HEALTH RESTORED:"
+
+		"DOTA_Tooltip_ability_item_mana_potion"                                           "Mana Potion"
+		"DOTA_Tooltip_ability_item_mana_potion_Description"                               "Restores some mana to this unit. Single use."
+		"DOTA_Tooltip_ability_item_mana_potion_mana_amount"                               "MANA RESTORED:"
+
+		"DOTA_Tooltip_ability_item_bkb_fragment"                                          "Black King Bar Fragment"
+		"DOTA_Tooltip_ability_item_bkb_fragment_Description"                              "This unit briefly becomes immune to magic. If used by a split unit, also affects all other living split units. Single use."
+		"DOTA_Tooltip_ability_item_bkb_fragment_duration"                                 "DURATION:"
+		"DOTA_Tooltip_ability_item_bkb_fragment_Lore"									  "It's got just enough juice left for one usage."
+
+		"DOTA_Tooltip_ability_item_enchanted_skull"                                       "Enchanted Skull"
+		"DOTA_Tooltip_ability_item_enchanted_skull_Description"                           "Creates an additional split unit. If used by a hero, the unit will appear the next time you split. Single use."
+
+		"DOTA_Tooltip_ability_item_blink_shard"                                           "Blink Shard"
+		"DOTA_Tooltip_ability_item_blink_shard_Description"                               "Blink to a target location. If used by a split unit, all other living split units will also blink in their current formation. Single use."
+		"DOTA_Tooltip_ability_item_blink_shard_blink_range"                               "BLINK RANGE:"
+		"DOTA_Tooltip_ability_item_blink_shard_Lore"									  "A small remnant of Kelen's legendary dagger."
 
 		// ******************** HEROES ********************
 		"npc_dota_hero_lycan"                                                             "Nikoval"
@@ -444,7 +467,7 @@
 		"DOTA_Tooltip_ability_avenging_angel_movespeed_bonus"                             "MOVESPEED BONUS:"
 		"DOTA_Tooltip_ability_avenging_angel_duration"                                    "DURATION:"
 		"DOTA_Tooltip_modifier_avenging_angel"											"Avenging Angel"
-		"DOTA_Tooltip_modifier_avenging_angel_description"								"Gaining massive damage and movespeed bonuses"
+		"DOTA_Tooltip_modifier_avenging_angel_Description"								"Gaining massive damage and movespeed bonuses"
 
 		"DOTA_Tooltip_ability_ablution"                                                   "Pray for Ablution"
 		"DOTA_Tooltip_ability_ablution_Description"                                       "Japhiel infuses himself with divine healing power, restoring health over time. The effect is dispelled if he takes too many attacks."
@@ -452,7 +475,7 @@
 		"DOTA_Tooltip_ability_ablution_heal_per_second"                                   "HEAL PER SECOND:"
 		"DOTA_Tooltip_ability_ablution_attacks_to_dispel"                                 "ATTACKS TO DISPEL:"
 		"DOTA_Tooltip_modifier_ablution"													"Ablution"
-		"DOTA_Tooltip_modifier_ablution_description"										"Regenerating health"
+		"DOTA_Tooltip_modifier_ablution_Description"										"Regenerating health"
 
 		"DOTA_Tooltip_ability_judgment"                                                   "Pray for Judgment"
 		"DOTA_Tooltip_ability_judgment_Description"                                       "Summons a sin-eater to strike enemies in the target direction. Enemies that are struck 3 times in 8 seconds will be overwhelmed by their sin and become silenced and leashed."
@@ -460,10 +483,10 @@
 		"DOTA_Tooltip_ability_judgment_shackle_leash_distance"                            "LEASH DISTANCE:"
 		"DOTA_Tooltip_modifier_judgment_counter"										"Judgment"
 		"DOTA_Tooltip_modifier_judgment_shackle"										"Judgment"
-		"DOTA_Tooltip_modifier_judgment_shackle_description"							"This unit is overwhelmed by the knowledge of its own sinfulness"
+		"DOTA_Tooltip_modifier_judgment_shackle_Description"							"This unit is overwhelmed by the knowledge of its own sinfulness"
 
 		"DOTA_Tooltip_ability_wrath"                                                      "Pray for Wrath"
-		"DOTA_Tooltip_ability_wrath_Description"                                          "After channeling, summons a lightning storm in the target area that strikes randomly at the ground beneath it, damaging enemies caught within the bolts."
+		"DOTA_Tooltip_ability_wrath_Description"                                          "After channeling for 1 second, summons a lightning storm in the target area that strikes randomly at the ground beneath it, damaging enemies caught within the bolts."
 		"DOTA_Tooltip_ability_wrath_lightning_strikes"                                    "LIGHTNING STRIKES:"
 		"DOTA_Tooltip_ability_wrath_damage_per_strike"                                    "DAMAGE PER STRIKE:"
 

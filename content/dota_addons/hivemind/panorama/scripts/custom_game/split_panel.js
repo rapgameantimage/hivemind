@@ -1,6 +1,6 @@
 "use strict";
 
-var unitclasses = ["npc_dota_lycan_split_wolf", "npc_dota_bane_split_ghost", "npc_dota_phoenix_split_spirit", "npc_dota_enigma_split_eidolon", "npc_dota_wraith_split_skeleton", "npc_dota_tinker_split_clockwerk", "npc_dota_earth_spirit_split_tiny", "npc_dota_omniknight_split_angel"]
+var unitclasses = ["npc_dota_lycan_split_wolf", "npc_dota_bane_split_ghost", "npc_dota_phoenix_split_spirit", "npc_dota_enigma_split_eidolon", "npc_dota_wraith_split_skeleton", "npc_dota_tinker_split_clockwerk", "npc_dota_earth_spirit_split_tiny", "npc_dota_omniknight_split_angel", "npc_dota_shadow_demon_split_hellhound"]
 
 for (var i = 0; i < $.GetContextPanel().Children().length; i++) {
 	$.GetContextPanel().GetChild(i).SetAttributeInt("original_order", i)
@@ -47,18 +47,21 @@ function RebuildPanels(stuff) {
 				abilities[k].style.visibility = "visible"
 			}
 
+			var ab_offset = 0
 			for (var k = 0; k < Entities.GetAbilityCount(parseInt(unit)); k++) {
 				var ab = Entities.GetAbility(parseInt(unit), k)
 				var name = Abilities.GetAbilityName(ab)
 				if (name != "" && name.substring(0,5) != "unify") {
-					var abilitypanel = abilities[k]
+					var abilitypanel = abilities[k - ab_offset]
 					abilitypanel.SetAttributeInt("ability_entindex", ab)
 					abilitypanel.SetAttributeInt("unit_entindex", parseInt(unit))
 					abilitypanel.GetChild(0).abilityname = name
+				} else {
+					ab_offset = ab_offset + 1
 				}
 			}
 		}
-
+ 
 		for (var k in abilities) {
 			if (abilities[k].GetAttributeInt("ability_entindex", -1) == -1) {
 				abilities[k].style.visibility = "collapse"
@@ -204,6 +207,16 @@ function OnSplitAbilityClicked(unit, ability) {
 	}
 }
 
+function OnSplitPanelToggled(info) {
+	$.Msg("Hi")
+	if (info.active) {
+		$.GetContextPanel().style.visibility = "visible"
+	} else {
+		$.GetContextPanel().style.visibility = "collapse"
+	}
+}
+
+
 (function()
 {
 	GameEvents.Subscribe("split_units_created", RebuildPanels);
@@ -215,3 +228,4 @@ function OnSplitAbilityClicked(unit, ability) {
 	RebuildPanels()
 	UpdatePanels()
 })();
+ 

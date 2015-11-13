@@ -23,3 +23,7 @@
 .npc_dota_omniknight_split_angel {
 	background-image: url("file://{images}/custom_game/units/seraph.png");
 }
+.npc_dota_shadow_demon_split_hellhound {
+	background-image: url("file://{images}/custom_game/units/hound_of_shadow.png");
+	background-position: center bottom;
+}
