@@ -343,4 +343,64 @@
     "VisionDaytimeRange"    "1800"
     "VisionNighttimeRange"  "1200"
   }
+
+  "npc_dota_hero_hivemind_keeper_of_the_light"
+  {
+    "AbilityLayout" "5"
+    "override_hero" "npc_dota_hero_keeper_of_the_light"
+    "Ability1"        "split_kotl"
+    "Ability2"        "summon_spirits" 
+    "Ability3"        "recenter_spirits" 
+    "Ability4"        "spirit_bolt"
+    "Ability5"        ""
+    "Ability6"        ""
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       "spread_units"
+
+    "StatusHealth"      "700"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "1000"
+    "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+  }
+
+  "npc_dota_hero_hivemind_treant"
+  {
+  	"AbilityLayout"	"5"
+  	"override_hero"	"npc_dota_hero_treant"
+  	"Ability1"        "split_treant"
+    "Ability2"        "razor_leaves" 
+    "Ability3"        "entangle" 
+    "Ability4"        "ethereal_forest"
+    "Ability5"        ""
+    "Ability6"        ""
+    "Ability7"        ""
+    "Ability8"        ""
+    "Ability9"        ""
+    "Ability10"       ""
+    "Ability11"       ""
+    "Ability12"       ""
+    "Ability13"       ""
+    "Ability14"       ""
+    "Ability15"       ""
+    "Ability16"       "spread_units"
+
+    "StatusHealth"      "1050"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "1000"
+    "StatusManaRegen"   "10"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+  }
 }

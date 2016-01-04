@@ -7,7 +7,12 @@
 		<include src="file://{resources}/scripts/custom_game/top_scoreboard_player.js" />
 	</scripts>
 	<Panel class="player" hittest="false">
-		<DOTAHeroImage class="hero left" heroimagestyle="landscape" onactivate="OnIconClicked()" ondblclick="OnIconDoubleClicked()" />
+		<Panel class="hero left">
+			<DOTAHeroImage heroimagestyle="landscape" onactivate="OnIconClicked()" ondblclick="OnIconDoubleClicked()" />
+			<Panel class="hero-health">
+				<Panel class="hero-health-fill" />
+			</Panel>
+		</Panel>
 		<Label class="name left" hittest="false" />
 	</Panel>
 </root>

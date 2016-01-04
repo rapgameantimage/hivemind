@@ -94,6 +94,7 @@ function GameMode:InitGameMode()
   Convars:RegisterCommand( "bot_pick_hero", Dynamic_Wrap(GameMode, "BotPickHero"), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "bot_rematch_no", Dynamic_Wrap(GameMode, "BotRematchNo"), "", FCVAR_CHEAT )
   Convars:RegisterCommand( "bot_changehero", Dynamic_Wrap(GameMode, "BotChangeHero"), "", FCVAR_CHEAT )
+  Convars:RegisterCommand( "queue_video", Dynamic_Wrap(GameMode, "QueueVideo"), "", FCVAR_CHEAT )
 
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 
@@ -135,7 +136,9 @@ function GameMode:UpdateAbilities()
 end
 
 function GameMode:test(x)
-  GameMode:StartPickTimer()
+  local hero = PlayerResource:GetPlayer(0):GetAssignedHero()
+  local test = CreateUnitByName(SPLIT_UNIT_NAMES[hero:GetName()], Vector(0,0,0), true, hero, hero, hero:GetTeam())
+  ParticleManager:CreateParticle("particles/units/heroes/hero_wisp/wisp_ambient.vpcf", PATTACH_POINT_FOLLOW, test)
 end
 
 function GameMode:SetKillsToWin(kills)
@@ -329,14 +332,10 @@ function GameMode:OnPickNewHero(event)
   -- Get the table that stores what each player has picked and add our new pick into it
   local picks
   picks = CustomNetTables:GetTableValue("gamestate", "new_hero_picks")
-  print("old picks (if any):")
-  PrintTable(picks)
   if picks == nil then
     picks = {}
   end
   picks[tostring(event.PlayerID)] = event.hero
-  print("current picks:")
-  PrintTable(picks)
 
   -- If we're the only player, we might as well just start the game.
   if PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_GOODGUYS) + PlayerResource:GetPlayerCountForTeam(DOTA_TEAM_BADGUYS) <= 1 then
@@ -353,8 +352,6 @@ function GameMode:OnPickNewHero(event)
         oldhero:RemoveSelf()
       end)
     CustomNetTables:SetTableValue("gamestate", "new_hero_picks", {})  -- Clear this out so we can use it again for the next rematch
-    print("This should be an empty table:")
-    PrintTable(CustomNetTables:GetTableValue("gamestate", "new_hero_picks"))
     GameMode:Rematch()    -- Does more things
     return
   end
@@ -363,7 +360,6 @@ function GameMode:OnPickNewHero(event)
   local have_all_players_picked = true
   for _,player in pairs(GetPlayersOnTeams({DOTA_TEAM_GOODGUYS, DOTA_TEAM_BADGUYS})) do
     if not picks[tostring(player:GetPlayerID())] then
-      print(player:GetPlayerID())
       have_all_players_picked = false
     end
   end
@@ -385,8 +381,6 @@ function GameMode:OnPickNewHero(event)
       end)
     end
     CustomNetTables:SetTableValue("gamestate", "new_hero_picks", {})	-- Clear this out so we can use it again for the next rematch
-    print("This should be an empty table:")
-    PrintTable(CustomNetTables:GetTableValue("gamestate", "new_hero_picks"))
     GameMode:Rematch()		-- Does more things
   else
     CustomNetTables:SetTableValue("gamestate", "new_hero_picks", picks)
@@ -395,10 +389,6 @@ function GameMode:OnPickNewHero(event)
 end
 
 function GameMode:Rematch()
-  if match_count > 0 then
-    -- We now know that this is not the last round, so we can submit it
-    statCollection:submitRound(false)
-  end
   -- Set up the rematch
   match_count = match_count + 1
   round_times = {}
@@ -518,4 +508,8 @@ function GameMode:StartPickTimer()
       end
     end
   end)
+end
+
+function GameMode:QueueVideo(video)
+	CustomGameEventManager:Send_ServerToAllClients("queue_specific_video", {video = video})
 end

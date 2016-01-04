@@ -8,7 +8,6 @@ function GameMode:OnEntityKilled( keys )
 
   -- This internal handling is used to set up main barebones functions
   GameMode:_OnEntityKilled( keys )
-  print(keys.entindex_killed .. " has been killed")
 
   -- Don't do anything if we're in the midst of setting up a rematch
   local status = CustomNetTables:GetTableValue("gamestate", "status")
@@ -175,6 +174,9 @@ function GameMode:OnRematchYes(keys)
     CustomNetTables:SetTableValue("gamestate", "rematch", {})
     CustomGameEventManager:Send_ServerToAllClients("rematch_accepted", {})
     GameMode:StartPickTimer()
+    -- We now know that this is not the last round, so we can submit it
+    print("Submitting round")
+    statCollection:submitRound(false)
   else
     CustomNetTables:SetTableValue("gamestate", "rematch", tbl)
   end
@@ -182,6 +184,7 @@ end
 
 -- a player clicked no on rematch :(
 function GameMode:OnRematchNo(keys)
+  print("Submitting round")
   statCollection:submitRound(true)
   CustomGameEventManager:Send_ServerToAllClients("rematch_declined", {})
   Timers:CreateTimer(3, function()

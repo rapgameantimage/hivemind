@@ -492,8 +492,8 @@
 
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
     "AttackRange"       "128"
-    "AttackDamageMin"   "25"
-    "AttackDamageMax"   "25"
+    "AttackDamageMin"   "30"
+    "AttackDamageMax"   "30"
     "AttackRate"        "1.35"
     "AttackAnimationPoint"  "0.33"
     "AttackAcquisitionRange"    "800"
@@ -516,5 +516,110 @@
     "Ability1"      "unify_shadow_demon"
     "Ability2"      "unearthly_roar"
     "Ability3"      "creeping_shadows"
+  }
+
+  "npc_dota_kotl_split_wisp"
+  {
+    "BaseClass"        "npc_dota_creature"
+    "Model"             "models/heroes/wisp/wisp.vmdl"
+    "ModelScale"        "1"
+    "SoundSet"          "Hero_Wisp"
+    "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_wisp.vsndevts"
+    "Level"             "1"
+    "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
+
+    "AttackCapabilities" "DOTA_UNIT_CAP_RANGED_ATTACK"
+    "AttackRange"       "500"
+    "AttackDamageMin"   "20"
+    "AttackDamageMax"   "20"
+    "AttackRate"        "1.35"
+    "AttackAnimationPoint"  "0.33"
+    "AttackAcquisitionRange"    "800"
+    "ProjectileModel"   "particles/units/heroes/hero_wisp/wisp_base_attack.vpcf"
+    "ProjectileSpeed"   "1200"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "350" 
+    "MovementTurnRate"      "0.6" 
+    "FollowRange"       "250"
+
+    "ArmorPhysical"     "0"
+    "MagicalResistance" "0"
+    "StatusHealth"      "350"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "0"
+    "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
+    "Ability1"      "unify_kotl"
+    "Ability2"      "charged_strike"
+    "Ability3"      "drift"
+  }
+
+  "npc_dota_treant_split_treant"
+  {
+    "BaseClass"        "npc_dota_creature"
+    "Model"             "models/items/furion/treant/treant_cis/treant_cis.vmdl"
+    "ModelScale"        "0.8"
+    "SoundSet"          "Hero_Treant"
+    "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+    "Level"             "1"
+    "UnitLabel"         "split_unit"
+    "HasInventory"      "1"
+
+    "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"
+    "AttackRange"       "128"
+    "AttackDamageMin"   "25"
+    "AttackDamageMax"   "25"
+    "AttackRate"        "1.35"
+    "AttackAnimationPoint"  "0.33"
+    "AttackAcquisitionRange"    "800"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_GROUND"
+    "MovementSpeed"       "350" 
+    "MovementTurnRate"      "0.6" 
+    "FollowRange"       "250"
+
+    "ArmorPhysical"     "1"
+    "MagicalResistance" "0"
+    "StatusHealth"      "375"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "0"
+    "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
+
+    "Ability1"      "unify_treant"
+    "Ability2"      "sap"
+    "Ability3"      "regrowth"
+  }
+
+  "ethereal_tree"
+  {
+    "BaseClass"        "npc_dota_creature"
+    "Model"             "models/tree_pine_02.vmdl"
+    "ModelScale"        "0.8"
+    "SoundSet"          "Hero_Treant"
+    "GameSoundsFile"    "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
+    "Level"             "1"
+    "UnitLabel"         "destroy_on_new_round"
+
+    "AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
+
+    "MovementCapabilities"    "DOTA_UNIT_CAP_MOVE_NONE"
+
+    "ArmorPhysical"     "1"
+    "MagicalResistance" "0"
+    "StatusHealth"      "99999"
+    "StatusHealthRegen" "0"
+    "StatusMana"        "0"
+    "StatusManaRegen"   "0"
+
+    "VisionDaytimeRange"    "1800"
+    "VisionNighttimeRange"  "1200"
   }
 }

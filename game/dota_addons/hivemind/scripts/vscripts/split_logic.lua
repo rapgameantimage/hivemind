@@ -24,6 +24,13 @@ function GameMode:CreateSplitUnits(hero)
     unit:SetControllableByPlayer(hero:GetPlayerOwnerID(), true)
     -- Hide it (because we always start in hero form)
     unit:AddNewModifier(unit, nil, "modifier_hidden", {})
+    -- Create particles if needed
+    local pfunc = SPLIT_UNIT_PARTICLE_FUNCTIONS[hero:GetName()]
+    if pfunc then
+      Timers:CreateTimer(0.03, function()
+        pfunc(unit)
+      end)
+    end
     -- Store the entity index.
     -- Entity indexes aren't guaranteed to be assigned in ascending order, so let's wait until we know what indexes we have to assign the 1-X IDs that show up in the UI.
     table.insert(entindexes, unit:GetEntityIndex())

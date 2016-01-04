@@ -29,6 +29,8 @@ function Precache( context )
   PrecacheResource("soundfile", "soundevents/game_sounds_items.vsndevts", context)
   PrecacheResource("particle", "particles/econ/events/fall_major_2015/teleport_start_fallmjr_2015_lvl2.vpcf", context)
 
+  PrecacheResource("model", "models/tree_pine_02.vmdl", context)
+
   -- Items
 
   PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_skywrath_mage.vsndevts", context)

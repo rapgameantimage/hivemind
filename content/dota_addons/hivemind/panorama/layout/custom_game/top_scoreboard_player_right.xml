@@ -8,6 +8,11 @@
 	</scripts>
 	<Panel class="player" hittest="false">
 		<Label class="name right" hittest="false" />
-		<DOTAHeroImage class="hero right" heroimagestyle="landscape" onactivate="OnIconClicked()" ondblclick="OnIconDoubleClicked()" />
+		<Panel class="hero right">
+			<DOTAHeroImage heroimagestyle="landscape" onactivate="OnIconClicked()" ondblclick="OnIconDoubleClicked()" />
+			<Panel class="hero-health">
+				<Panel class="hero-health-fill" />
+			</Panel>
+		</Panel>
 	</Panel>
 </root>

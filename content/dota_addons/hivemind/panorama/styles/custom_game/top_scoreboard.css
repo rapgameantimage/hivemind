@@ -26,10 +26,6 @@
 DOTAHeroImage {
 	height: 45px;
 	width: 80px;
-	margin: 0 10px;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	box-shadow: #000000 0px 0px 10px 0px;
 }
 DOTAHeroImage.right {
 	horizontal-align: right;
@@ -78,4 +74,30 @@ Label {
 }
 .dead {
 	saturation: 0.1;
+}
+.hero-health {
+	width: 100%;
+	max-height: 8px;
+	vertical-align: bottom;
+	background-color: #aaaaaa;
+	visibility: collapse;
+}
+.hero-health-fill {
+	background-color: #1a9e00;
+	horizontal-align: left;
+}
+.hero.left {
+	margin-left: 0;
+}
+.hero.right {
+	margin-right: 0;
+}
+.hero {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	box-shadow: #000000 0px 0px 10px 0px;
+	margin: 0 10px;
+}
+.hero-health.visible {
+	visibility: visible;
 }

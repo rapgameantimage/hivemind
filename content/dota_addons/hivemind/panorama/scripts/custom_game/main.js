@@ -307,6 +307,10 @@ function TestVideo(url) {
 	$.Schedule(5, function() {ShowVideo()})
 }
 
+function OnQueueSpecificVideo(info) {
+	QueueVideo(info.video)
+}
+
 function OnRoundWon(event) {
 	if (Entities.GetTeamNumber(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) == parseInt(event.team) && show_videos) {
 		ShowVideo()
@@ -351,6 +355,7 @@ function OnPickCountdown(info) {
 	GameEvents.Subscribe("item_has_spawned", OnItemHasSpawned)
 	GameEvents.Subscribe("round_won", OnRoundWon)
 	GameEvents.Subscribe("pick_countdown", OnPickCountdown)
+	GameEvents.Subscribe("queue_specific_video", OnQueueSpecificVideo)
 	CustomNetTables.SubscribeNetTableListener("gamestate", OnGamestateChange)
 
 	QueueVideo()

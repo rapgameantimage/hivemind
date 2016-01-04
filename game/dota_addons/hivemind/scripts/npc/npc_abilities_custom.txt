@@ -1948,7 +1948,7 @@
     "BaseClass" "ability_lua"
     "ScriptFile"  "heroes/tinker/pulse_cannon"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_ENEMY"
+    "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityDamage" "150"
     "AbilityCastPoint"  "0.3"
     "AbilityManaCost" "75"
@@ -2768,17 +2768,17 @@
       "01"
       {
         "var_type"  "FIELD_INTEGER"
-        "cascade_radius_per_stack"  "75"
+        "cascade_radius_per_stack"  "50"
       }
       "02"
       {
         "var_type"  "FIELD_INTEGER"
-        "primary_target_damage_per_stack"  "30"
+        "primary_target_damage_per_stack"  "25"
       }
       "03"
       {
         "var_type"  "FIELD_INTEGER"
-        "cascade_target_damage_per_stack" "10"
+        "cascade_target_damage_per_stack" "8"
       }
       "04"
       {
@@ -2788,7 +2788,7 @@
       "05"
       {
         "var_type"  "FIELD_INTEGER"
-        "charges_lost_on_miss"  "3"
+        "charges_lost_on_miss"  "4"
       }
     }
   }
@@ -2932,7 +2932,7 @@
     "ScriptFile"  "heroes/shadow_demon/unearthly_roar"
     "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
     "MaxLevel"  "1"
-    "AbilityCooldown" "30"
+    "AbilityCooldown" "20"
     "AbilityCastRange"  "500"
     "AbilityCastPoint"  "0.5"
     "AbilityTextureName"  "lycan/hunter_of_kings_ability_icons/lycan_howl"
@@ -2982,6 +2982,406 @@
       {
         "var_type"  "FIELD_FLOAT"
         "duration"  "3.5"
+      }
+    }
+  }
+
+  // KOTL
+
+  "split_kotl"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/kotl/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "wisp_spirits_out"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+      "particle"  "particles/units/heroes/hero_wisp/wisp_ambient.vpcf"
+    }
+  }
+
+  "unify_kotl"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/kotl/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "keeper_of_the_light_spirit_form"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
+
+  "summon_spirits"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/kotl/summon_spirits"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "keeper_of_the_light_illuminate"
+    "AbilityChannelTime"  "4"
+    "AbilityChannelledManaCostPerSecond"  "100"
+    "AbilityCooldown" "5"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_wisp/wisp_guardian_.vpcf"
+      "particle"  "particles/units/heroes/hero_wisp/wisp_guardian_explosion.vpcf"
+      "particle"  "particles/heroes/kotl/spirits_center_marker.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "max_spirits" "40"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "spirit_damage" "10"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "inner_radius"  "900"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "outer_radius"  "1100"
+      }
+    }
+  }
+
+  "recenter_spirits"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/kotl/recenter_spirits"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "wisp_reloacte"
+    "AbilityCooldown" "1"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "center_movespeed"  "200"
+      }
+    }
+  }
+
+  "spirit_bolt"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/kotl/spirit_bolt"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "keeper_of_the_light_blinding_light"
+    "AbilityCooldown" "12"
+    "AbilityManaCost" "120"
+    "AbilityCastPoint"  "0.4"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "spirit_cost" "10"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "blind_duration"  "3"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "blind_miss_pct"  "80"
+      }
+    }
+  }
+
+  "charged_strike"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/kotl/charged_strike"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "wisp_spirits"
+    "AbilityCooldown" "4"
+    "AbilityDamage" "50"
+    "AbilityDamageType" "DAMAGE_TYPE_MAGICAL"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_wisp/wisp_overcharge.vpcf"
+      "particle"  "particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_stormspirit.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "buff_duration" "4"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_duration" "0.7"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "slow_pct"  "75"
+      }
+    }
+  }
+
+  "drift"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/kotl/drift"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "wisp_spirits_in"
+    "AbilityCooldown" "3"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "movespeed" "650"
+      }
+    }
+  }
+
+  // TREANT
+
+  "split_treant"
+  {
+    "BaseClass"     "ability_lua"
+    "ScriptFile"    "heroes/treant/split"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "furion_force_of_nature"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle" "particles/split_source.vpcf"
+      "particle" "particles/split_target.vpcf"
+      "particle" "particles/split_flare.vpcf"
+    }
+  }
+
+  "unify_treant"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/treant/unify"
+    "AbilityBehavior"   "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"      "1"
+    "AbilityTextureName"  "treant_eyes_in_the_forest"
+    "AbilityCooldown"  "10"
+
+    "precache"
+    {
+      "particle"    "particles/unify.vpcf"
+    }
+  }
+
+  "razor_leaves"
+  {
+    "BaseClass"   "ability_lua"
+    "ScriptFile"  "heroes/treant/razor_leaves"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityManaCost" "150"
+    "AbilityCooldown" "8"
+    "AbilityCastPoint"  "0.4"
+    "AbilityTextureName"  "furion_wrath_of_nature"
+    "AbilityUnitDamageType" "DAMAGE_TYPE_MAGICAL"
+
+    "precache"
+    {
+      "particle"  "heroes/treant/razor_leaves.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration"  "8"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "storm_dps"       "15"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "bleed_dps"       "10"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "bleed_duration"  "2"
+      }
+      "05"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "350"
+      }
+    }
+  }
+
+  "entangle"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/treant/entangle"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "6"
+    "AbilityManaCost" "150"
+    "AbilityTextureName"  "lone_druid_spirit_bear_entangle"
+    "AbilityUnitDamageType"  "DAMAGE_TYPE_MAGICAL"
+    "AbilityCastRange"  "800"
+
+    "precache"
+    {
+      "particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+      "particle"  "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle_body.vpcf"
+      "soundfile" "soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "delay"     "1.5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "radius"    "200"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "debuff_duration" "2"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "dps"       "65"
+      }
+    }
+  }
+
+  "ethereal_forest"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/treant/ethereal_forest"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "MaxLevel"  "1"
+    "AbilityManaCost" "125"
+    "AbilityCooldown" "12"
+    "AbilityCastPoint"  "0.1"
+    "AbilityTextureName"  "treant_eyes_in_the_forest"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "buff_duration" "5"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "tree_duration" "6"
+      }
+    }
+  }
+
+  "sap"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/treant/sap"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+    "MaxLevel"  "1"
+    "AbilityCooldown" "8"
+    "AbilityCastPoint"  "0.3"
+    "AbilityTextureName"  "treant_eyes_in_the_forest"
+
+    "precache"
+    {
+      "particle"  "heroes/treant/sap.vpcf"
+      "particle"  "particles/heroes/treant/sap_debuff.vpcf"
+    }
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "duration" "4"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "max_stacks" "5"
+      }
+      "03"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "attackspeed_slow_per_stack"  "10"
+      }
+      "04"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "movespeed_slow_per_stack"  "20"
+      }
+    }
+  }
+
+  "regrowth"
+  {
+    "BaseClass" "ability_lua"
+    "ScriptFile"  "heroes/treant/regrowth"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "MaxLevel"  "1"
+    "AbilityTextureName"  "treant_living_armor"
+
+    "AbilitySpecial"
+    {
+      "01"
+      {
+        "var_type"  "FIELD_INTEGER"
+        "percent_regrown" "30"
+      }
+      "02"
+      {
+        "var_type"  "FIELD_FLOAT"
+        "regrowth_duration" "4"
       }
     }
   }

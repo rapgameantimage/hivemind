@@ -4,6 +4,7 @@ var DOTA_TEAM_GOODGUYS = 2
 var DOTA_TEAM_GOODGUYS_str = "2"
 var DOTA_TEAM_BADGUYS = 3
 var DOTA_TEAM_BADGUYS_str = "3"
+var local_player_panel
 
 function CheckState(table, key, value) {
 	if (key === "score") {
@@ -35,6 +36,7 @@ function BuildTopBar() {
 	$.Msg("Building top scoreboard")
 	var left_team = Game.GetPlayerIDsOnTeam(DOTA_TEAM_GOODGUYS)
 	var right_team = Game.GetPlayerIDsOnTeam(DOTA_TEAM_BADGUYS)
+	var local_player = Players.GetLocalPlayer()
 
 	$("#left-wrap").RemoveAndDeleteChildren()
 	for (var i = 0; i < left_team.length; i++) {
@@ -42,6 +44,10 @@ function BuildTopBar() {
 		var panel = $.CreatePanel("Panel", $("#left-wrap"), "")
 		panel.SetAttributeInt("player", player)
 		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_left.xml", false, false)
+		panel.GetChild(0).GetChild(1).SetHasClass("visible", player == local_player)
+		if (player == local_player) {
+			local_player_panel = panel
+		}
 	}
    
 	$("#right-wrap").RemoveAndDeleteChildren()
@@ -50,6 +56,10 @@ function BuildTopBar() {
 		var panel = $.CreatePanel("Panel", $("#right-wrap"), "")
 		panel.SetAttributeInt("player", player)
 		panel.BLoadLayout("file://{resources}/layout/custom_game/top_scoreboard_player_right.xml", false, false)
+		panel.GetChild(1).GetChild(1).SetHasClass("visible", player == local_player)
+		if (player == local_player) {
+			local_player_panel = panel
+		}
 	}
 	UpdateTopBar()
 } 
@@ -64,8 +74,8 @@ function UpdateTopBar() {
 		var hero = Players.GetPlayerHeroEntityIndex(player)
 		var heroclass = Entities.GetClassname(hero)
 		if (heroclass != "npc_dota_hero_wisp") {
-			panel.GetChild(0).heroname = heroclass
-			panel.GetChild(0).SetAttributeInt("hero", hero)
+			panel.GetChild(0).GetChild(0).heroname = heroclass
+			panel.GetChild(0).GetChild(0).SetAttributeInt("hero", hero)
 		}
 
 		var name = Players.GetPlayerName(player)
@@ -82,8 +92,8 @@ function UpdateTopBar() {
 		var hero = Players.GetPlayerHeroEntityIndex(player)
 		var heroclass = Entities.GetClassname(hero)
 		if (heroclass != "npc_dota_hero_wisp") {
-			panel.GetChild(1).heroname = heroclass
-			panel.GetChild(1).SetAttributeInt("hero", hero)
+			panel.GetChild(1).GetChild(0).heroname = heroclass
+			panel.GetChild(1).GetChild(0).SetAttributeInt("hero", hero)
 		}
 
 		var name = Players.GetPlayerName(player)
@@ -113,10 +123,19 @@ function UpdateTopBar() {
 	}
 	$("#scoretext").text = scoretext
 } 
- 
+
+function UpdateHeroHealth() {
+	if (local_player_panel) {
+		var fill = local_player_panel.FindChildrenWithClassTraverse("hero")[0].GetChild(1).GetChild(0)
+		fill.style.width = Entities.GetHealthPercent(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) + "%"
+		$.Schedule(0.1, UpdateHeroHealth)
+	}
+}
+
 (function()
 {
 	BuildTopBar()
+	UpdateHeroHealth()
 	
 	GameEvents.Subscribe("match_started", UpdateTopBar)
 	GameEvents.Subscribe("match_completed", UpdateTopBar)
